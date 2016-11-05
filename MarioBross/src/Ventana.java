@@ -159,7 +159,8 @@ public class Ventana extends JFrame {
 			// Bucle principal forever hasta que se pare el juego...
 			while (sigo) {
 				pPrincipal.repaint();
-				// Mover coche
+				// Mover "Mario"(Realmente lo que movemos es el fondo creando un
+				// efecto óptico de movimiento
 
 				if (aPulsada[0]) {
 					if (Mario.getGrafico().EsEspejo()) {
@@ -175,28 +176,34 @@ public class Ventana extends JFrame {
 
 				if (aPulsada[1] && !aPulsada[0]) {
 					Mario.getGrafico().setComponentOrientationNormal();
-					((JPanelFondo) pPrincipal).setVar(((JPanelFondo) pPrincipal).getVar()-20);
+					((JPanelFondo) pPrincipal).setVar(((JPanelFondo) pPrincipal).getVar() - 20);
 					Mario.setPosX(Mario.getPosX());
-					if(((JPanelFondo) pPrincipal).getVar()<=-18840){
+					if (((JPanelFondo) pPrincipal).getVar() <= -18840) {
 						((JPanelFondo) pPrincipal).setVar(-18840);
 					}
 				}
 
 				if (aPulsada[2] && !aPulsada[0]) {
 					Mario.getGrafico().setComponentOrientationEspejo();
-					((JPanelFondo) pPrincipal).setVar(((JPanelFondo) pPrincipal).getVar()+20);
-					if(((JPanelFondo) pPrincipal).getVar()>=-60){
+					((JPanelFondo) pPrincipal).setVar(((JPanelFondo) pPrincipal).getVar() + 20);
+					if (((JPanelFondo) pPrincipal).getVar() >= -60) {
 						((JPanelFondo) pPrincipal).setVar(-60);
 					}
-					Mario.setPosX(Mario.getPosX());		
+					Mario.setPosX(Mario.getPosX());
 				}
 
-				// TODO
-
-				// Comprobar choque con el mundo para voltear al personaje
-				if (Mundo.hayChoqueHorizontal(Mario)) {
-					Mario.setPosicion(WIDTH, Mario.getPosY());
+				Ventana.this.Mundo.creaCV();
+				Mundo.CV.move(Mundo.CV.getX(),Mundo.CV.getY()+10);
+				if (aPulsada[1] && !aPulsada[0]&&((JPanelFondo) pPrincipal).getVar()!=-18840){
+					Mundo.CV.move(Mundo.CV.getX()-20,Mundo.CV.getY());	
 				}
+				if (aPulsada[2] && !aPulsada[0]&&((JPanelFondo) pPrincipal).getVar()!=-60) {
+					Mundo.CV.move(Mundo.CV.getX()+20,Mundo.CV.getY());
+				}
+				
+				
+				
+
 				// Dormir el hilo 40 milisegundos
 				try {
 					pPrincipal.repaint();

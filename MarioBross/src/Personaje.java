@@ -1,28 +1,17 @@
 
 /**
- * Clase para definir instancias lógicas de coches con posición, dirección y
- * velocidad.
+ * Clase para definir instancias lógicas de un Peraonaje
  */
 public class Personaje {
 	protected double posX; // Posición en X (horizontal)
 	protected double posY; // Posición en Y (vertical)
 	protected String nombre; // Nombre del personaje
-	protected double Direccion; // Dirección en la que estoy mirando en grados
-								// (de 0 a 360)
 
 	public Personaje() {
 		this.posX = posX;
 		this.posY = posY;
 		this.nombre = nombre;
 
-	}
-
-	public double getDireccion() {
-		return Direccion;
-	}
-
-	public void setDireccion(double direccion) {
-		Direccion = direccion;
 	}
 
 	public double getPosX() {

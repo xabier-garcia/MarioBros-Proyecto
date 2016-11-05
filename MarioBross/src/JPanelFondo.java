@@ -19,7 +19,7 @@ public class JPanelFondo extends JPanel {
 	//
 	//Dimension tamaño = getSize();
 	//Como no estamos usando un Jlabel no podemos utilizar el set Icon, asi que lo crearemos con el método ImageIcon
-	ImageIcon imagenFondo = new ImageIcon(getClass().getResource("/Imagenes/Fondo(2).jpg"));
+	ImageIcon imagenFondo = new ImageIcon(getClass().getResource("/Imagenes/FondoMarioLv1.jpg"));
 	g.drawImage(imagenFondo.getImage(),var,0,20760, 1080, null);
 	setOpaque(false);
 	super.paintComponent(g);

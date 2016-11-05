@@ -9,21 +9,20 @@ import javax.swing.JLabel;
 
 public class JLabelMario extends JLabel {
 	private static final long serialVersionUID = 1L; // Para serialización
-	public static final int TAMANYO_MARIO = 150; // píxels (igual ancho que
-													// algo)
-	public static final int RADIO_ESFERA_MARIO = 70; // Radio en píxels del
-														// bounding circle del
-														// Mario(para choques)
-	private static final boolean DIBUJAR_ESFERA_MARIO = false; // Dibujado (para
-	private boolean Espejo=false;															// depuración)
-																// del bounding
-																// circle de
-																// choque del
-																// Mario
+	
+	public static final int TAMANYO_MARIO = 150; // píxels (igual ancho que largo)
+	
+	public static final int RADIO_ESFERA_MARIO = 70; // Radio en píxels del bounding circle del Mario(para choques)
+	
+	private static final boolean DIBUJAR_ESFERA_MARIO = false; // Dibujado (paradepuración)del bounding circle de choque de Mario
+	
+	private boolean Espejo = false; //Atributo para saber si hay que aplicarle el método de espejo a la imagen de Mario
+	
 
 	/**
 	 * Construye y devuelve el JLabel del Mario con su gráfico y tamaño
 	 */
+	
 	public JLabelMario() {
 		try {
 
@@ -35,6 +34,10 @@ public class JLabelMario extends JLabel {
 		setBounds(0, 0, TAMANYO_MARIO, TAMANYO_MARIO);
 
 	}
+	
+	/**
+	 * Método para pintar el componente de Mario
+	 */
 
 	@Override
 	protected void paintComponent(Graphics g) {
@@ -53,6 +56,10 @@ public class JLabelMario extends JLabel {
 			g2.drawOval(TAMANYO_MARIO / 2 - RADIO_ESFERA_MARIO, TAMANYO_MARIO / 2 - RADIO_ESFERA_MARIO,
 					RADIO_ESFERA_MARIO * 2, RADIO_ESFERA_MARIO * 2);
 	}
+	
+	/**
+	 * Método para Obtener la imagen de Mario corriendo en Modo espejo
+	 */
 
 	public void setComponentOrientationEspejo() {
 		try {
@@ -63,9 +70,13 @@ public class JLabelMario extends JLabel {
 			e.printStackTrace();
 		}
 		setBounds(0, 0, TAMANYO_MARIO, TAMANYO_MARIO);
-		Espejo=true;
+		Espejo = true;
 
 	}
+	
+	/**
+	 * Método para Obtener la imagen de Mario corriendo en Modo normal
+	 */
 
 	public void setComponentOrientationNormal() {
 		try {
@@ -76,10 +87,14 @@ public class JLabelMario extends JLabel {
 			e.printStackTrace();
 		}
 		setBounds(0, 0, TAMANYO_MARIO, TAMANYO_MARIO);
-		Espejo=false;
+		Espejo = false;
 
 	}
 	
+	/**
+	 * Método para Obtener la imagen de Mario Saltando en Modo normal
+	 */
+
 	public void setComponentOrientationSalto() {
 		try {
 
@@ -89,9 +104,13 @@ public class JLabelMario extends JLabel {
 			e.printStackTrace();
 		}
 		setBounds(0, 0, TAMANYO_MARIO, TAMANYO_MARIO);
-		Espejo=false;
+		Espejo = false;
 
 	}
+	
+	/**
+	 * Método para Obtener la imagen de Mario Saltando en Modo espejo
+	 */
 
 	public void setComponentOrientationSaltoEspejo() {
 		try {
@@ -102,12 +121,13 @@ public class JLabelMario extends JLabel {
 			e.printStackTrace();
 		}
 		setBounds(0, 0, TAMANYO_MARIO, TAMANYO_MARIO);
-		Espejo=true;
+		Espejo = true;
 	}
+
+	// Get que devuelve booleano espejo
 	
-	public boolean EsEspejo(){
+	public boolean EsEspejo() {
 		return Espejo;
 	}
-	
-	
+
 }

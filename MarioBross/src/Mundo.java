@@ -1,11 +1,16 @@
 
-import java.util.ArrayList;
+import java.awt.Point;
+import java.util.Random;
 
 import javax.swing.JPanel;
 
 public class Mundo {
 	private JPanel panel; // panel visual del juego
-	Mario Mario; // Coche del juego
+	Mario Mario; // Mario del juego
+	private static long UltimaHora; // Para saber la última hora de creación de
+									// los caparazones verdes
+	private Random numR = new Random();
+	JLabelCaparazonVerde CV = new JLabelCaparazonVerde();
 
 	/**
 	 * Construye un mundo de juego
@@ -26,11 +31,27 @@ public class Mundo {
 	 *            Posición Y de píxel del nuevo Mario
 	 */
 	public void creaMario(int posX, int posY) {
-		// Crear y añadir el coche a la ventana
+		// Crear y añadir el Mario a la ventana
 		Mario = new Mario();
 		Mario.setPosicion(posX, posY);
 		panel.add(Mario.getGrafico()); // Añade al panel visual
 		Mario.getGrafico().repaint(); // Refresca el dibujado de Mario
+	}
+
+	/**
+	 * Si han pasado más de 1,2 segundos desde la última, * crea una estrella
+	 * nueva en una posición aleatoria y la añade al mundo y al panel visual
+	 */
+
+	public void creaCV() {
+
+		if (System.currentTimeMillis() - UltimaHora > 12000) {
+			CV.setLocation(numR.nextInt(panel.getWidth() - CV.TAMANYO_CV), this.panel.getHeight() - 1080);
+			panel.add(CV);
+			CV.repaint();
+			UltimaHora = System.currentTimeMillis();
+		}
+
 	}
 
 	/**
@@ -40,31 +61,6 @@ public class Mundo {
 	 */
 	public Mario getMario() {
 		return Mario;
-	}
-	
-	/**
-	 * Calcula si hay choque en horizontal con los límites del mundo
-	 * 
-	 * @return true si hay choque horizontal, false si no lo hay
-	 */
-	public boolean hayChoqueHorizontal(Mario Mario) {
-		return (Mario.getPosX() < JLabelMario.RADIO_ESFERA_MARIO - JLabelMario.TAMANYO_MARIO / 2
-				|| Mario.getPosX() > panel.getWidth() - JLabelMario.TAMANYO_MARIO / 2 - JLabelMario.RADIO_ESFERA_MARIO);
-	}
-
-	/**
-	 * Realiza un rebote en horizontal del objeto de juego indicado
-	 * 
-	 * @param coche
-	 *            Objeto que rebota en horizontal
-	 */
-	public void rebotaHorizontal(Mario mario) {
-		// System.out.println( "Choca X");
-		double dir = Mario.getPosX();
-		dir = 180 - dir; // Rebote espejo sobre OY (complementario de 180)
-		if (dir < 0)
-			dir = 360 + dir; // Corrección para mantenerlo en [0,360)
-		Mario.setPosX(dir);
 	}
 
 }
