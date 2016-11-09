@@ -163,16 +163,41 @@ public class Ventana extends JFrame {
 				// efecto óptico de movimiento
 
 				if (aPulsada[0]) {
+					if(aPulsada[1] && aPulsada[0]){
+						if (Mario.getGrafico().EsEspejo()) {
+							Mario.getGrafico().setComponentOrientationSaltoEspejo();
+							Mario.saltoOblicuoDerecha(Mario, pPrincipal);
+							pPrincipal.repaint();
+						} else {
+							Mario.getGrafico().setComponentOrientationSalto();
+							Mario.saltoOblicuoDerecha(Mario, pPrincipal);
+							pPrincipal.repaint();
+						}
+					}
+					else if(aPulsada[2] && aPulsada[0]){
+						if (Mario.getGrafico().EsEspejo()) {
+							Mario.getGrafico().setComponentOrientationSaltoEspejo();
+							Mario.saltoOblicuoIzquierda(Mario,pPrincipal);
+							pPrincipal.repaint();
+						} else {
+							Mario.getGrafico().setComponentOrientationSalto();
+							Mario.saltoOblicuoIzquierda(Mario, pPrincipal);
+							pPrincipal.repaint();
+						}
+					}
+					else{
 					if (Mario.getGrafico().EsEspejo()) {
 						Mario.getGrafico().setComponentOrientationSaltoEspejo();
-						Mario.salto(Mario);
+						Mario.saltoVertical(Mario);
 						pPrincipal.repaint();
 					} else {
 						Mario.getGrafico().setComponentOrientationSalto();
-						Mario.salto(Mario);
+						Mario.saltoVertical(Mario);
 						pPrincipal.repaint();
 					}
+					}
 				}
+				
 
 				if (aPulsada[1] && !aPulsada[0]) {
 					Mario.getGrafico().setComponentOrientationNormal();
