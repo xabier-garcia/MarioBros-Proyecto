@@ -19,6 +19,7 @@ public class Ventana extends JFrame {
 	Mundo Mundo; // Mundo del juego
 	Mario Mario; // Mario del juego
 	MiRunnable miHilo = null; // Hilo del bucle principal de juego
+	MiRunnable2 miHilo2=null;
 	Boolean[] aPulsada = new Boolean[3]; // Array que almacena estado de la
 											// tecla
 	JLabel resultado;
@@ -132,11 +133,14 @@ public class Ventana extends JFrame {
 			Ventana.Mario = Ventana.Mundo.getMario();
 			Ventana.Mario.setNombre("Mario Bros");
 			// Crea el hilo de movimiento del coche y lo lanza
-			Ventana.miHilo = Ventana.new MiRunnable(); // Sintaxis de new
+			Ventana.miHilo = Ventana.new MiRunnable();
+			Ventana.miHilo2=Ventana.new MiRunnable2();											// Sintaxis de new
 														// para clase
 														// interna
 			Thread nuevoHilo = new Thread(Ventana.miHilo);
+			Thread nuevoHilo2 = new Thread(Ventana.miHilo2);
 			nuevoHilo.start();
+			nuevoHilo2.start();
 		} catch (Exception e) {
 			System.exit(1); // Error anormal
 		}
@@ -145,9 +149,6 @@ public class Ventana extends JFrame {
 	/**
 	 * Clase interna para implementación de bucle principal del juego como un
 	 * hilo
-	 * 
-	 * @author Andoni Eguíluz Facultad de Ingeniería - Universidad de Deusto
-	 *         (2014)
 	 */
 	class MiRunnable implements Runnable {
 		boolean sigo = true;
@@ -174,16 +175,17 @@ public class Ventana extends JFrame {
 					}
 				}
 
-				if (aPulsada[1] && !aPulsada[0]) {
+				if (aPulsada[1] && !aPulsada[0] && !Mario.isCaida()) {
 					Mario.getGrafico().setComponentOrientationNormal();
 					((JPanelFondo) pPrincipal).setVar(((JPanelFondo) pPrincipal).getVar() - 20);
 					Mario.setPosX(Mario.getPosX());
 					if (((JPanelFondo) pPrincipal).getVar() <= -18840) {
 						((JPanelFondo) pPrincipal).setVar(-18840);
 					}
+
 				}
 
-				if (aPulsada[2] && !aPulsada[0]) {
+				if (aPulsada[2] && !aPulsada[0] && !Mario.isCaida()) {
 					Mario.getGrafico().setComponentOrientationEspejo();
 					((JPanelFondo) pPrincipal).setVar(((JPanelFondo) pPrincipal).getVar() + 20);
 					if (((JPanelFondo) pPrincipal).getVar() >= -60) {
@@ -191,23 +193,39 @@ public class Ventana extends JFrame {
 					}
 					Mario.setPosX(Mario.getPosX());
 				}
-
+				
 				Ventana.this.Mundo.creaCV();
-				Mundo.CV.move(Mundo.CV.getX(),Mundo.CV.getY()+10);
-				if (aPulsada[1] && !aPulsada[0]&&((JPanelFondo) pPrincipal).getVar()!=-18840){
-					Mundo.CV.move(Mundo.CV.getX()-20,Mundo.CV.getY());	
-				}
-				if (aPulsada[2] && !aPulsada[0]&&((JPanelFondo) pPrincipal).getVar()!=-60) {
-					Mundo.CV.move(Mundo.CV.getX()+20,Mundo.CV.getY());
-				}
-				
-				
-				
 
+				Mundo.CV.move(Mundo.CV.getX(), Mundo.CV.getY() + 10);
+
+				if (aPulsada[1] && !aPulsada[0] && ((JPanelFondo) pPrincipal).getVar() != -18840) {
+					Mundo.CV.move(Mundo.CV.getX() - 20, Mundo.CV.getY());
+					Mundo.CR.move(Mundo.CR.getX() - 20, Mundo.CR.getY());
+				}
+				if (aPulsada[2] && !aPulsada[0] && ((JPanelFondo) pPrincipal).getVar() != -60) {
+					Mundo.CV.move(Mundo.CV.getX() + 20, Mundo.CV.getY());
+					Mundo.CR.move(Mundo.CR.getX() + 20, Mundo.CR.getY());
+				}
+
+			if (Mario.getPosY()>=760 && Mario.getPosY()<=860) {
+					if (((JPanelFondo) pPrincipal).getVar() < -1470 && ((JPanelFondo) pPrincipal).getVar() > -1600
+							|| ((JPanelFondo) pPrincipal).getVar() < -4300
+									&& ((JPanelFondo) pPrincipal).getVar() > -4600
+							|| ((JPanelFondo) pPrincipal).getVar() < -14770
+								&& ((JPanelFondo) pPrincipal).getVar() > -14880) {
+						Mario.setCaida(true);
+					}
+				}
+
+				if (Mario.isCaida()) {
+					Mario.setPosY(Mario.getPosY() + 25);
+				}
+				
 				// Dormir el hilo 40 milisegundos
 				try {
 					pPrincipal.repaint();
 					Thread.sleep(40);
+
 					pPrincipal.repaint();
 				} catch (Exception e) {
 				}
@@ -221,5 +239,39 @@ public class Ventana extends JFrame {
 			sigo = false;
 		}
 	};
+	
+	/**
+	 * Clase interna para implementación de bucle principal del juego como un
+	 * hilo
+	 */
+	class MiRunnable2 implements Runnable {
+		boolean sigo = true;
+
+		@Override
+		public void run() {
+
+			Ventana.this.Mundo.creaCV();
+
+			Mundo.CV.move(Mundo.CV.getX(), Mundo.CV.getY() + 10);
+
+			if (aPulsada[1] && !aPulsada[0] && ((JPanelFondo) pPrincipal).getVar() != -18840) {
+				Mundo.CV.move(Mundo.CV.getX() - 20, Mundo.CV.getY());
+				Mundo.CR.move(Mundo.CR.getX() - 20, Mundo.CR.getY());
+			}
+			if (aPulsada[2] && !aPulsada[0] && ((JPanelFondo) pPrincipal).getVar() != -60) {
+				Mundo.CV.move(Mundo.CV.getX() + 20, Mundo.CV.getY());
+				Mundo.CR.move(Mundo.CR.getX() + 20, Mundo.CR.getY());
+			}
+
+			// Dormir el hilo 30 milisegundos
+			try {
+				pPrincipal.repaint();
+				Thread.sleep(30);
+
+				pPrincipal.repaint();
+			} catch (Exception e) {
+			}
+		}
+	}
 
 }

@@ -29,11 +29,12 @@ public class Mario extends Personaje{
 	
 	public void salto(Mario Mario){
 		int i=0;
-		while(i<8000000){
+		while(i<800000){
 		Mario.setPosY(760);
 		i++;
 		}
 		Mario.setPosY(860);
 	}
+	
 	
 }

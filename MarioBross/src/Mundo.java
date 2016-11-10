@@ -11,6 +11,7 @@ public class Mundo {
 									// los caparazones verdes
 	private Random numR = new Random();
 	JLabelCaparazonVerde CV = new JLabelCaparazonVerde();
+	JLabelCaparazonRojo CR = new JLabelCaparazonRojo();
 
 	/**
 	 * Construye un mundo de juego
@@ -39,8 +40,8 @@ public class Mundo {
 	}
 
 	/**
-	 * Si han pasado más de 1,2 segundos desde la última, * crea una estrella
-	 * nueva en una posición aleatoria y la añade al mundo y al panel visual
+	 * Si han pasado más de 1,2 segundos desde la última, * crea un caparazon nuevo
+	 * nuevo en una posición aleatoria y la añade al mundo y al panel visual
 	 */
 
 	public void creaCV() {
