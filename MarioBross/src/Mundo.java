@@ -50,9 +50,14 @@ public class Mundo {
 			CV.setLocation(numR.nextInt(panel.getWidth() - CV.TAMANYO_CV), this.panel.getHeight() - 1080);
 			panel.add(CV);
 			CV.repaint();
+			
 			UltimaHora = System.currentTimeMillis();
 		}
 
+	}
+	
+	public void moverCV(){
+		CV.move(CV.getX(),CV.getY()+10);
 	}
 
 	/**
