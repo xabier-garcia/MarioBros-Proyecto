@@ -40,7 +40,11 @@ public class Mario extends Personaje{
 	public void saltoMario(){ 
 
 		if(salto && cont){
+
 			gravedad = gravedad - 10;
+
+			gravedad = gravedad - 20;
+
 			this.setPosY(gravedad);
 			if(this.getPosY() == 520){
 				cont = false;
@@ -54,7 +58,11 @@ public class Mario extends Personaje{
 				salto=false;
 				caida=false;
 			}
+
 			gravedad = gravedad + 10;
+
+			gravedad = gravedad + 20;
+
 			this.setPosY(gravedad);
 		}
 		

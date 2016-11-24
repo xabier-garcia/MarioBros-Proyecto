@@ -1,4 +1,3 @@
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.FocusAdapter;
@@ -215,6 +214,13 @@ public class Ventana extends JFrame {
 						Mario.gravedad = 860;
 						Mario.salto = true;
 						Mario.cont = true;
+
+						if(Mario.getGrafico().EsEspejo()){
+						Mario.getGrafico().setComponentOrientationSaltoEspejo();}
+						else{
+							Mario.getGrafico().setComponentOrientationSalto();
+						}
+						Mario.setPosX(Mario.getPosX());
 					}
 				}
 	
@@ -275,10 +281,10 @@ public class Ventana extends JFrame {
 				if ((aPulsada[1] && !aPulsada[0]) || (aPulsada[1] && aPulsada[0])) {
 					Mario.getGrafico().setComponentOrientationNormal();
 					((JPanelFondo) pPrincipal).setVar(((JPanelFondo) pPrincipal).getVar() - 20);
-					Mario.setPosX(Mario.getPosX());
 					if (((JPanelFondo) pPrincipal).getVar() <= -18840) {
 						((JPanelFondo) pPrincipal).setVar(-18840);
 					}
+					Mario.setPosX(Mario.getPosX());
 				}
 
 				if ((aPulsada[2] && !aPulsada[0]) || (aPulsada[2] && aPulsada[0])) {
@@ -290,7 +296,7 @@ public class Ventana extends JFrame {
 					Mario.setPosX(Mario.getPosX());
 				}
 
-				if (Mario.getPosY() > 660 && Mario.getPosY() <= 860) {
+				if (Mario.getPosY()==860) {
 					if (((JPanelFondo) pPrincipal).getVar() < -1470 && ((JPanelFondo) pPrincipal).getVar() > -1600
 							|| ((JPanelFondo) pPrincipal).getVar() < -4300
 									&& ((JPanelFondo) pPrincipal).getVar() > -4600
@@ -300,9 +306,17 @@ public class Ventana extends JFrame {
 					}
 				}
 
+
 //				if (Mario.isCaida()) {
 //					Mario.setPosY(Mario.getPosY() + 25);
 //				}
+//	if (Mario.isCaida()) {
+				//	Mario.setPosY(Mario.getPosY() + 25);
+				//}
+	
+			//if(Mario.getPosY()>=1100){
+				//sigo=false;
+			//}
 
 				// Dormir el hilo 40 milisegundos
 				try {
