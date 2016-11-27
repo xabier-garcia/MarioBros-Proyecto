@@ -130,8 +130,10 @@ public class Ventana extends JFrame {
 			Ventana.Mundo = new Mundo(Ventana.pPrincipal);
 			Ventana.Mundo.creaMario(620, 860);
 			Ventana.Mario = Ventana.Mundo.getMario();
+			Ventana.Mundo.creaBloque();
+			Ventana.Mundo.creaBloqueA();
+			Ventana.Mundo.creaTuberia();
 			Ventana.Mario.setNombre("Mario Bros");
-			// Crea el hilo de movimiento del coche y lo lanza
 			Ventana.miHilo = Ventana.new MiRunnable(); // Sintaxis de new
 			Ventana.miHilo2 = Ventana.new MiRunnable2(); // para clase
 			// interna
@@ -149,30 +151,28 @@ public class Ventana extends JFrame {
 
 		@Override
 		public void run() {
-			// TODO Auto-generated method stub
 
 			while (sigo) {
-				Ventana.this.Mundo.creaCV();
-				Ventana.this.Mundo.moverCV();
+//				Ventana.this.Mundo.creaCV();
+//				Ventana.this.Mundo.moverCV();
 
-				if (aPulsada[1] && !aPulsada[0] && ((JPanelFondo) pPrincipal).getVar() != -18840) {
-					Mundo.CV.move(Mundo.CV.getX() - 20, Mundo.CV.getY());
-				}
-
-				if (aPulsada[2] && !aPulsada[0] && ((JPanelFondo) pPrincipal).getVar() != -60) {
-					Mundo.CV.move(Mundo.CV.getX() + 20, Mundo.CV.getY());
-				}
-				
-
-				if (aPulsada[1] && aPulsada[0] && ((JPanelFondo) pPrincipal).getVar() != -18840) {
-					Mundo.CV.move(Mundo.CV.getX() - 20, Mundo.CV.getY());
-					Mundo.CV.move(Mundo.CV.getX() + 10, Mundo.CV.getY());
-				}
-
-				if (aPulsada[2] && aPulsada[0] && ((JPanelFondo) pPrincipal).getVar() != -60) {
-					Mundo.CV.move(Mundo.CV.getX() + 20, Mundo.CV.getY());
-					Mundo.CV.move(Mundo.CV.getX() - 10, Mundo.CV.getY());
-				}
+//				if (aPulsada[1] && !aPulsada[0] && ((JPanelFondo) pPrincipal).getVar() != -18840) {
+//					Mundo.CV.move(Mundo.CV.getX() - 20, Mundo.CV.getY());
+//				}
+//
+//				if (aPulsada[2] && !aPulsada[0] && ((JPanelFondo) pPrincipal).getVar() != -60) {
+//					Mundo.CV.move(Mundo.CV.getX() + 20, Mundo.CV.getY());
+//				}
+//
+//				if (aPulsada[1] && aPulsada[0] && ((JPanelFondo) pPrincipal).getVar() != -18840) {
+//					Mundo.CV.move(Mundo.CV.getX() - 20, Mundo.CV.getY());
+//					Mundo.CV.move(Mundo.CV.getX() + 10, Mundo.CV.getY());
+//				}
+//
+//				if (aPulsada[2] && aPulsada[0] && ((JPanelFondo) pPrincipal).getVar() != -60) {
+//					Mundo.CV.move(Mundo.CV.getX() + 20, Mundo.CV.getY());
+//					Mundo.CV.move(Mundo.CV.getX() - 10, Mundo.CV.getY());
+//				}
 
 				// Dormir el hilo 40 milisegundos
 				try {
@@ -205,78 +205,24 @@ public class Ventana extends JFrame {
 			while (sigo) {
 				pPrincipal.repaint();
 				Mario.saltoMario();
-
+				
 				// Mover "Mario"(Realmente lo que movemos es el fondo creando un
 				// efecto óptico de movimiento
-				
-				if(aPulsada[0] ){
-					if(!Mario.salto){
-						Mario.gravedad = 860;
+
+				if (aPulsada[0]) {
+					if (!Mario.salto) {
+						Mario.gravedad = 840;
 						Mario.salto = true;
 						Mario.cont = true;
-
-						if(Mario.getGrafico().EsEspejo()){
-						Mario.getGrafico().setComponentOrientationSaltoEspejo();}
-						else{
+						if (Mario.getGrafico().EsEspejo()) {
+							Mario.getGrafico().setComponentOrientationSaltoEspejo();
+						} else {
 							Mario.getGrafico().setComponentOrientationSalto();
+							repaint();
 						}
 						Mario.setPosX(Mario.getPosX());
 					}
 				}
-	
-//				if (aPulsada[0]) {
-//					while(aPulsada[0] && Mario.getPosY()>520){
-//						Mario.salto(Mario);
-//						if(aPulsada[1]){
-//						Mario.saltoDerecha(Mario);	
-//						}
-//						if(aPulsada[2]){
-//						Mario.saltoIzq(Mario);
-//						}
-//					}
-//					while(Mario.getPosY()<860){
-//						Mario.descenso(Mario);
-//						if(aPulsada[1]){
-//						Mario.saltoDerecha(Mario);	
-//						}
-//						if(aPulsada[2]){
-//						Mario.saltoIzq(Mario);
-//						}
-//					}
-					
-					
-//					if (aPulsada[1] && aPulsada[0]) {
-//						if (Mario.getGrafico().EsEspejo()) {
-//							Mario.getGrafico().setComponentOrientationSaltoEspejo();
-//							Mario.saltoOblicuoDerecha(Mario, pPrincipal);
-//							pPrincipal.repaint();
-//						} else {
-//							Mario.getGrafico().setComponentOrientationSalto();
-//							Mario.saltoOblicuoDerecha(Mario, pPrincipal);
-//							pPrincipal.repaint();
-//						}
-//					} else if (aPulsada[2] && aPulsada[0]) {
-//						if (Mario.getGrafico().EsEspejo()) {
-//							Mario.getGrafico().setComponentOrientationSaltoEspejo();
-//							Mario.saltoOblicuoIzquierda(Mario, pPrincipal);
-//							pPrincipal.repaint();
-//						} else {
-//							Mario.getGrafico().setComponentOrientationSalto();
-//							Mario.saltoOblicuoIzquierda(Mario, pPrincipal);
-//							pPrincipal.repaint();
-//						}
-//					} else {
-//						if (Mario.getGrafico().EsEspejo()) {
-//							Mario.getGrafico().setComponentOrientationSaltoEspejo();
-//							Mario.saltoVertical(Mario);
-//							pPrincipal.repaint();
-//						} else {
-//							Mario.getGrafico().setComponentOrientationSalto();
-//							Mario.saltoVertical(Mario);
-//							pPrincipal.repaint();
-//						}
-//					}
-			
 
 				if ((aPulsada[1] && !aPulsada[0]) || (aPulsada[1] && aPulsada[0])) {
 					Mario.getGrafico().setComponentOrientationNormal();
@@ -284,19 +230,30 @@ public class Ventana extends JFrame {
 					if (((JPanelFondo) pPrincipal).getVar() <= -18840) {
 						((JPanelFondo) pPrincipal).setVar(-18840);
 					}
+					else{
+						if(aPulsada[1] && !aPulsada[2]){
+						Mundo.moverBloqueI();
+						}
+					}
 					Mario.setPosX(Mario.getPosX());
 				}
 
 				if ((aPulsada[2] && !aPulsada[0]) || (aPulsada[2] && aPulsada[0])) {
 					Mario.getGrafico().setComponentOrientationEspejo();
 					((JPanelFondo) pPrincipal).setVar(((JPanelFondo) pPrincipal).getVar() + 20);
+					
 					if (((JPanelFondo) pPrincipal).getVar() >= -60) {
 						((JPanelFondo) pPrincipal).setVar(-60);
+					}
+					else{
+						if(aPulsada[2] && !aPulsada[1]){
+						Mundo.moverBloqueD();
+						}
 					}
 					Mario.setPosX(Mario.getPosX());
 				}
 
-				if (Mario.getPosY()==860) {
+				if (Mario.getPosY() == 860) {
 					if (((JPanelFondo) pPrincipal).getVar() < -1470 && ((JPanelFondo) pPrincipal).getVar() > -1600
 							|| ((JPanelFondo) pPrincipal).getVar() < -4300
 									&& ((JPanelFondo) pPrincipal).getVar() > -4600
@@ -306,17 +263,13 @@ public class Ventana extends JFrame {
 					}
 				}
 
+				// if (Mario.isCaida()) {
+				// Mario.setPosY(Mario.getPosY() + 25);
+				// }
 
-//				if (Mario.isCaida()) {
-//					Mario.setPosY(Mario.getPosY() + 25);
-//				}
-//	if (Mario.isCaida()) {
-				//	Mario.setPosY(Mario.getPosY() + 25);
-				//}
-	
-			//if(Mario.getPosY()>=1100){
-				//sigo=false;
-			//}
+				// if(Mario.getPosY()>=1100){
+				// sigo=false;
+				// }
 
 				// Dormir el hilo 40 milisegundos
 				try {

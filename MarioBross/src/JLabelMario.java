@@ -12,9 +12,9 @@ public class JLabelMario extends JLabel {
 	
 	public static final int TAMANYO_MARIO = 150; // píxels (igual ancho que largo)
 	
-	public static final int RADIO_ESFERA_MARIO = 70; // Radio en píxels del bounding circle del Mario(para choques)
+	public static final int ARISTA_RECTANGULO_MARIO = 148; // Radio en píxels del rectangulo del Mario(para choques)
 	
-	private static final boolean DIBUJAR_ESFERA_MARIO = false; // Dibujado (paradepuración)del bounding circle de choque de Mario
+	private static final boolean DIBUJAR_RECTANGULO_MARIO = true; // Dibujado (paradepuración)del bounding circle de choque de Mario
 	
 	private boolean Espejo = false; //Atributo para saber si hay que aplicarle el método de espejo a la imagen de Mario
 	
@@ -52,10 +52,9 @@ public class JLabelMario extends JLabel {
 		// Prepara rotación (siguientes operaciones se rotarán)
 		// Dibujado de la imagen
 		g2.drawImage(img, 0, 0, TAMANYO_MARIO, TAMANYO_MARIO, null);
-		if (DIBUJAR_ESFERA_MARIO)
-			g2.drawOval(TAMANYO_MARIO / 2 - RADIO_ESFERA_MARIO, TAMANYO_MARIO / 2 - RADIO_ESFERA_MARIO,
-					RADIO_ESFERA_MARIO * 2, RADIO_ESFERA_MARIO * 2);
-	}
+		if (DIBUJAR_RECTANGULO_MARIO)
+			g2.drawRect(0,0,ARISTA_RECTANGULO_MARIO,ARISTA_RECTANGULO_MARIO);	
+			}
 	
 	/**
 	 * Método para Obtener la imagen de Mario corriendo en Modo espejo

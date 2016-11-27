@@ -1,6 +1,6 @@
 
 /**
- * Clase para definir instancias lógicas de un Peraonaje
+ * Clase para definir instancias lógicas de un Personaje
  */
 public class Personaje {
 	protected double posX; // Posición en X (horizontal)

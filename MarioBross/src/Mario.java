@@ -40,165 +40,23 @@ public class Mario extends Personaje{
 	public void saltoMario(){ 
 
 		if(salto && cont){
-
-			gravedad = gravedad - 10;
-
 			gravedad = gravedad - 20;
-
 			this.setPosY(gravedad);
-			if(this.getPosY() == 520){
+			if(this.getPosY() == 420){
 				cont = false;
 				caida = true;
 			}
 		}
 		
 		if(caida){
-			if(this.getPosY() == 860){
-				this.setPosY(860);
+			if(this.getPosY() == 840){
+				this.setPosY(840);
 				salto=false;
 				caida=false;
 			}
-
-			gravedad = gravedad + 10;
-
 			gravedad = gravedad + 20;
-
 			this.setPosY(gravedad);
 		}
 		
-	}
-	
-//	public void salto(Mario Mario){
-//		Mario.setPosY(Mario.getPosY()-0.0001);
-//	}
-//	
-//	public void saltoDerecha(Mario Mario){
-//		Mario.setPosicion(Mario.getPosX()+0.0001, Mario.getPosY()-0.0001);
-//		
-//	}
-//	
-//	public void saltoIzq(Mario Mario){
-//		Mario.setPosicion(Mario.getPosX()-0.0001, Mario.getPosY()-0.0001);
-//		
-//	}
-//	
-//	public void descenso(Mario Mario){
-//		Mario.setPosY(Mario.getPosY()+0.0001);
-//	}
-//	
-//	public void saltoVertical(Mario Mario){
-//		
-//		int i =0;
-//		
-//		do{
-//			if(i==600000){
-//				Mario.setPosY(Mario.getPosY()-20);
-//				i=0;
-//			}
-//			else{
-//				i++;
-//				Mario.setPosX(Mario.getPosX());
-//			}
-//			
-//		}while(Mario.getPosY()>520);
-//		i=0;
-//		do{
-//			if(i==600000){
-//				Mario.setPosY(Mario.getPosY()+20);
-//				i=0;
-//			}
-//			else{
-//				i++;
-//				Mario.setPosX(Mario.getPosX());
-//			}
-//			
-//		}while(Mario.getPosY()<860);
-//		Mario.setPosX(Mario.getPosX());
-//	}
-//
-//	public void saltoOblicuoDerecha(Mario Mario, JPanel pPrincipal){
-//		
-//	int i =0;
-//		
-//		do{
-//			if(i==400000){
-//				Mario.setPosY( Mario.getPosY()-15);
-//				((JPanelFondo) pPrincipal).setVar(((JPanelFondo) pPrincipal).getVar() - 10);
-//				if (((JPanelFondo) pPrincipal).getVar() >= -60) {
-//					((JPanelFondo) pPrincipal).setVar(-60);
-//				}
-//				Mario.setPosX(Mario.getPosX());
-//				pPrincipal.repaint();
-//				i=0;
-//			}
-//			else{
-//				i++;
-//				Mario.setPosX(Mario.getPosX());
-//			}
-//			
-//		}while(Mario.getPosY()>520);
-//		i=0;
-//		do{
-//			if(i==400000){
-//				Mario.setPosY( Mario.getPosY()+15);
-//				((JPanelFondo) pPrincipal).setVar(((JPanelFondo) pPrincipal).getVar() - 10);
-//				if (((JPanelFondo) pPrincipal).getVar() >= -60) {
-//					((JPanelFondo) pPrincipal).setVar(-60);
-//				}
-//				Mario.setPosX(Mario.getPosX());
-//				pPrincipal.repaint();
-//				i=0;
-//			}
-//			else{
-//				i++;
-//				Mario.setPosX(Mario.getPosX());
-//			}
-//			
-//		}while(Mario.getPosY()<860);
-//		Mario.setPosX(Mario.getPosX());
-//	}
-//	
-//	public void saltoOblicuoIzquierda(Mario Mario, JPanel pPrincipal ){
-//		
-//		int i =0;
-//			
-//			do{
-//				if(i==400000){
-//					Mario.setPosY( Mario.getPosY()-15);
-//					((JPanelFondo) pPrincipal).setVar(((JPanelFondo) pPrincipal).getVar() + 10);
-//					if (((JPanelFondo) pPrincipal).getVar() >= -60) {
-//						((JPanelFondo) pPrincipal).setVar(-60);
-//					}
-//					Mario.setPosX(Mario.getPosX());
-//					pPrincipal.repaint();
-//					i=0;
-//				}
-//				else{
-//					i++;
-//					Mario.setPosX(Mario.getPosX());
-//				}
-//				
-//			}while(Mario.getPosY()>520);
-//			i=0;
-//			do{
-//				if(i==400000){
-//					Mario.setPosY(Mario.getPosY()+15);
-//					((JPanelFondo) pPrincipal).setVar(((JPanelFondo) pPrincipal).getVar() + 10);
-//					if (((JPanelFondo) pPrincipal).getVar() >= -60) {
-//						((JPanelFondo) pPrincipal).setVar(-60);
-//					}
-//					Mario.setPosX(Mario.getPosX());
-//					pPrincipal.repaint();
-//					i=0;
-//				}
-//				else{
-//					i++;
-//					Mario.setPosX(Mario.getPosX());
-//				}
-//				
-//			}while(Mario.getPosY()<860);
-//			Mario.setPosX(Mario.getPosX());
-//			
-//		}
-	
+	}	
 }
