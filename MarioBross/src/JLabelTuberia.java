@@ -13,11 +13,6 @@ public class JLabelTuberia extends JLabel {
 	public static final int TAMANYO_BLOQUE = 200; // píxels (igual ancho que
 													// largo)
 
-	public static final int ARISTA_RECTANGULO_BLOQUE = 199; // Radio en píxels
-															// del bounding
-															// circle del
-															// Mario(para
-															// choques)
 
 	private static final boolean DIBUJAR_RECTANGULO_BLOQUE = true; // Dibujado
 																	// (paradepuración)del
@@ -61,7 +56,7 @@ public class JLabelTuberia extends JLabel {
 		g2.drawImage(img, 0, 10, TAMANYO_BLOQUE, 350, null);
 
 		if (DIBUJAR_RECTANGULO_BLOQUE)
-			g2.drawRect(0, 10, ARISTA_RECTANGULO_BLOQUE, ARISTA_RECTANGULO_BLOQUE+150);
+			g2.drawRect(0, 10, TAMANYO_BLOQUE, 350);
 	}
 
 }

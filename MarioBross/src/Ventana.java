@@ -23,6 +23,7 @@ public class Ventana extends JFrame {
 											// tecla
 	JLabel resultado;
 
+
 	public void InicializadorArray() {
 		for (int i = 0; i < aPulsada.length; i++) {
 			aPulsada[i] = false;
@@ -133,6 +134,7 @@ public class Ventana extends JFrame {
 			Ventana.Mundo.creaBloque();
 			Ventana.Mundo.creaBloqueA();
 			Ventana.Mundo.creaTuberia();
+			Ventana.Mundo.crearCaida();
 			Ventana.Mario.setNombre("Mario Bros");
 			Ventana.miHilo = Ventana.new MiRunnable(); // Sintaxis de new
 			Ventana.miHilo2 = Ventana.new MiRunnable2(); // para clase
@@ -232,7 +234,8 @@ public class Ventana extends JFrame {
 					}
 					else{
 						if(aPulsada[1] && !aPulsada[2]){
-						Mundo.moverBloqueI();
+						Mundo.moverObjetoI();
+						
 						}
 					}
 					Mario.setPosX(Mario.getPosX());
@@ -247,7 +250,7 @@ public class Ventana extends JFrame {
 					}
 					else{
 						if(aPulsada[2] && !aPulsada[1]){
-						Mundo.moverBloqueD();
+						Mundo.moverObjetoD();
 						}
 					}
 					Mario.setPosX(Mario.getPosX());

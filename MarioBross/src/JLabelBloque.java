@@ -11,9 +11,7 @@ public class JLabelBloque extends JLabel {
 	private static final long serialVersionUID = 1L; // Para serialización
 	
 	public static final int TAMANYO_BLOQUE = 100; // píxels (igual ancho que largo)
-	
-	public static final int ARISTA_RECTANGULO_BLOQUE = 99; // Radio en píxels del bounding circle del Mario(para choques)
-	
+
 	private static final boolean DIBUJAR_RECTANGULO_BLOQUE = true; // Dibujado (paradepuración)del bounding circle de choque de Mario
 	
 	
@@ -53,7 +51,7 @@ public class JLabelBloque extends JLabel {
 		g2.drawImage(img, 0, 0, TAMANYO_BLOQUE, TAMANYO_BLOQUE, null);
 		
 		if (DIBUJAR_RECTANGULO_BLOQUE)
-			g2.drawRect(0,0,ARISTA_RECTANGULO_BLOQUE,ARISTA_RECTANGULO_BLOQUE);	
+			g2.drawRect(0,0,TAMANYO_BLOQUE,TAMANYO_BLOQUE);	
 			}
 
 }
