@@ -1,4 +1,3 @@
-
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -7,15 +6,15 @@ import java.awt.RenderingHints;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-public class JLabelTuberia extends JLabel {
+public class JLabelCaida extends JLabel {
 	private static final long serialVersionUID = 1L; // Para serialización
 
-	public static final int TAMANYO_BLOQUE = 200; // píxels (igual ancho que
+	public static final int TAMANYO_LARGO = 320; // píxels (igual ancho que
 													// largo)
-	public int ALTURA_TUBERIA= 350;
+	
+	public static final int TAMANYO_ANCHO = 100; 
 
-
-	private static final boolean DIBUJAR_RECTANGULO_BLOQUE = true; // Dibujado
+	private static final boolean DIBUJAR_RECTANGULO_CAIDA = false; // Dibujado
 																	// (paradepuración)del
 																	// bounding
 																	// circle de
@@ -26,15 +25,15 @@ public class JLabelTuberia extends JLabel {
 	 * Construye y devuelve el JLabel del Bloque con su gráfico y tamaño
 	 */
 
-	public JLabelTuberia() {
+	public JLabelCaida() {
 		try {
 
-			setIcon(new ImageIcon(JLabelMario.class.getResource("Imagenes/TuboMario.png").toURI().toURL()));
+			setIcon(new ImageIcon(JLabelMario.class.getResource("Imagenes/CaidaMario.png").toURI().toURL()));
 		} catch (Exception e) {
-			System.err.println("Error en carga de recurso: Mario.png no encontrado");
+			System.err.println("Error en carga de recurso: CaidaMario.png no encontrado");
 			e.printStackTrace();
 		}
-		setBounds(0, 0, TAMANYO_BLOQUE, ALTURA_TUBERIA);
+		setBounds(0, 0, TAMANYO_LARGO, TAMANYO_ANCHO);
 
 	}
 
@@ -54,10 +53,11 @@ public class JLabelTuberia extends JLabel {
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		// Prepara rotación (siguientes operaciones se rotarán)
 		// Dibujado de la imagen
-		g2.drawImage(img, 0, 10, TAMANYO_BLOQUE, ALTURA_TUBERIA, null);
+		g2.drawImage(img, 0, 0, TAMANYO_LARGO, TAMANYO_ANCHO, null);
 
-		if (DIBUJAR_RECTANGULO_BLOQUE)
-			g2.drawRect(0, 10, TAMANYO_BLOQUE, ALTURA_TUBERIA);
+		if (DIBUJAR_RECTANGULO_CAIDA)
+			g2.drawRect(0, 0, TAMANYO_LARGO , TAMANYO_ANCHO);
 	}
 
 }
+

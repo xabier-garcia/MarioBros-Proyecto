@@ -133,7 +133,8 @@ public class Ventana extends JFrame {
 			Ventana.Mario = Ventana.Mundo.getMario();
 			Ventana.Mundo.creaBloque();
 			Ventana.Mundo.creaBloqueA();
-			Ventana.Mundo.creaTuberia();
+			Ventana.Mundo.crearTuberia();
+			Ventana.Mundo.crearTuberiaGrande();
 			Ventana.Mundo.crearCaida();
 			Ventana.Mario.setNombre("Mario Bros");
 			Ventana.miHilo = Ventana.new MiRunnable(); // Sintaxis de new

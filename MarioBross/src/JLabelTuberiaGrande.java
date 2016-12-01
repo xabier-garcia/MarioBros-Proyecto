@@ -1,4 +1,3 @@
-
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -7,12 +6,12 @@ import java.awt.RenderingHints;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-public class JLabelTuberia extends JLabel {
+public class JLabelTuberiaGrande extends JLabel {
 	private static final long serialVersionUID = 1L; // Para serialización
 
 	public static final int TAMANYO_BLOQUE = 200; // píxels (igual ancho que
 													// largo)
-	public int ALTURA_TUBERIA= 350;
+	public static final int ALTURA_TUBERIA= 450;
 
 
 	private static final boolean DIBUJAR_RECTANGULO_BLOQUE = true; // Dibujado
@@ -26,7 +25,7 @@ public class JLabelTuberia extends JLabel {
 	 * Construye y devuelve el JLabel del Bloque con su gráfico y tamaño
 	 */
 
-	public JLabelTuberia() {
+	public JLabelTuberiaGrande() {
 		try {
 
 			setIcon(new ImageIcon(JLabelMario.class.getResource("Imagenes/TuboMario.png").toURI().toURL()));
@@ -61,3 +60,4 @@ public class JLabelTuberia extends JLabel {
 	}
 
 }
+

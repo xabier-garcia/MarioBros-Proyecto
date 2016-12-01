@@ -13,7 +13,7 @@ public class JLabelBloqueA extends JLabel {
 	public static final int TAMANYO_BLOQUE = 100; // píxels (igual ancho que
 													// largo)
 
-	private static final boolean DIBUJAR_RECTANGULO_BLOQUE = true; // Dibujado
+	private static final boolean DIBUJAR_RECTANGULO_BLOQUE = false; // Dibujado
 																	// (paradepuración)del
 																	// bounding
 																	// circle de
