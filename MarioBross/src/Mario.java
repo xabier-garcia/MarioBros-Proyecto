@@ -81,5 +81,23 @@ public class Mario extends Personaje{
 			gravedad = gravedad + 20;
 			this.setPosY(gravedad);
 		}
+	}
+
+
+
+	public double getGravedad() {
+		return gravedad;
+	}
+
+
+
+	public void setGravedad(double gravedad) {
+		this.gravedad = gravedad;
+	}
+
+
+
+	public void setGrafico(JLabelMario grafico) {
+		Grafico = grafico;
 	}	
 }

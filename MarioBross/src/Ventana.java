@@ -211,7 +211,7 @@ public class Ventana extends JFrame {
 				
 				// Mover "Mario"(Realmente lo que movemos es el fondo creando un
 				// efecto óptico de movimiento
-				Mundo.Apoyo();
+				Mundo.apoyo();
 
 				if (aPulsada[0]) {
 					if (!Mario.salto) {
@@ -265,7 +265,7 @@ public class Ventana extends JFrame {
 									&& ((JPanelFondo) pPrincipal).getVar() > -4600
 							|| ((JPanelFondo) pPrincipal).getVar() < -14770
 									&& ((JPanelFondo) pPrincipal).getVar() > -14880) {
-						Mario.setCaida(true);
+						//Mario.setCaida(true);
 					}
 				}
 				

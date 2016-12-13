@@ -630,6 +630,20 @@ public class Mundo {
 		return false;
 	}
 	
+	public void apoyo(){
+		for (int i = 0; i < aTuberias.size(); i++) {
+			if (Mario.getGrafico().getBounds().intersects(aTuberias.get(i).getBounds())&& Mario.getPosY()<=aTuberias.get(i).getY()){
+				Mario.setPosY(aTuberias.get(i).getY()-140);
+				Mario.setCaida(false);
+				}
+			else{
+				if(!Mario.getGrafico().getBounds().intersects(aTuberias.get(i).getBounds())&& Mario.getPosY()==aTuberias.get(i).getY()-140)
+				Mario.setCaida(true);
+			}
+			}
+		
+	}
+	
 		//Método para apoyo
 		
 	public void Apoyo() {
