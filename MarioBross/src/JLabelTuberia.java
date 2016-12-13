@@ -10,9 +10,9 @@ import javax.swing.JLabel;
 public class JLabelTuberia extends JLabel {
 	private static final long serialVersionUID = 1L; // Para serialización
 
-	public static final int TAMANYO_BLOQUE = 200; // píxels (igual ancho que
+	public static final int TAMANYO_TUBERIA = 200; // píxels (igual ancho que
 													// largo)
-	public int ALTURA_TUBERIA= 350;
+	public static final int ARISTA_TUBERIA= 349;
 
 
 	private static final boolean DIBUJAR_RECTANGULO_BLOQUE = true; // Dibujado
@@ -34,7 +34,7 @@ public class JLabelTuberia extends JLabel {
 			System.err.println("Error en carga de recurso: Mario.png no encontrado");
 			e.printStackTrace();
 		}
-		setBounds(0, 0, TAMANYO_BLOQUE, ALTURA_TUBERIA);
+		setBounds(0, 0, ARISTA_TUBERIA, ARISTA_TUBERIA);
 
 	}
 
@@ -54,10 +54,10 @@ public class JLabelTuberia extends JLabel {
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		// Prepara rotación (siguientes operaciones se rotarán)
 		// Dibujado de la imagen
-		g2.drawImage(img, 0, 10, TAMANYO_BLOQUE, ALTURA_TUBERIA, null);
+		g2.drawImage(img, 0, 10, TAMANYO_TUBERIA, ARISTA_TUBERIA, null);
 
 		if (DIBUJAR_RECTANGULO_BLOQUE)
-			g2.drawRect(0, 10, TAMANYO_BLOQUE, ALTURA_TUBERIA);
+			g2.drawRect(0, 10, TAMANYO_TUBERIA, ARISTA_TUBERIA);
 	}
 
 }

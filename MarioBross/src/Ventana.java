@@ -156,26 +156,26 @@ public class Ventana extends JFrame {
 		public void run() {
 
 			while (sigo) {
-//				Ventana.this.Mundo.creaCV();
-//				Ventana.this.Mundo.moverCV();
+				Ventana.this.Mundo.creaCV();
+				Ventana.this.Mundo.moverCV();
 
-//				if (aPulsada[1] && !aPulsada[0] && ((JPanelFondo) pPrincipal).getVar() != -18840) {
-//					Mundo.CV.move(Mundo.CV.getX() - 20, Mundo.CV.getY());
-//				}
-//
-//				if (aPulsada[2] && !aPulsada[0] && ((JPanelFondo) pPrincipal).getVar() != -60) {
-//					Mundo.CV.move(Mundo.CV.getX() + 20, Mundo.CV.getY());
-//				}
-//
-//				if (aPulsada[1] && aPulsada[0] && ((JPanelFondo) pPrincipal).getVar() != -18840) {
-//					Mundo.CV.move(Mundo.CV.getX() - 20, Mundo.CV.getY());
-//					Mundo.CV.move(Mundo.CV.getX() + 10, Mundo.CV.getY());
-//				}
-//
-//				if (aPulsada[2] && aPulsada[0] && ((JPanelFondo) pPrincipal).getVar() != -60) {
-//					Mundo.CV.move(Mundo.CV.getX() + 20, Mundo.CV.getY());
-//					Mundo.CV.move(Mundo.CV.getX() - 10, Mundo.CV.getY());
-//				}
+				if (aPulsada[1] && !aPulsada[0] && ((JPanelFondo) pPrincipal).getVar() != -18840) {
+					Mundo.CV.move(Mundo.CV.getX() - 20, Mundo.CV.getY());
+				}
+
+				if (aPulsada[2] && !aPulsada[0] && ((JPanelFondo) pPrincipal).getVar() != -60) {
+					Mundo.CV.move(Mundo.CV.getX() + 20, Mundo.CV.getY());
+				}
+
+				if (aPulsada[1] && aPulsada[0] && ((JPanelFondo) pPrincipal).getVar() != -18840) {
+					Mundo.CV.move(Mundo.CV.getX() - 20, Mundo.CV.getY());
+					Mundo.CV.move(Mundo.CV.getX() + 10, Mundo.CV.getY());
+				}
+
+				if (aPulsada[2] && aPulsada[0] && ((JPanelFondo) pPrincipal).getVar() != -60) {
+					Mundo.CV.move(Mundo.CV.getX() + 20, Mundo.CV.getY());
+					Mundo.CV.move(Mundo.CV.getX() - 10, Mundo.CV.getY());
+				}
 
 				// Dormir el hilo 40 milisegundos
 				try {
@@ -211,7 +211,8 @@ public class Ventana extends JFrame {
 				
 				// Mover "Mario"(Realmente lo que movemos es el fondo creando un
 				// efecto óptico de movimiento
-
+				Mundo.Apoyo();
+				
 				if (aPulsada[0]) {
 					if (!Mario.salto) {
 						Mario.gravedad = 840;
@@ -223,8 +224,8 @@ public class Ventana extends JFrame {
 							Mario.getGrafico().setComponentOrientationSalto();
 							repaint();
 						}
-						Mario.setPosX(Mario.getPosX());
 					}
+					Mario.setPosX(620);
 				}
 
 				if ((aPulsada[1] && !aPulsada[0]) || (aPulsada[1] && aPulsada[0])) {
@@ -239,7 +240,7 @@ public class Ventana extends JFrame {
 						
 						}
 					}
-					Mario.setPosX(Mario.getPosX());
+					Mario.setPosX(620);
 				}
 
 				if ((aPulsada[2] && !aPulsada[0]) || (aPulsada[2] && aPulsada[0])) {
@@ -254,7 +255,7 @@ public class Ventana extends JFrame {
 						Mundo.moverObjetoD();
 						}
 					}
-					Mario.setPosX(Mario.getPosX());
+					Mario.setPosX(620);
 				}
 
 				if (Mario.getPosY() == 860) {
@@ -266,6 +267,9 @@ public class Ventana extends JFrame {
 						Mario.setCaida(true);
 					}
 				}
+				
+				Mario.setPosX(620);
+		
 
 				// if (Mario.isCaida()) {
 				// Mario.setPosY(Mario.getPosY() + 25);

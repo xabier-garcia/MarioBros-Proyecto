@@ -36,6 +36,30 @@ public class Mario extends Personaje{
 		Grafico.setLocation((int) posX, (int) posY);
 	}
 	
+	
+	public boolean isCaida() {
+		return caida;
+	}
+
+
+
+	public boolean isCont() {
+		return cont;
+	}
+
+
+
+	public void setCaida(boolean caida) {
+		this.caida = caida;
+	}
+
+
+
+	public void setCont(boolean cont) {
+		this.cont = cont;
+	}
+
+
 
 	public void saltoMario(){ 
 
@@ -57,6 +81,5 @@ public class Mario extends Personaje{
 			gravedad = gravedad + 20;
 			this.setPosY(gravedad);
 		}
-		
 	}	
 }

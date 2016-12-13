@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 
 
 
+
 public class Mundo {
 	private JPanel panel; // panel visual del juego
 	Mario Mario; // Mario del juego
@@ -604,7 +605,33 @@ public class Mundo {
 				aTuberiaGrande.get(u).move(aTuberiaGrande.get(u).getX()+20, (aTuberiaGrande.get(u).getY()));
 				}
 		}
+		
+	//Método para el choque con el lado derecho
 	
+		public boolean hayChoqueHorizontal() {
+			for(int i=0;i<aTuberias.size();i++){
+				if(Mario.getPosX()>aTuberias.get(i).getX()-140.5 && Mario.getPosY()>aTuberias.get(i).getY()){
+					return true;
+				}
+			}
+			
+			return false;
+		}
+	
+		//Método para apoyo
+		
+	public void Apoyo() {
+			for(int i=0;i<aTuberias.size();i++){
+				if(Mario.getPosX()>aTuberias.get(i).getX()-140.5 && Mario.getPosX()<aTuberias.get(i).getX()+140.5&& Mario.getPosY()<aTuberias.get(i).getY()){
+					Mario.setPosY(aTuberias.get(i).getY()-140);
+					Mario.setCaida(false);
+				}
+				else{
+					//TODO método para que caiga cuando pase el obstáculo
+					}
+				}
+			}
+		
 	
 	
 	

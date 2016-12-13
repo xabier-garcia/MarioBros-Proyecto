@@ -12,7 +12,7 @@ public class JLabelBloque extends JLabel {
 	
 	public static final int TAMANYO_BLOQUE = 100; // píxels (igual ancho que largo)
 
-	private static final boolean DIBUJAR_RECTANGULO_BLOQUE = false; // Dibujado (paradepuración)del bounding circle de choque de Mario
+	private static final boolean DIBUJAR_RECTANGULO_BLOQUE = true; // Dibujado (paradepuración)del bounding circle de choque de Mario
 	
 	
 
@@ -28,7 +28,7 @@ public class JLabelBloque extends JLabel {
 			System.err.println("Error en carga de recurso: Mario.png no encontrado");
 			e.printStackTrace();
 		}
-		setBounds(0, 0, TAMANYO_BLOQUE, TAMANYO_BLOQUE);
+		setBounds(0, 0, TAMANYO_BLOQUE+1, TAMANYO_BLOQUE+1);
 
 	}
 	

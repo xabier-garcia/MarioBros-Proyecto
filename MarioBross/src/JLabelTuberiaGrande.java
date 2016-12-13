@@ -33,7 +33,7 @@ public class JLabelTuberiaGrande extends JLabel {
 			System.err.println("Error en carga de recurso: Mario.png no encontrado");
 			e.printStackTrace();
 		}
-		setBounds(0, 0, TAMANYO_BLOQUE, ALTURA_TUBERIA);
+		setBounds(0, 0, TAMANYO_BLOQUE+1, ALTURA_TUBERIA+1);
 
 	}
 
