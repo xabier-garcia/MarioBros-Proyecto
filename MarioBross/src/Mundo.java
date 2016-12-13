@@ -50,8 +50,6 @@ public class Mundo {
 		
 	}
 	
-	//TODO
-	
 	/**
 	 * Crea un nuevo Bloque y lo añade al panel visual
 	 */
@@ -72,58 +70,66 @@ public class Mundo {
 		panel.add(Bloque);
 		aBloques.add(Bloque);
 		
-		JLabelBloque Bloque= new JLabelBloque();
+		Bloque= new JLabelBloque();
 		Bloque.setLocation(2120, 660);
 		panel.add(Bloque);
 		aBloques.add(Bloque);
 		
-		JLabelBloque Bloque5= new JLabelBloque();
-		Bloque5.setLocation(2220, 660);
-		panel.add(Bloque5);
-		aBloques.add(Bloque5);
+		Bloque= new JLabelBloque();
+		Bloque.setLocation(2220, 660);
+		panel.add(Bloque);
+		aBloques.add(Bloque);
 		
-		JLabelBloque Bloque6= new JLabelBloque();
-		Bloque6.setLocation(3220, 660);
-		panel.add(Bloque6);
-		aBloques.add(Bloque6);
-		JLabelBloque Bloque7= new JLabelBloque();
-		Bloque7.setLocation(3320, 660);
-		panel.add(Bloque7);
-		aBloques.add(Bloque7);
-		JLabelBloque Bloque8= new JLabelBloque();
-		Bloque8.setLocation(3420, 660);
-		panel.add(Bloque8);
-		aBloques.add(Bloque8);
-		JLabelBloque Bloque9= new JLabelBloque();
-		Bloque9.setLocation(3520, 660);
-		panel.add(Bloque9);
-		aBloques.add(Bloque9);
-		JLabelBloque Bloque10= new JLabelBloque();
-		Bloque10.setLocation(3620, 660);
-		panel.add(Bloque10);
-		aBloques.add(Bloque10);
+		Bloque= new JLabelBloque();
+		Bloque.setLocation(3220, 660);
+		panel.add(Bloque);
+		aBloques.add(Bloque);
 		
-		JLabelBloque Bloque11= new JLabelBloque();
-		Bloque11.setLocation(4920, 660);
-		panel.add(Bloque11);
-		aBloques.add(Bloque11);
-		JLabelBloque Bloque12= new JLabelBloque();
-		Bloque12.setLocation(5020, 660);
-		panel.add(Bloque12);
-		aBloques.add(Bloque12);
-		JLabelBloque Bloque13= new JLabelBloque();
-		Bloque13.setLocation(5120, 660);
-		panel.add(Bloque13);;
-		aBloques.add(Bloque13);
-		JLabelBloque Bloque14= new JLabelBloque();
-		Bloque14.setLocation(5220, 660);
-		panel.add(Bloque14);
-		aBloques.add(Bloque14);
+		Bloque= new JLabelBloque();
+		Bloque.setLocation(3320, 660);
+		panel.add(Bloque);
+		aBloques.add(Bloque);
 		
-		JLabelBloque Bloque15= new JLabelBloque();
-		Bloque15.setLocation(6320, 900);
-		panel.add(Bloque15);
-		aBloques.add(Bloque15);
+		Bloque= new JLabelBloque();
+		Bloque.setLocation(3420, 660);
+		panel.add(Bloque);
+		aBloques.add(Bloque);
+		
+		Bloque= new JLabelBloque();
+		Bloque.setLocation(3520, 660);
+		panel.add(Bloque);
+		aBloques.add(Bloque);
+		
+		Bloque= new JLabelBloque();
+		Bloque.setLocation(3620, 660);
+		panel.add(Bloque);
+		aBloques.add(Bloque);
+		
+		Bloque= new JLabelBloque();
+		Bloque.setLocation(4920, 660);
+		panel.add(Bloque);
+		aBloques.add(Bloque);
+		
+		Bloque= new JLabelBloque();
+		Bloque.setLocation(5020, 660);
+		panel.add(Bloque);
+		aBloques.add(Bloque);
+		
+		Bloque= new JLabelBloque();
+		Bloque.setLocation(5120, 660);
+		panel.add(Bloque);
+		aBloques.add(Bloque);
+		
+		Bloque= new JLabelBloque();
+		Bloque.setLocation(5220, 660);
+		panel.add(Bloque);
+		aBloques.add(Bloque);
+		
+		Bloque= new JLabelBloque();
+		Bloque.setLocation(6320, 900);
+		panel.add(Bloque);
+		aBloques.add(Bloque);
+		
 		JLabelBloque Bloque16= new JLabelBloque();
 		Bloque16.setLocation(6320, 800);
 		panel.add(Bloque16);
@@ -405,10 +411,7 @@ public class Mundo {
 		JLabelBloque Bloque82= new JLabelBloque();
 		Bloque82.setLocation(19220, 399);
 		panel.add(Bloque82);
-		aBloques.add(Bloque82);
-		
-		
-		
+		aBloques.add(Bloque82);	
 	}
 	
 	public void crearCaida(){
@@ -633,34 +636,18 @@ public class Mundo {
 	public void apoyo(){
 		for (int i = 0; i < aTuberias.size(); i++) {
 			if (Mario.getGrafico().getBounds().intersects(aTuberias.get(i).getBounds())&& Mario.getPosY()<=aTuberias.get(i).getY()){
-				Mario.setPosY(aTuberias.get(i).getY()-140);
-				Mario.setCaida(false);
+				//Mario.setPosY(aTuberias.get(i).getY()-140);
+				Mario.gravedad = Mario.gravedad - 20;
+				Mario.setPosY(Mario.gravedad);
 				}
 			else{
-				if(!Mario.getGrafico().getBounds().intersects(aTuberias.get(i).getBounds())&& Mario.getPosY()==aTuberias.get(i).getY()-140)
+				if(!Mario.getGrafico().getBounds().intersects(aTuberias.get(i).getBounds())&& Mario.getPosY()==aTuberias.get(i).getY()-140){
 				Mario.setCaida(true);
-				//La caida funciona pero debería bajar mas
+				}
 			}
 			}
 		
 	}
-	
-		//Método para apoyo
-		
-	public void Apoyo() {
-			for(int i=0;i<aTuberias.size();i++){
-				if(Mario.getPosX()>aTuberias.get(i).getX()-140.5 && Mario.getPosX()<aTuberias.get(i).getX()+140.5&& Mario.getPosY()<aTuberias.get(i).getY()){
-					Mario.setPosY(aTuberias.get(i).getY()-140);
-					//Mario.setCaida(false);
-				}
-				else{
-					//TODO método para que caiga cuando pase el obstáculo
-				}
-				}
-			}
-		
-	
-	
 	
 	/**
 	 * Devuelve el Mario del mundo

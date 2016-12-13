@@ -85,6 +85,18 @@ public class Mario extends Personaje{
 
 
 
+	public boolean isSalto() {
+		return salto;
+	}
+
+
+
+	public void setSalto(boolean salto) {
+		this.salto = salto;
+	}
+
+
+
 	public double getGravedad() {
 		return gravedad;
 	}
