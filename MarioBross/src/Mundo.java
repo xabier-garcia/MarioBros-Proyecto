@@ -621,13 +621,14 @@ public class Mundo {
 			return false;
 		}
 		
-		public boolean interseccion(){
-			for(int i=0;i<aTuberias.size();i++){
-			if(Mario.getGrafico().getBounds().intersects(aTuberias.get(i).getBounds())){
+	public boolean interseccion() {
+		for (int i = 0; i < aTuberias.size(); i++) {
+			if (Mario.getGrafico().getBounds().intersects(aTuberias.get(i).getBounds())&& Mario.getPosY()==860) {
 				return true;
-			}}
-			return false;
+			}
 		}
+		return false;
+	}
 	
 		//Método para apoyo
 		
