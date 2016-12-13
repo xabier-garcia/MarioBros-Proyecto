@@ -212,7 +212,7 @@ public class Ventana extends JFrame {
 				// Mover "Mario"(Realmente lo que movemos es el fondo creando un
 				// efecto óptico de movimiento
 				Mundo.Apoyo();
-				
+
 				if (aPulsada[0]) {
 					if (!Mario.salto) {
 						Mario.gravedad = 840;
@@ -228,6 +228,7 @@ public class Ventana extends JFrame {
 					Mario.setPosX(620);
 				}
 
+				if(!Mundo.interseccion()){
 				if ((aPulsada[1] && !aPulsada[0]) || (aPulsada[1] && aPulsada[0])) {
 					Mario.getGrafico().setComponentOrientationNormal();
 					((JPanelFondo) pPrincipal).setVar(((JPanelFondo) pPrincipal).getVar() - 20);
@@ -241,7 +242,7 @@ public class Ventana extends JFrame {
 						}
 					}
 					Mario.setPosX(620);
-				}
+				}}
 
 				if ((aPulsada[2] && !aPulsada[0]) || (aPulsada[2] && aPulsada[0])) {
 					Mario.getGrafico().setComponentOrientationEspejo();
@@ -270,7 +271,6 @@ public class Ventana extends JFrame {
 				
 				Mario.setPosX(620);
 		
-
 				// if (Mario.isCaida()) {
 				// Mario.setPosY(Mario.getPosY() + 25);
 				// }

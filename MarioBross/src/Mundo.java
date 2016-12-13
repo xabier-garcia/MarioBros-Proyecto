@@ -15,6 +15,8 @@ public class Mundo {
 	private JLabelTuberia t;
 	private Random numR = new Random(); //Nuevo generador de números random
 	JLabelCaparazonVerde CV = new JLabelCaparazonVerde(); //Nuevo Jlabel Para capazaron
+	JLabelTuberia Tuberia = new JLabelTuberia();
+	JLabelBloque Bloque = new JLabelBloque();
 	ArrayList<JLabelBloque> aBloques = new ArrayList();
 	ArrayList<JLabelBloqueA> aBloquesA = new ArrayList();
 	ArrayList<JLabelTuberia> aTuberias = new ArrayList();
@@ -56,23 +58,25 @@ public class Mundo {
 
 	
 	public void creaBloque(){
-		JLabelBloque Bloque = new JLabelBloque();
 		Bloque.setLocation(1220, 660);
 		panel.add(Bloque);
 		aBloques.add(Bloque);
-		JLabelBloque Bloque2 = new JLabelBloque();
-		Bloque2.setLocation(1020, 660);
-		panel.add(Bloque2);
-		aBloques.add(Bloque2);
 		
-		JLabelBloque Bloque3= new JLabelBloque();
-		Bloque3.setLocation(2020, 660);
-		panel.add(Bloque3);
-		aBloques.add(Bloque3);
-		JLabelBloque Bloque4= new JLabelBloque();
-		Bloque4.setLocation(2120, 660);
-		panel.add(Bloque4);
-		aBloques.add(Bloque4);
+		Bloque = new JLabelBloque();
+		Bloque.setLocation(1020, 660);
+		panel.add(Bloque);
+		aBloques.add(Bloque);
+		
+		Bloque= new JLabelBloque();
+		Bloque.setLocation(2020, 660);
+		panel.add(Bloque);
+		aBloques.add(Bloque);
+		
+		JLabelBloque Bloque= new JLabelBloque();
+		Bloque.setLocation(2120, 660);
+		panel.add(Bloque);
+		aBloques.add(Bloque);
+		
 		JLabelBloque Bloque5= new JLabelBloque();
 		Bloque5.setLocation(2220, 660);
 		panel.add(Bloque5);
@@ -506,25 +510,24 @@ public class Mundo {
 
 	public void crearTuberia(){
 		
-		JLabelTuberia Tuberia = new JLabelTuberia();
 		Tuberia.setLocation(1820, 650);
 		panel.add(Tuberia);
 		aTuberias.add(Tuberia);
 		
-		JLabelTuberia Tuberia1 = new JLabelTuberia();
-		Tuberia1.setLocation(8110, 650);
-		panel.add(Tuberia1);
-		aTuberias.add(Tuberia1);
+		Tuberia = new JLabelTuberia();
+		Tuberia.setLocation(8110, 650);
+		panel.add(Tuberia);
+		aTuberias.add(Tuberia);
 		
-		JLabelTuberia Tuberia2 = new JLabelTuberia();
-		Tuberia2.setLocation(11820, 650);
-		panel.add(Tuberia2);
-		aTuberias.add(Tuberia2);
+		Tuberia = new JLabelTuberia();
+		Tuberia.setLocation(11820, 650);
+		panel.add(Tuberia);
+		aTuberias.add(Tuberia);
 		
-		JLabelTuberia Tuberia3 = new JLabelTuberia();
-		Tuberia3.setLocation(17920, 650);
-		panel.add(Tuberia3);
-		aTuberias.add(Tuberia3);
+		Tuberia = new JLabelTuberia();
+		Tuberia.setLocation(17920, 650);
+		panel.add(Tuberia);
+		aTuberias.add(Tuberia);
 	}
 	
 	public void crearTuberiaGrande(){
@@ -617,6 +620,14 @@ public class Mundo {
 			
 			return false;
 		}
+		
+		public boolean interseccion(){
+			for(int i=0;i<aTuberias.size();i++){
+			if(Mario.getGrafico().getBounds().intersects(aTuberias.get(i).getBounds())){
+				return true;
+			}}
+			return false;
+		}
 	
 		//Método para apoyo
 		
@@ -624,11 +635,11 @@ public class Mundo {
 			for(int i=0;i<aTuberias.size();i++){
 				if(Mario.getPosX()>aTuberias.get(i).getX()-140.5 && Mario.getPosX()<aTuberias.get(i).getX()+140.5&& Mario.getPosY()<aTuberias.get(i).getY()){
 					Mario.setPosY(aTuberias.get(i).getY()-140);
-					Mario.setCaida(false);
+					//Mario.setCaida(false);
 				}
 				else{
 					//TODO método para que caiga cuando pase el obstáculo
-					}
+				}
 				}
 			}
 		
