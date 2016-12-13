@@ -639,6 +639,7 @@ public class Mundo {
 			else{
 				if(!Mario.getGrafico().getBounds().intersects(aTuberias.get(i).getBounds())&& Mario.getPosY()==aTuberias.get(i).getY()-140)
 				Mario.setCaida(true);
+				//La caida funciona pero debería bajar mas
 			}
 			}
 		
