@@ -19,6 +19,7 @@ public class Mundo {
 	JLabelBloque Bloque = new JLabelBloque();
 	JLabelBloqueA BloqueA = new JLabelBloqueA();
 	JLabelCaida Caida = new JLabelCaida();
+	JLabelVida Corazon = new JLabelVida();
 	JLabelTuberiaGrande TuberiaGrande = new JLabelTuberiaGrande();
 	ArrayList<JLabelBloque> aBloques = new ArrayList();
 	ArrayList<JLabelBloqueA> aBloquesA = new ArrayList();
@@ -54,11 +55,25 @@ public class Mundo {
 	}
 	
 	/**
+	 * Crea un nuevo Corazón que mostrará la vida y lo añade al panel visual
+	 * 
+	 */
+	
+	public void creaCorazon(){
+		Corazon= new JLabelVida();
+		Corazon.setLocation(50,50);
+		panel.add(Corazon);
+		
+		
+	}
+	
+	/**
 	 * Crea un nuevo Bloque y lo añade al panel visual
 	 */
 
 	
 	public void creaBloque(){
+		Bloque = new JLabelBloque();
 		Bloque.setLocation(1220, 660);
 		panel.add(Bloque);
 		aBloques.add(Bloque);
@@ -683,12 +698,14 @@ public class Mundo {
 
 	// Método para fijar la caida
 
-	public void caida() {
+	public boolean caida() {
 		for (int i = 0; i < aCaida.size(); i++) {
 			if (Mario.getGrafico().getBounds().intersects(aCaida.get(i).getBounds())) {
 				Mario.setCaida(true);
+				return true;
 			}
 		}
+		return false;
 
 	}
 		//Método para la intersección del choque horizontal
@@ -757,6 +774,16 @@ public class Mundo {
 
 	}
 	
+	//Método para saber si hay un choque con un cv
+	
+	public boolean choque(){
+		if(Mario.getGrafico().getBounds().intersects(CV.getBounds())){
+			panel.remove(CV);
+			panel.repaint();
+			return true;
+		}
+		return false;	
+	}
 	/**
 	 * Devuelve el Mario del mundo
 	 * 

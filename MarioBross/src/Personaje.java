@@ -7,12 +7,27 @@ public class Personaje {
 	protected double posY; // Posición en Y (vertical)
 	protected String nombre; // Nombre del personaje
 	protected boolean caida;
+	protected int vida=5;
+
+	public int getVida() {
+		return vida;
+	}
+	
+	@Override
+	public String toString() {
+		return "[" + vida + "]";
+	}
+
+	public void setVida(int vida) {
+		this.vida = vida;
+	}
 
 	public Personaje() {
 		this.posX = posX;
 		this.posY = posY;
 		this.nombre = nombre;
 		this.caida=false;
+		this.vida=vida;
 
 	}
 

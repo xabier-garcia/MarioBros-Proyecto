@@ -1,4 +1,3 @@
-
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -7,31 +6,28 @@ import java.awt.RenderingHints;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-public class JLabelBloque extends JLabel {
-	private static final long serialVersionUID = 1L; // Para serialización
-	
-	public static final int TAMANYO_BLOQUE = 100; // píxels (igual ancho que largo)
+public class JLabelVida extends JLabel {
 
-	private static final boolean DIBUJAR_RECTANGULO_BLOQUE = true; // Dibujado (paradepuración)del bounding circle de choque de Mario
-	
-	
+	private static final long serialVersionUID = 1L; // Para serialización
+
+	public static final int TAMANYO_CORAZON = 60; // píxels (igual ancho que
+													// largo)
 
 	/**
-	 * Construye y devuelve el JLabel del Bloque con su gráfico y tamaño
+	 * Construye y devuelve el JLabel del Corazón con su gráfico y tamaño
 	 */
-	
-	public JLabelBloque() {
+
+	public JLabelVida() {
 		try {
 
-			setIcon(new ImageIcon(JLabelMario.class.getResource("Imagenes/BloqueMario.jpg").toURI().toURL()));
+			setIcon(new ImageIcon(JLabelMario.class.getResource("Imagenes/Corazon.png").toURI().toURL()));
 		} catch (Exception e) {
-			System.err.println("Error en carga de recurso: Mario.png no encontrado");
+			System.err.println("Error en carga de recurso: Corazon.png no encontrado");
 			e.printStackTrace();
 		}
-		setBounds(0, 0, TAMANYO_BLOQUE+1, TAMANYO_BLOQUE+1);
-
+		setBounds(0, 0, TAMANYO_CORAZON, TAMANYO_CORAZON);
 	}
-	
+
 	/**
 	 * Método para pintar el componente de Bloque
 	 */
@@ -48,10 +44,9 @@ public class JLabelBloque extends JLabel {
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		// Prepara rotación (siguientes operaciones se rotarán)
 		// Dibujado de la imagen
-		g2.drawImage(img, 0, 0, TAMANYO_BLOQUE, TAMANYO_BLOQUE, null);
+		g2.drawImage(img, 0, 0, TAMANYO_CORAZON, TAMANYO_CORAZON, null);
 		
-		if (DIBUJAR_RECTANGULO_BLOQUE)
-			g2.drawRect(0,0,TAMANYO_BLOQUE,TAMANYO_BLOQUE);	
-			}
+
+	}
 
 }

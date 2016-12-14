@@ -136,6 +136,7 @@ public class Ventana extends JFrame {
 			Ventana.Mundo.crearTuberia();
 			Ventana.Mundo.crearTuberiaGrande();
 			Ventana.Mundo.crearCaida();
+			Ventana.Mundo.creaCorazon();
 			Ventana.Mario.setNombre("Mario Bros");
 			Ventana.miHilo = Ventana.new MiRunnable(); // Sintaxis de new
 			Ventana.miHilo2 = Ventana.new MiRunnable2(); // para clase
@@ -175,6 +176,15 @@ public class Ventana extends JFrame {
 				if (aPulsada[2] && aPulsada[0] && ((JPanelFondo) pPrincipal).getVar() != -60) {
 					Mundo.CV.move(Mundo.CV.getX() + 20, Mundo.CV.getY());
 					Mundo.CV.move(Mundo.CV.getX() - 10, Mundo.CV.getY());
+				}
+				
+				if(Mundo.choque()){
+					try {
+						pPrincipal.repaint();
+						Thread.sleep(8000);
+						pPrincipal.repaint();
+					} catch (Exception e) {
+					}
 				}
 
 				// Dormir el hilo 40 milisegundos
@@ -259,21 +269,11 @@ public class Ventana extends JFrame {
 					Mario.setPosX(620);
 				}
 
-				if (Mario.getPosY() == 860) {
-					if (((JPanelFondo) pPrincipal).getVar() < -1470 && ((JPanelFondo) pPrincipal).getVar() > -1600
-							|| ((JPanelFondo) pPrincipal).getVar() < -4300
-									&& ((JPanelFondo) pPrincipal).getVar() > -4600
-							|| ((JPanelFondo) pPrincipal).getVar() < -14770
-									&& ((JPanelFondo) pPrincipal).getVar() > -14880) {
-						//Mario.setCaida(true);
-					}
-				}
-				
 				Mario.setPosX(620);
 				Mundo.caida();
-			
-				if(Mario.getPosY()>=1100){
-				sigo=false;
+
+				if (Mario.getPosY() >= 1100) {
+					sigo = false;
 				}
 
 				// Dormir el hilo 40 milisegundos
