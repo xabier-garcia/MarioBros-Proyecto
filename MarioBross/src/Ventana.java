@@ -228,21 +228,21 @@ public class Ventana extends JFrame {
 					Mario.setPosX(620);
 				}
 
-				if(!Mundo.interseccion()){
-				if ((aPulsada[1] && !aPulsada[0]) || (aPulsada[1] && aPulsada[0])) {
-					Mario.getGrafico().setComponentOrientationNormal();
-					((JPanelFondo) pPrincipal).setVar(((JPanelFondo) pPrincipal).getVar() - 20);
-					if (((JPanelFondo) pPrincipal).getVar() <= -18840) {
-						((JPanelFondo) pPrincipal).setVar(-18840);
-					}
-					else{
-						if(aPulsada[1] && !aPulsada[2]){
-						Mundo.moverObjetoI();
-						
+				if (!Mundo.interseccion()) {
+					if ((aPulsada[1] && !aPulsada[0]) || (aPulsada[1] && aPulsada[0])) {
+						Mario.getGrafico().setComponentOrientationNormal();
+						((JPanelFondo) pPrincipal).setVar(((JPanelFondo) pPrincipal).getVar() - 20);
+						if (((JPanelFondo) pPrincipal).getVar() <= -18840) {
+							((JPanelFondo) pPrincipal).setVar(-18840);
+						} else {
+							if (aPulsada[1] && !aPulsada[2]) {
+								Mundo.moverObjetoI();
+
+							}
 						}
+						Mario.setPosX(620);
 					}
-					Mario.setPosX(620);
-				}}
+				}
 
 				if ((aPulsada[2] && !aPulsada[0]) || (aPulsada[2] && aPulsada[0])) {
 					Mario.getGrafico().setComponentOrientationEspejo();

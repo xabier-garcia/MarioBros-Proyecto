@@ -670,26 +670,24 @@ public class Mundo {
 				}
 		}
 		
-	//Método para el choque con el lado derecho
-	
-		public boolean hayChoqueHorizontal() {
-			for(int i=0;i<aTuberias.size();i++){
-				if(Mario.getPosX()>aTuberias.get(i).getX()-140.5 && Mario.getPosY()>aTuberias.get(i).getY()){
-					return true;
-				}
-			}
-			
-			return false;
-		}
+		//Método para la intersección del choque horizontal
 		
 	public boolean interseccion() {
+
 		for (int i = 0; i < aTuberias.size(); i++) {
-			if (Mario.getGrafico().getBounds().intersects(aTuberias.get(i).getBounds())&& Mario.getPosY()==860) {
+			if (Mario.getGrafico().getBounds().intersects(aTuberias.get(i).getBounds())) {
 				return true;
+			}
+			for (int j = 0; j < aBloques.size(); j++) {
+				if (Mario.getGrafico().getBounds().intersects(aBloques.get(j).getBounds())) {
+					return true;
+				}
 			}
 		}
 		return false;
 	}
+
+	//Método para que Mario se quede en los objetos
 	
 	public void apoyo(){
 		
@@ -707,7 +705,7 @@ public class Mundo {
 		}
 		
 		for(int i=0; i<aBloques.size();i++){
-			if(Mario.getGrafico().getBounds().intersects(aBloques.get(i).getBounds())&& Mario.getPosY()<=aBloques.get(i).getY()-30){
+			if(Mario.getGrafico().getBounds().intersects(aBloques.get(i).getBounds())&& Mario.getPosY()<=aBloques.get(i).getY()-100){
 				Mario.gravedad = Mario.gravedad - 20;
 				Mario.setPosY(Mario.gravedad);
 			}
