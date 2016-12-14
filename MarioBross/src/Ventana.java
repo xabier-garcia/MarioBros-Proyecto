@@ -270,14 +270,11 @@ public class Ventana extends JFrame {
 				}
 				
 				Mario.setPosX(620);
-		
-				// if (Mario.isCaida()) {
-				// Mario.setPosY(Mario.getPosY() + 25);
-				// }
-
-				// if(Mario.getPosY()>=1100){
-				// sigo=false;
-				// }
+				Mundo.caida();
+			
+				if(Mario.getPosY()>=1100){
+				sigo=false;
+				}
 
 				// Dormir el hilo 40 milisegundos
 				try {
