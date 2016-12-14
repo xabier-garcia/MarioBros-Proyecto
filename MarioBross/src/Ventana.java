@@ -21,7 +21,6 @@ public class Ventana extends JFrame {
 	MiRunnable2 miHilo2 = null;
 	Boolean[] aPulsada = new Boolean[3]; // Array que almacena estado de la
 											// tecla
-	JLabel resultado;
 
 
 	public void InicializadorArray() {
@@ -178,13 +177,17 @@ public class Ventana extends JFrame {
 					Mundo.CV.move(Mundo.CV.getX() - 10, Mundo.CV.getY());
 				}
 				
-				if(Mundo.choque()){
-					try {
-						pPrincipal.repaint();
-						Thread.sleep(8000);
-						pPrincipal.repaint();
-					} catch (Exception e) {
-					}
+				if (Mundo.choque()) {
+					sigo = false;
+					Mario.setVida(Mario.getVida() - 1);
+					Mundo.eliminaCorazon();
+					pPrincipal.repaint();
+					System.out.println(Mario.getVida());
+
+				}
+
+				if(Mario.getPosY() >= 1100){
+					sigo=false;
 				}
 
 				// Dormir el hilo 40 milisegundos
@@ -274,6 +277,10 @@ public class Ventana extends JFrame {
 
 				if (Mario.getPosY() >= 1100) {
 					sigo = false;
+				}
+				
+				if(Mario.getVida()==0){
+					sigo=false;
 				}
 
 				// Dormir el hilo 40 milisegundos

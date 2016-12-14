@@ -21,6 +21,7 @@ public class Mundo {
 	JLabelCaida Caida = new JLabelCaida();
 	JLabelVida Corazon = new JLabelVida();
 	JLabelTuberiaGrande TuberiaGrande = new JLabelTuberiaGrande();
+	ArrayList<JLabelVida> aVida = new ArrayList();
 	ArrayList<JLabelBloque> aBloques = new ArrayList();
 	ArrayList<JLabelBloqueA> aBloquesA = new ArrayList();
 	ArrayList<JLabelTuberia> aTuberias = new ArrayList();
@@ -59,12 +60,34 @@ public class Mundo {
 	 * 
 	 */
 	
-	public void creaCorazon(){
-		Corazon= new JLabelVida();
-		Corazon.setLocation(50,50);
-		panel.add(Corazon);
-		
-		
+	public void creaCorazon() {
+		int cont = Mario.getVida();
+		int x = 50;
+		for (int i = 0; i < cont; i++) {
+			Corazon = new JLabelVida();
+			Corazon.setLocation(x, 50);
+			panel.add(Corazon);
+			aVida.add(Corazon);
+			x = x + 20;
+		}
+
+	}
+	
+
+	/**
+	 * Elimina corazon
+	 * 
+	 */
+	
+	public void eliminaCorazon(){
+		int cont=0;
+		for(int i=0;i<aVida.size();i++){
+			if(cont<1){
+				aVida.remove(i);
+				panel.remove(Corazon);
+			}
+			cont++;
+		}
 	}
 	
 	/**
