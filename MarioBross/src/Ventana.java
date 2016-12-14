@@ -183,6 +183,7 @@ public class Ventana extends JFrame {
 					Mundo.eliminaCorazon();
 					pPrincipal.repaint();
 					System.out.println(Mario.getVida());
+					
 
 				}
 
@@ -257,6 +258,7 @@ public class Ventana extends JFrame {
 					}
 				}
 
+				if(!Mundo.interseccion2()){
 				if ((aPulsada[2] && !aPulsada[0]) || (aPulsada[2] && aPulsada[0])) {
 					Mario.getGrafico().setComponentOrientationEspejo();
 					((JPanelFondo) pPrincipal).setVar(((JPanelFondo) pPrincipal).getVar() + 20);
@@ -270,6 +272,7 @@ public class Ventana extends JFrame {
 						}
 					}
 					Mario.setPosX(620);
+				}
 				}
 
 				Mario.setPosX(620);

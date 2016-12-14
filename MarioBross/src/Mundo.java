@@ -736,22 +736,49 @@ public class Mundo {
 	public boolean interseccion() {
 
 		for (int i = 0; i < aTuberias.size(); i++) {
-			if (Mario.getGrafico().getBounds().intersects(aTuberias.get(i).getBounds())) {
+			if (Mario.getGrafico().getBounds().intersects(aTuberias.get(i).getBounds()) && !Mario.getGrafico().EsEspejo()) {
 				return true;
 			}
 		}
 		for (int j = 0; j < aBloques.size(); j++) {
-			if (Mario.getGrafico().getBounds().intersects(aBloques.get(j).getBounds())) {
+			if (Mario.getGrafico().getBounds().intersects(aBloques.get(j).getBounds()) && !Mario.getGrafico().EsEspejo()) {
 				return true;
 			}
 		}
 		for (int k = 0; k < aTuberiaGrande.size(); k++) {
-			if (Mario.getGrafico().getBounds().intersects(aTuberiaGrande.get(k).getBounds())) {
+			if (Mario.getGrafico().getBounds().intersects(aTuberiaGrande.get(k).getBounds()) && !Mario.getGrafico().EsEspejo()) {
 				return true;
 			}
 		}
 		for (int l = 0; l < aBloquesA.size(); l++) {
-			if (Mario.getGrafico().getBounds().intersects(aBloquesA.get(l).getBounds())) {
+			if (Mario.getGrafico().getBounds().intersects(aBloquesA.get(l).getBounds()) && !Mario.getGrafico().EsEspejo()) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+	
+
+	public boolean interseccion2() {
+
+		for (int i = 0; i < aTuberias.size(); i++) {
+			if (Mario.getGrafico().getBounds().intersects(aTuberias.get(i).getBounds())&& Mario.getGrafico().EsEspejo()) {
+				return true;
+			}
+		}
+		for (int j = 0; j < aBloques.size(); j++) {
+			if (Mario.getGrafico().getBounds().intersects(aBloques.get(j).getBounds())&& Mario.getGrafico().EsEspejo()) {
+				return true;
+			}
+		}
+		for (int k = 0; k < aTuberiaGrande.size(); k++) {
+			if (Mario.getGrafico().getBounds().intersects(aTuberiaGrande.get(k).getBounds()) && Mario.getGrafico().EsEspejo()) {
+				return true;
+			}
+		}
+		for (int l = 0; l < aBloquesA.size(); l++) {
+			if (Mario.getGrafico().getBounds().intersects(aBloquesA.get(l).getBounds()) && Mario.getGrafico().EsEspejo()) {
 				return true;
 			}
 		}
