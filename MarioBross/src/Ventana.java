@@ -155,17 +155,28 @@ public class Ventana extends JFrame {
 
 	class MiRunnable3 implements Runnable {
 		boolean sigo = true;
+
 		@Override
 		public void run() {
 			// TODO Auto-generated method stub
 
 			while (sigo) {
 				if (Mundo.choque()) {
-					//System.out.println(Mario.getVida());
-					if (!Mundo.aVida.isEmpty()) {
+					try {
+						Thread.sleep(900);
+						Mario.setVida(Mario.getVida() - 1);
 						Mundo.eliminaCorazon();
 						pPrincipal.repaint();
+
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
+
+					if (Mario.getVida() == 0) {
+						sigo = false;
+					}
+
 				}
 
 				// Dormir el hilo 20 milisegundos
@@ -212,7 +223,7 @@ public class Ventana extends JFrame {
 					Mundo.CV.move(Mundo.CV.getX() - 10, Mundo.CV.getY());
 				}
 				
-				if(Mario.getPosY() >= 1100){
+				if(Mario.getVida()==0){
 					sigo=false;
 				}
 
@@ -303,12 +314,14 @@ public class Ventana extends JFrame {
 				Mundo.caida();
 
 				if (Mario.getPosY() >= 1100) {
-					sigo = false;
+					Mario.setVida(0);
+					Mundo.eliminaCorazon();
+					
 				}
 				
-				//if(Mario.getVida()==0){
-					//sigo=false;
-				//}
+				if(Mario.getVida()==0){
+					sigo=false;
+					}
 
 				// Dormir el hilo 40 milisegundos
 				try {

@@ -835,10 +835,10 @@ public class Mundo {
 		if (Mario.getGrafico().getBounds().intersects(CV.getBounds())) {
 			panel.remove(CV);
 			panel.repaint();
-			Mario.setVida(Mario.getVida()-1);
 			return true;
 		}
 		return false;
+
 	}
 
 	/**
