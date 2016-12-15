@@ -14,7 +14,7 @@ public class JLabelTuberiaGrande extends JLabel {
 	public static final int ALTURA_TUBERIA= 450;
 
 
-	private static final boolean DIBUJAR_RECTANGULO_BLOQUE = true; // Dibujado
+	private static final boolean DIBUJAR_RECTANGULO_BLOQUE = false; // Dibujado
 																	// (paradepuración)del
 																	// bounding
 																	// circle de

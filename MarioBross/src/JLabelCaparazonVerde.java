@@ -14,7 +14,7 @@ private static final long serialVersionUID = 1L; // Para serialización
 	
 	public static final int RADIO_ESFERA_CV= 38; // Radio en píxels del bounding circle del caparazón (para choques)
 	
-	private static final boolean DIBUJAR_ESFERA_CV = true; // Dibujado (paradepuración)del bounding circle de choque de Mario
+	private static final boolean DIBUJAR_ESFERA_CV = false; // Dibujado (paradepuración)del bounding circle de choque de Mario
 	
 	private long hora=System.currentTimeMillis(); // Para saber la hora, lo utilizaremos para la creación de caparazones
 

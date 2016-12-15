@@ -15,7 +15,7 @@ public class JLabelTuberia extends JLabel {
 	public static final int ARISTA_TUBERIA= 349;
 
 
-	private static final boolean DIBUJAR_RECTANGULO_BLOQUE = true; // Dibujado
+	private static final boolean DIBUJAR_RECTANGULO_BLOQUE = false; // Dibujado
 																	// (paradepuración)del
 																	// bounding
 																	// circle de
