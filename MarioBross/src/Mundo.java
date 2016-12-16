@@ -3,6 +3,8 @@ import java.util.Random;
 
 import javax.swing.JPanel;
 
+
+
 public class Mundo {
 	private JPanel panel; // panel visual del juego
 	Mario Mario; // Mario del juego
@@ -23,6 +25,7 @@ public class Mundo {
 	ArrayList<JLabelTuberia> aTuberias = new ArrayList();
 	ArrayList<JLabelCaida> aCaida = new ArrayList();
 	ArrayList<JLabelTuberiaGrande> aTuberiaGrande = new ArrayList();
+	ArrayList<JLabelCaparazonRojo>aCR=new ArrayList();
 
 	/**
 	 * Construye un mundo de juego
@@ -667,12 +670,49 @@ public class Mundo {
 		}
 
 	}
+	
+	/**
+	 * Si han pasado más de 1,2 segundos desde la última, * crea un caparazon
+	 * nuevo nuevo en una posición aleatoria y la añade al mundo y al panel
+	 * visual
+	 */
+
+	//TODO
+	public void creaCR() {
+
+		if (System.currentTimeMillis() - UltimaHora > 12000) {
+			JLabelCaparazonRojo CR = new JLabelCaparazonRojo();
+			CR.setLocation(panel.getWidth() - CV.TAMANYO_CV, this.panel.getHeight() - 125);
+			panel.add(CR);
+			CR.repaint();
+			aCR.add(CR);
+			UltimaHora = System.currentTimeMillis();
+		}
+
+	}
 
 	// Método para mover caparazón verde
 
 	public void moverCV() {
 		CV.move(CV.getX(), CV.getY() + 10);
 	}
+	
+
+	// Método para mover caparazón rojo
+
+	public void moverCR() {
+		for(int i=0; i<aCR.size();i++){
+			aCR.get(i).move(aCR.get(i).getX()-10, aCR.get(i).getY());
+		}
+	}
+	
+	// Método para mover caparazón rojo
+
+		public void moverCR2() {
+			for(int i=0; i<aCR.size();i++){
+				aCR.get(i).move(aCR.get(i).getX()+20, aCR.get(i).getY());
+			}
+		}
 
 	// Método para mover Bloque Izquierda
 
@@ -788,15 +828,65 @@ public class Mundo {
 		return false;
 	}
 	
+	//TODO
+	public boolean interseccionCR() {
+		for (int n = 0; n < aCR.size(); n++) {
+			for (int i = 0; i < aTuberias.size(); i++) {
+				if (aCR.get(n).getBounds().intersects(aTuberias.get(i).getBounds())) {
+					return true;
+				}
+			}
+			for (int j = 0; j < aBloques.size(); j++) {
+				if (aCR.get(n).getBounds().intersects(aBloques.get(j).getBounds())) {
+					return true;
+				}
+			}
+			for (int k = 0; k < aTuberiaGrande.size(); k++) {
+				if (aCR.get(n).getBounds().intersects(aTuberiaGrande.get(k).getBounds())) {
+					return true;
+				}
+			}
+			for (int l = 0; l < aBloquesA.size(); l++) {
+				if (aCR.get(n).getBounds().intersects(aBloquesA.get(l).getBounds())) {
+					return true;
+				}
+			}
+
+			for (int m = 0; m < aCaida.size(); m++) {
+				if (aCR.get(n).getBounds().intersects(aCaida.get(m).getBounds())) {
+					return true;
+				}
+			}
+		}
+
+		return false;
+
+	}
+	
+	//TODO
+	public void eliminarCR(){
+	int i = this.aCR.size() - 1;
+	while (i >= 0) {
+		JLabelCaparazonRojo CR = aCR.get(i);
+		if (interseccionCR()) {
+			panel.remove(CR);
+			panel.repaint();
+			aVida.remove(CR);
+
+		}
+		--i;
+	}
+	}
 	// Método para que Mario se quede en los objetos
 
-	public void apoyo() {
+	public boolean apoyo() {
 
 		for (int i = 0; i < aTuberias.size(); i++) {
 			if (Mario.getGrafico().getBounds().intersects(aTuberias.get(i).getBounds())
 					&& Mario.getPosY() <= aTuberias.get(i).getY()) {
 				Mario.gravedad = Mario.gravedad - 20;
 				Mario.setPosY(Mario.gravedad);
+				return true;
 			}
 		}
 
@@ -805,6 +895,7 @@ public class Mundo {
 					&& Mario.getPosY() <= aBloques.get(i).getY() - 100) {
 				Mario.gravedad = Mario.gravedad - 20;
 				Mario.setPosY(Mario.gravedad);
+				return true;
 			}
 		}
 
@@ -813,6 +904,7 @@ public class Mundo {
 					&& Mario.getPosY() <= aTuberiaGrande.get(k).getY()) {
 				Mario.gravedad = Mario.gravedad - 20;
 				Mario.setPosY(Mario.gravedad);
+				return true;
 			}
 		}
 
@@ -821,8 +913,10 @@ public class Mundo {
 					&& Mario.getPosY() <= aBloquesA.get(l).getY() - 100) {
 				Mario.gravedad = Mario.gravedad - 20;
 				Mario.setPosY(Mario.gravedad);
+				
 			}
 		}
+		return false;
 
 	}
 	
@@ -855,6 +949,22 @@ public class Mundo {
 			panel.remove(CV);
 			panel.repaint();
 			return true;
+		}
+		return false;
+
+	}
+
+	// Método para saber si hay un choque con un cr
+	public boolean choqueCR() {
+		for (int i = 0; i < aCR.size(); i++) {
+			JLabelCaparazonRojo CR = aCR.get(i);
+			if (Mario.getGrafico().getBounds().intersects(aCR.get(i).getBounds())) {
+				panel.remove(CR);
+				panel.repaint();
+				aCR.remove(CR);
+				panel.repaint();
+				return true;
+			}
 		}
 		return false;
 

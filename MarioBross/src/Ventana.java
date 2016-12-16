@@ -20,6 +20,7 @@ public class Ventana extends JFrame {
 	MiRunnable miHilo = null; // Hilo del bucle principal de juego
 	MiRunnable2 miHilo2 = null;
 	MiRunnable3 miHilo3= null;
+	MiRunnable4 miHilo4= null;
 	Boolean[] aPulsada = new Boolean[3]; // Array que almacena estado de la
 											// tecla
 
@@ -140,19 +141,61 @@ public class Ventana extends JFrame {
 			Ventana.Mario.setNombre("Mario Bros");
 			Ventana.miHilo = Ventana.new MiRunnable(); // Sintaxis de new
 			Ventana.miHilo2 = Ventana.new MiRunnable2();
-			Ventana.miHilo3 = Ventana.new MiRunnable3();// para clase
+			Ventana.miHilo3 = Ventana.new MiRunnable3();
+			Ventana.miHilo4 = Ventana.new MiRunnable4();// para clase
 			// interna
 			Thread nuevoHilo = new Thread(Ventana.miHilo);
 			Thread nuevoHilo2 = new Thread(Ventana.miHilo2);
 			Thread nuevoHilo3 = new Thread(Ventana.miHilo3);
+			Thread nuevoHilo4 = new Thread(Ventana.miHilo4);
 			nuevoHilo.start();
 			nuevoHilo2.start();
 			nuevoHilo3.start();
+			nuevoHilo4.start();
 		} catch (Exception e) {
 			System.exit(1); // Error anormal
 		}
 	}
 
+	class MiRunnable4 implements Runnable {
+		boolean sigo = true;
+
+		@Override
+		public void run() {
+
+			while (sigo) {
+				Ventana.this.Mundo.creaCR();
+				Ventana.this.Mundo.moverCR();
+				if (Ventana.this.Mundo.interseccionCR()) {
+
+					Ventana.this.Mundo.eliminarCR();
+				}
+				
+				if(aPulsada[2]){
+					Ventana.this.Mundo.moverCR2();
+				}
+				
+				if(Mario.getVida()==0){
+					sigo=false;
+				}
+				
+				
+
+				// Dormir el hilo 10 milisegundos
+				try {
+					pPrincipal.repaint();
+					Thread.sleep(10);
+					pPrincipal.repaint();
+				} catch (Exception e) {
+				}
+			}
+		}
+
+		public void acaba() {
+			sigo = false;
+		}
+
+	}
 	class MiRunnable3 implements Runnable {
 		boolean sigo = true;
 
@@ -160,7 +203,8 @@ public class Ventana extends JFrame {
 		public void run() {
 
 			while (sigo) {
-				if (Mundo.choque()) {
+				if (Mundo.choque() //||Mundo.choqueCR()
+						) {
 					try {
 						Thread.sleep(900);
 						Mario.setVida(Mario.getVida() - 1);
@@ -208,7 +252,7 @@ public class Ventana extends JFrame {
 				}
 
 				if (aPulsada[2] && !aPulsada[0] && ((JPanelFondo) pPrincipal).getVar() != -60) {
-					Mundo.CV.move(Mundo.CV.getX() + 20, Mundo.CV.getY());
+					Mundo.CV.move(Mundo.CV.getX() + 20, Mundo.CV.getY());	
 				}
 
 				if (aPulsada[1] && aPulsada[0] && ((JPanelFondo) pPrincipal).getVar() != -18840) {
@@ -220,12 +264,14 @@ public class Ventana extends JFrame {
 					Mundo.CV.move(Mundo.CV.getX() + 20, Mundo.CV.getY());
 					Mundo.CV.move(Mundo.CV.getX() - 10, Mundo.CV.getY());
 				}
-				
+						
 				if(Mario.getVida()==0){
 					sigo=false;
 				}
+				
+				
 
-				// Dormir el hilo 40 milisegundos
+				// Dormir el hilo 30 milisegundos
 				try {
 					pPrincipal.repaint();
 					Thread.sleep(30);
@@ -323,7 +369,7 @@ public class Ventana extends JFrame {
 				// Dormir el hilo 40 milisegundos
 				try {
 					pPrincipal.repaint();
-					Thread.sleep(40);
+					Thread.sleep(35);
 					pPrincipal.repaint();
 				} catch (Exception e) {
 				}
