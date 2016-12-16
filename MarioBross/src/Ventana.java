@@ -158,7 +158,6 @@ public class Ventana extends JFrame {
 
 		@Override
 		public void run() {
-			// TODO Auto-generated method stub
 
 			while (sigo) {
 				if (Mundo.choque()) {
@@ -169,7 +168,6 @@ public class Ventana extends JFrame {
 						pPrincipal.repaint();
 
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 
@@ -258,10 +256,10 @@ public class Ventana extends JFrame {
 			while (sigo) {
 				pPrincipal.repaint();
 				Mario.saltoMario();
-				
 				// Mover "Mario"(Realmente lo que movemos es el fondo creando un
 				// efecto óptico de movimiento
 				Mundo.apoyo();
+				Mundo.choqueV();
 				if (aPulsada[0]) {
 					if (!Mario.salto) {
 						Mario.gravedad = 840;
@@ -312,7 +310,6 @@ public class Ventana extends JFrame {
 				
 				Mario.setPosX(620);
 				Mundo.caida();
-
 				if (Mario.getPosY() >= 1100) {
 					Mario.setVida(0);
 					Mundo.eliminaCorazon();

@@ -826,9 +826,28 @@ public class Mundo {
 
 	}
 	
-	
+	public void choqueV() {
+		for (int i = 0; i < aBloques.size(); i++) {
 
-	//TODO Cada vez que choca resta la vida sin parar (arreglar)
+			if (Mario.getGrafico().getBounds().intersects(aBloques.get(i).getBounds())
+					&& Mario.getPosY() > aBloques.get(i).getY() && Mario.getPosY() < 860) {
+				Mario.gravedad = Mario.getGravedad() + 20;
+				Mario.setPosY(860);
+				Mario.setSalto(false);
+			}
+		}
+
+		for (int i = 0; i < aBloquesA.size(); i++) {
+
+			if (Mario.getGrafico().getBounds().intersects(aBloquesA.get(i).getBounds())
+					&& Mario.getPosY() > aBloquesA.get(i).getY() && Mario.getPosY() < 860) {
+				Mario.gravedad = Mario.getGravedad() + 20;
+				Mario.setPosY(860);
+				Mario.setSalto(false);
+			}
+		}
+	}
+
 	// Método para saber si hay un choque con un cv
 
 	public boolean choque() {
