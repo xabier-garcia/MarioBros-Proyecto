@@ -304,11 +304,11 @@ public class Ventana extends JFrame {
 				Mario.saltoMario();
 				// Mover "Mario"(Realmente lo que movemos es el fondo creando un
 				// efecto óptico de movimiento
-				Mundo.apoyo();
 				Mundo.choqueV();
 				if (aPulsada[0]) {
 					if (!Mario.salto) {
-						Mario.gravedad = 840;
+						Mario.gravedad = Mario.getPosY();
+						Mario.gravedadFija = Mario.getPosY();
 						Mario.salto = true;
 						Mario.cont = true;
 						if (Mario.getGrafico().EsEspejo()) {

@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 
 public class Mundo {
 	private JPanel panel; // panel visual del juego
-	Mario Mario; // Mario del juego
+	static Mario Mario; // Mario del juego
 	private static long UltimaHora; // Para saber la última hora de creación de
 									// los caparazones verdes
 	private JLabelTuberia t;
@@ -20,11 +20,11 @@ public class Mundo {
 	JLabelCaida Caida = new JLabelCaida();
 	JLabelTuberiaGrande TuberiaGrande = new JLabelTuberiaGrande();
 	ArrayList<JLabelVida> aVida = new ArrayList();
-	ArrayList<JLabelBloque> aBloques = new ArrayList();
-	ArrayList<JLabelBloqueA> aBloquesA = new ArrayList();
-	ArrayList<JLabelTuberia> aTuberias = new ArrayList();
-	ArrayList<JLabelCaida> aCaida = new ArrayList();
-	ArrayList<JLabelTuberiaGrande> aTuberiaGrande = new ArrayList();
+	static ArrayList<JLabelBloque> aBloques = new ArrayList();
+	static ArrayList<JLabelBloqueA> aBloquesA = new ArrayList();
+	static ArrayList<JLabelTuberia> aTuberias = new ArrayList();
+	static ArrayList<JLabelCaida> aCaida = new ArrayList();
+	static ArrayList<JLabelTuberiaGrande> aTuberiaGrande = new ArrayList();
 	ArrayList<JLabelCaparazonRojo>aCR=new ArrayList();
 
 	/**
@@ -879,7 +879,7 @@ public class Mundo {
 	}
 	// Método para que Mario se quede en los objetos
 
-	public boolean apoyo() {
+	public static boolean apoyo() {
 
 		for (int i = 0; i < aTuberias.size(); i++) {
 			if (Mario.getGrafico().getBounds().intersects(aTuberias.get(i).getBounds())

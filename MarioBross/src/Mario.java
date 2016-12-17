@@ -7,8 +7,9 @@ public class Mario extends Personaje{
 	public boolean salto = false;
 	public boolean caida = false;
 	public boolean cont = true;
-	
+	public double gravedadFija = 0;
 	public double gravedad = 859;
+	private Mundo mundo;
 	
 	/**  Crea un nuevo personaje de juego (Mario)
 	 */
@@ -61,25 +62,25 @@ public class Mario extends Personaje{
 
 
 
-	public void saltoMario(){ 
-
+	public void saltoMario(){ 	
 		if(salto && cont){
 			gravedad = gravedad - 20;
 			this.setPosY(gravedad);
-			if(this.getPosY() == 420){
+			if(this.getPosY() == this.gravedadFija - 440){
 				cont = false;
 				caida = true;
 			}
 		}
-		
-		if(caida){
-			if(this.getPosY() == 840){
-				this.setPosY(840);
+		if(!mundo.apoyo() && this.getPosY()!= 860 && !salto){
+			caida = true;
+		}
+		if(caida && !mundo.apoyo() && this.getPosY()!= 860){
+			gravedad = gravedad + 20;
+			this.setPosY(gravedad);
+			if(this.getPosY() == 860 || mundo.apoyo()){
 				salto=false;
 				caida=false;
 			}
-			gravedad = gravedad + 20;
-			this.setPosY(gravedad);
 		}
 	}
 
