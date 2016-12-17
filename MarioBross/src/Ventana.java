@@ -203,7 +203,7 @@ public class Ventana extends JFrame {
 		public void run() {
 
 			while (sigo) {
-				if (Mundo.choque() //||Mundo.choqueCR()
+				if (Mundo.choque() || Mundo.choqueCR()
 						) {
 					try {
 						Thread.sleep(900);
@@ -318,7 +318,7 @@ public class Ventana extends JFrame {
 							repaint();
 						}
 					}
-					Mario.setPosX(620);
+					//Mario.setPosX(620);
 				}
 
 				if (!Mundo.interseccion()) {
@@ -333,7 +333,7 @@ public class Ventana extends JFrame {
 
 							}
 						}
-						Mario.setPosX(620);
+						//Mario.setPosX(620);
 					}
 				}
 
@@ -349,12 +349,12 @@ public class Ventana extends JFrame {
 								Mundo.moverObjetoD();
 							}
 						}
-						Mario.setPosX(620);
+						//Mario.setPosX(620);
 					}
 
 				}
 				
-				Mario.setPosX(620);
+				//Mario.setPosX(620);
 				Mundo.caida();
 				if (Mario.getPosY() >= 1100) {
 					Mario.setVida(0);

@@ -871,7 +871,7 @@ public class Mundo {
 		if (interseccionCR()) {
 			panel.remove(CR);
 			panel.repaint();
-			aVida.remove(CR);
+			aCR.remove(CR);
 
 		}
 		--i;
@@ -960,7 +960,6 @@ public class Mundo {
 			JLabelCaparazonRojo CR = aCR.get(i);
 			if (Mario.getGrafico().getBounds().intersects(aCR.get(i).getBounds())) {
 				panel.remove(CR);
-				panel.repaint();
 				aCR.remove(CR);
 				panel.repaint();
 				return true;

@@ -68,7 +68,7 @@ public class JLabelMario extends JLabel {
 			System.err.println("Error en carga de recurso: MarioEspejo.png no encontrado");
 			e.printStackTrace();
 		}
-		setBounds(0, 0, TAMANYO_MARIO, TAMANYO_MARIO);
+		setSize(TAMANYO_MARIO, TAMANYO_MARIO);
 		Espejo = true;
 
 	}
@@ -85,7 +85,7 @@ public class JLabelMario extends JLabel {
 			System.err.println("Error en carga de recurso: Mario.png no encontrado");
 			e.printStackTrace();
 		}
-		setBounds(0, 0, TAMANYO_MARIO, TAMANYO_MARIO);
+		setSize(TAMANYO_MARIO, TAMANYO_MARIO);
 		Espejo = false;
 
 	}
@@ -102,7 +102,7 @@ public class JLabelMario extends JLabel {
 			System.err.println("Error en carga de recurso: Mario.png no encontrado");
 			e.printStackTrace();
 		}
-		setBounds(0, 0, TAMANYO_MARIO, TAMANYO_MARIO);
+		setSize(TAMANYO_MARIO, TAMANYO_MARIO);
 		Espejo = false;
 
 	}
@@ -119,7 +119,7 @@ public class JLabelMario extends JLabel {
 			System.err.println("Error en carga de recurso: Mario.png no encontrado");
 			e.printStackTrace();
 		}
-		setBounds(0, 0, TAMANYO_MARIO, TAMANYO_MARIO);
+		setSize(TAMANYO_MARIO, TAMANYO_MARIO);
 		Espejo = true;
 	}
 

@@ -27,13 +27,13 @@ public class Mario extends Personaje{
 
 	public void setPosX(double posX) {
 		super.setPosX(posX);
-		Grafico.setLocation((int) posX, (int) posY);
+		Grafico.setLocation((int) posX, Grafico.getY());
 
 	}
 
 	public void setPosY(double posY) {
 		super.setPosY(posY);
-		Grafico.setLocation((int) posX, (int) posY);
+		Grafico.setLocation((Grafico.getX()), (int) posY);
 	}
 	
 	
