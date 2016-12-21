@@ -25,7 +25,8 @@ public class Mundo {
 	static ArrayList<JLabelTuberia> aTuberias = new ArrayList();
 	static ArrayList<JLabelCaida> aCaida = new ArrayList();
 	static ArrayList<JLabelTuberiaGrande> aTuberiaGrande = new ArrayList();
-	ArrayList<JLabelCaparazonRojo>aCR=new ArrayList();
+	static ArrayList<JLabelMoneda> aMonedas = new ArrayList();
+	ArrayList<JLabelCaparazonRojo> aCR = new ArrayList();
 
 	/**
 	 * Construye un mundo de juego
@@ -93,6 +94,55 @@ public class Mundo {
 
 	}
 
+	//TODO
+	
+	/**
+	 * Crea una nueva moneda y la añade al panel visual
+	 */
+	
+	public void creaMoneda(){
+		JLabelMoneda moneda = new JLabelMoneda();
+		moneda.setLocation(1020,660);
+		panel.add(moneda);
+		aMonedas.add(moneda);
+	}
+	
+	// TODO
+	
+
+	/**
+	 * Método que permite sacar una moneda de un bloque
+	 * @return 
+	 */
+
+	public int SaleMoneda() {
+		int i = 0;
+		int j=0;
+		if (choqueV()) {
+			for (i = 0; i < aMonedas.size(); i++) {
+				JLabelMoneda moneda = aMonedas.get(i);
+				aMonedas.get(i).move(aMonedas.get(i).getX(), aMonedas.get(i).getY() - 100);
+				panel.repaint();
+				j=i;
+			}
+
+		}
+		return j;
+	}
+
+	// TODO
+	public void eliminaMoneda() {
+		if (choqueV()) {
+			JLabelMoneda moneda = aMonedas.get(SaleMoneda());
+			aMonedas.remove(moneda);
+			panel.remove(moneda);
+			panel.repaint();
+		}
+	}
+	
+	
+	
+	
 	/**
 	 * Crea un nuevo Bloque y lo añade al panel visual
 	 */
@@ -677,7 +727,6 @@ public class Mundo {
 	 * visual
 	 */
 
-	//TODO
 	public void creaCR() {
 
 		if (System.currentTimeMillis() - UltimaHora > 12000) {
@@ -714,7 +763,7 @@ public class Mundo {
 			}
 		}
 
-	// Método para mover Bloque Izquierda
+	// Método para mover Objetos Izquierda
 
 	public void moverObjetoI() {
 		for (int i = 0; i < aBloques.size(); i++) {
@@ -732,9 +781,12 @@ public class Mundo {
 		for (int u = 0; u < aTuberiaGrande.size(); u++) {
 			aTuberiaGrande.get(u).move(aTuberiaGrande.get(u).getX() - 20, (aTuberiaGrande.get(u).getY()));
 		}
+		for(int v=0; v<aMonedas.size();v++){
+			aMonedas.get(v).move(aMonedas.get(v).getX()-20, aMonedas.get(v).getY());
+		}
 	}
 
-	// Método para mover Bloque Derecha
+	// Método para mover Objetos Derecha
 
 	public void moverObjetoD() {
 		for (int i = 0; i < aBloques.size(); i++) {
@@ -751,6 +803,9 @@ public class Mundo {
 		}
 		for (int u = 0; u < aTuberiaGrande.size(); u++) {
 			aTuberiaGrande.get(u).move(aTuberiaGrande.get(u).getX() + 20, (aTuberiaGrande.get(u).getY()));
+		}
+		for(int v=0; v<aMonedas.size();v++){
+			aMonedas.get(v).move(aMonedas.get(v).getX()+20, aMonedas.get(v).getY());
 		}
 	}
 
@@ -828,7 +883,6 @@ public class Mundo {
 		return false;
 	}
 	
-	//TODO
 	public boolean interseccionCR() {
 		for (int n = 0; n < aCR.size(); n++) {
 			for (int i = 0; i < aTuberias.size(); i++) {
@@ -862,8 +916,7 @@ public class Mundo {
 		return false;
 
 	}
-	
-	//TODO
+
 	public void eliminarCR(){
 	int i = this.aCR.size() - 1;
 	while (i >= 0) {
@@ -920,7 +973,9 @@ public class Mundo {
 
 	}
 	
-	public void choqueV() {
+	//Método para saber si hay un choque vertical
+	
+	public boolean choqueV() {
 		for (int i = 0; i < aBloques.size(); i++) {
 
 			if (Mario.getGrafico().getBounds().intersects(aBloques.get(i).getBounds())
@@ -928,6 +983,7 @@ public class Mundo {
 				Mario.gravedad = Mario.getGravedad() + 20;
 				Mario.setPosY(860);
 				Mario.setSalto(false);
+				return true;
 			}
 		}
 
@@ -938,8 +994,11 @@ public class Mundo {
 				Mario.gravedad = Mario.getGravedad() + 20;
 				Mario.setPosY(860);
 				Mario.setSalto(false);
+				return true;
+				
 			}
 		}
+		return false;
 	}
 
 	// Método para saber si hay un choque con un cv

@@ -138,6 +138,7 @@ public class Ventana extends JFrame {
 			Ventana.Mundo.crearTuberiaGrande();
 			Ventana.Mundo.crearCaida();
 			Ventana.Mundo.creaCorazon();
+			Ventana.Mundo.creaMoneda();
 			Ventana.Mario.setNombre("Mario Bros");
 			Ventana.miHilo = Ventana.new MiRunnable(); // Sintaxis de new
 			Ventana.miHilo2 = Ventana.new MiRunnable2();
@@ -302,6 +303,8 @@ public class Ventana extends JFrame {
 			while (sigo) {
 				pPrincipal.repaint();
 				Mario.saltoMario();
+				Mundo.SaleMoneda();
+				Mundo.eliminaMoneda();
 				// Mover "Mario"(Realmente lo que movemos es el fondo creando un
 				// efecto óptico de movimiento
 				Mundo.choqueV();
