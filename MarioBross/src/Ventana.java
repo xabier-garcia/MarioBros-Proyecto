@@ -1,3 +1,5 @@
+
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.FocusAdapter;
@@ -138,7 +140,7 @@ public class Ventana extends JFrame {
 			Ventana.Mundo.crearTuberiaGrande();
 			Ventana.Mundo.crearCaida();
 			Ventana.Mundo.creaCorazon();
-			Ventana.Mundo.creaMoneda();
+			Ventana.Mundo.crearGoomba();
 			Ventana.Mario.setNombre("Mario Bros");
 			Ventana.miHilo = Ventana.new MiRunnable(); // Sintaxis de new
 			Ventana.miHilo2 = Ventana.new MiRunnable2();
@@ -244,42 +246,42 @@ public class Ventana extends JFrame {
 		@Override
 		public void run() {
 
-			while (sigo) {
-				Ventana.this.Mundo.creaCV();
-				Ventana.this.Mundo.moverCV();
-
-				if (aPulsada[1] && !aPulsada[0] && ((JPanelFondo) pPrincipal).getVar() != -18840) {
-					Mundo.CV.move(Mundo.CV.getX() - 20, Mundo.CV.getY());
-				}
-
-				if (aPulsada[2] && !aPulsada[0] && ((JPanelFondo) pPrincipal).getVar() != -60) {
-					Mundo.CV.move(Mundo.CV.getX() + 20, Mundo.CV.getY());	
-				}
-
-				if (aPulsada[1] && aPulsada[0] && ((JPanelFondo) pPrincipal).getVar() != -18840) {
-					Mundo.CV.move(Mundo.CV.getX() - 20, Mundo.CV.getY());
-					Mundo.CV.move(Mundo.CV.getX() + 10, Mundo.CV.getY());
-				}
-
-				if (aPulsada[2] && aPulsada[0] && ((JPanelFondo) pPrincipal).getVar() != -60) {
-					Mundo.CV.move(Mundo.CV.getX() + 20, Mundo.CV.getY());
-					Mundo.CV.move(Mundo.CV.getX() - 10, Mundo.CV.getY());
-				}
-						
-				if(Mario.getVida()==0){
-					sigo=false;
-				}
-				
-				
-
-				// Dormir el hilo 30 milisegundos
-				try {
-					pPrincipal.repaint();
-					Thread.sleep(30);
-					pPrincipal.repaint();
-				} catch (Exception e) {
-				}
-			}
+//			while (sigo) {
+//				Ventana.this.Mundo.creaCV();
+//				Ventana.this.Mundo.moverCV();
+//
+//				if (aPulsada[1] && !aPulsada[0] && ((JPanelFondo) pPrincipal).getVar() != -18840) {
+//					Mundo.CV.move(Mundo.CV.getX() - 20, Mundo.CV.getY());
+//				}
+//
+//				if (aPulsada[2] && !aPulsada[0] && ((JPanelFondo) pPrincipal).getVar() != -60) {
+//					Mundo.CV.move(Mundo.CV.getX() + 20, Mundo.CV.getY());	
+//				}
+//
+//				if (aPulsada[1] && aPulsada[0] && ((JPanelFondo) pPrincipal).getVar() != -18840) {
+//					Mundo.CV.move(Mundo.CV.getX() - 20, Mundo.CV.getY());
+//					Mundo.CV.move(Mundo.CV.getX() + 10, Mundo.CV.getY());
+//				}
+//
+//				if (aPulsada[2] && aPulsada[0] && ((JPanelFondo) pPrincipal).getVar() != -60) {
+//					Mundo.CV.move(Mundo.CV.getX() + 20, Mundo.CV.getY());
+//					Mundo.CV.move(Mundo.CV.getX() - 10, Mundo.CV.getY());
+//				}
+//						
+//				if(Mario.getVida()==0){
+//					sigo=false;
+//				}
+//				
+//				
+//
+//				// Dormir el hilo 30 milisegundos
+//				try {
+//					pPrincipal.repaint();
+//					Thread.sleep(30);
+//					pPrincipal.repaint();
+//				} catch (Exception e) {
+//				}
+//			}
 		}
 
 		public void acaba() {
@@ -303,13 +305,12 @@ public class Ventana extends JFrame {
 			while (sigo) {
 				pPrincipal.repaint();
 				Mario.saltoMario();
-				Mundo.SaleMoneda();
-				Mundo.eliminaMoneda();
 				// Mover "Mario"(Realmente lo que movemos es el fondo creando un
 				// efecto óptico de movimiento
 				Mundo.choqueV();
+				Mundo.interaccionGoomba();
 				if (aPulsada[0]) {
-					if (!Mario.salto) {
+					if (!Mario.salto && !Mundo.choqueV() && !Mario.caida) {
 						Mario.gravedad = Mario.getPosY();
 						Mario.gravedadFija = Mario.getPosY();
 						Mario.salto = true;
