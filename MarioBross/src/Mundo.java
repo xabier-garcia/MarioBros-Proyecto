@@ -134,9 +134,9 @@ public class Mundo {
 	
 	public void eliminaMoneda() {
 		if (choqueV()) {
-			JLabelMoneda moneda = aMonedas.get(SaleMoneda());
-			aMonedas.remove(moneda);
+			JLabelMoneda moneda = aMonedas.get(0);
 			panel.remove(moneda);
+			aMonedas.remove(moneda);
 			panel.repaint();
 		}
 	}
