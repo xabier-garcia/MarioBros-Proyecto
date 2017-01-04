@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 
 
 public class JLabelGoomba extends JLabel{
+	private boolean iden;
 	private static final long serialVersionUID = 1L; // Para serialización
 	
 	public static final int TAMANYO_GOOMBA = 115; // píxels (igual ancho que largo)
@@ -22,13 +23,50 @@ public class JLabelGoomba extends JLabel{
 	public JLabelGoomba() {
 		try {
 
-			setIcon(new ImageIcon(JLabelMario.class.getResource("Imagenes/Goomba1.png").toURI().toURL()));
+			setIcon(new ImageIcon(JLabelMario.class.getResource("Imagenes/Goomba1SinFondo.png").toURI().toURL()));
 		} catch (Exception e) {
-			System.err.println("Error en carga de recurso: Goomba1.png no encontrado");
+			System.err.println("Error en carga de recurso: Goomba1SinFondo.png no encontrado");
 			e.printStackTrace();
 		}
 		setSize(TAMANYO_GOOMBA, TAMANYO_GOOMBA);
 
+	}
+	
+	public void setComponentOrientationGoomba1() {
+		try {
+
+			setIcon(new ImageIcon(JLabelMario.class.getResource("Imagenes/Goomba1SinFondo.png").toURI().toURL()));
+			iden = false;
+		} catch (Exception e) {
+			System.err.println("Error en carga de recurso: Goomba1SinFondo.png no encontrado");
+			e.printStackTrace();
+		}
+		setSize(TAMANYO_GOOMBA, TAMANYO_GOOMBA);
+		
+	}
+	
+	public void setComponentOrientationGoomba2() {
+		try {
+
+			setIcon(new ImageIcon(JLabelMario.class.getResource("Imagenes/Goomba2SinFondo.png").toURI().toURL()));
+			iden = true;
+		} catch (Exception e) {
+			System.err.println("Error en carga de recurso: Goomba2SinFondo.png no encontrado");
+			e.printStackTrace();
+		}
+		setSize(TAMANYO_GOOMBA, TAMANYO_GOOMBA);
+
+	}
+	
+	
+	
+	public void cambiarImgGoomba(){
+		if(iden){
+			setComponentOrientationGoomba1();
+		}
+		else{
+			setComponentOrientationGoomba2();
+		}
 	}
 	
 	/**

@@ -19,6 +19,7 @@ public class Ventana extends JFrame {
 	JPanel pPrincipal; // Panel del juego (layout nulo)
 	Mundo Mundo; // Mundo del juego
 	Mario Mario; // Mario del juego
+	JLabelGoomba Goomba;
 	MiRunnable miHilo = null; // Hilo del bucle principal de juego
 	MiRunnable2 miHilo2 = null;
 	MiRunnable3 miHilo3= null;
@@ -206,14 +207,13 @@ public class Ventana extends JFrame {
 		public void run() {
 
 			while (sigo) {
-				if (Mundo.choque() || Mundo.choqueCR()
-						) {
+				if (Mundo.choque() || Mundo.choqueCR() || Mundo.perderVidaGoomba) {
 					try {
-						Thread.sleep(900);
+						Thread.sleep(1000);
 						Mario.setVida(Mario.getVida() - 1);
 						Mundo.eliminaCorazon();
 						pPrincipal.repaint();
-
+						Mundo.perderVidaGoomba = false;
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
@@ -309,6 +309,18 @@ public class Ventana extends JFrame {
 				// efecto óptico de movimiento
 				Mundo.choqueV();
 				Mundo.interaccionGoomba();
+				
+				if(Mundo.caidaGoomba){
+					Mundo.caidaDeLosGoombas(Mundo.caidaGoombaNumero);
+				}
+				
+				if(!Mundo.movGoomba){
+					Mundo.moverGoombaD();
+				}
+				else{
+					Mundo.moverGoombaI();
+				}
+				
 				if (aPulsada[0]) {
 					if (!Mario.salto && !Mundo.choqueV() && !Mario.caida) {
 						Mario.gravedad = Mario.getPosY();

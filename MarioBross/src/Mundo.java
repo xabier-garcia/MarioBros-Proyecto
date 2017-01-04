@@ -13,6 +13,19 @@ public class Mundo {
 									// los caparazones verdes
 	private JLabelTuberia t;
 	private Random numR = new Random(); // Nuevo generador de números random
+	
+	
+	// Variables de los Goombas
+	public boolean movGoomba = false;
+	private int posInicialGoomba1Estatica;
+	private int posInicialGoomba2Estatica;
+	private int contGoomba = 0;
+	private boolean margenError = false;
+	public static boolean caidaGoomba = false;
+	public int caidaGoombaNumero;
+	public static boolean perderVidaGoomba = false;
+	static ArrayList<Integer> aPosInicialGoomba = new ArrayList<Integer>();
+	static ArrayList<Integer> aContGoomba = new ArrayList<Integer>();
 	JLabelCaparazonVerde CV = new JLabelCaparazonVerde(); // Nuevo Jlabel Para
 															// capazaron
 	JLabelTuberia Tuberia = new JLabelTuberia();
@@ -127,37 +140,130 @@ public class Mundo {
 			panel.repaint();
 		}
 	}
+	
+	
 	// Creacion de los goombas
 	public void crearGoomba(){
 		Goomba = new JLabelGoomba();
-		Goomba.setLocation(1500,894);
+		Goomba.setLocation(7200,894);
 		panel.add(Goomba);
 		aGoomba.add(Goomba);
+		
+//		aPosInicialGoomba.add(aGoomba.get(0).getX());
+//		posInicialGoomba1Estatica =  aGoomba.get(0).getX();
+		
+		Goomba= new JLabelGoomba();
+		Goomba.setLocation(14300,894);
+		panel.add(Goomba);
+		aGoomba.add(Goomba);
+		
+//		aPosInicialGoomba.add(aGoomba.get(1).getX());
+//		posInicialGoomba2Estatica =  aGoomba.get(1).getX();
+		
+		aContGoomba.add(0);
+		aContGoomba.add(0);
+	}
+	
+	public static boolean interseccionGoombas() {
+		for (int n = 0; n < aGoomba.size(); n++) {
+			for (int i = 0; i < aTuberias.size(); i++) {
+				if (aGoomba.get(n).getBounds().intersects(aTuberias.get(i).getBounds())) {
+					return true;
+				}
+			}
+			for (int j = 0; j < aBloques.size(); j++) {
+				if (aGoomba.get(n).getBounds().intersects(aBloques.get(j).getBounds())) {
+					return true;
+				}
+			}
+			for (int k = 0; k < aTuberiaGrande.size(); k++) {
+				if (aGoomba.get(n).getBounds().intersects(aTuberiaGrande.get(k).getBounds())) {
+					return true;
+				}
+			}
+			for (int l = 0; l < aBloquesA.size(); l++) {
+				if (aGoomba.get(n).getBounds().intersects(aBloquesA.get(l).getBounds())) {
+					return true;
+				}
+			}
+
+			for (int m = 0; m < aCaida.size(); m++) {
+				if (aGoomba.get(n).getBounds().intersects(aCaida.get(m).getBounds())) {
+					return true;
+				}
+			}
+		}
+
+		return false;
 	}
 	
 	public void moverGoombaD(){
 		for(int i = 0; i<aGoomba.size(); i++){
-			aGoomba.get(i).move(aGoomba.get(i).getX() + 20, (aGoomba.get(i).getY()));
+//			aPosInicialGoomba.set(i, aPosInicialGoomba.get(i)+10);
+			aContGoomba.set(i, aContGoomba.get(i) + 1);
+//			if(aPosInicialGoomba.get(i).intValue() <= posInicialGoomba1Estatica + 580 || aPosInicialGoomba.get(i).intValue() <= posInicialGoomba2Estatica + 580  ){ //7800
+			if(!Mundo.interseccionGoombas() || !margenError){
+			aGoomba.get(i).move(aGoomba.get(i).getX() + 10, (aGoomba.get(i).getY()));
+				if(aContGoomba.get(i) == 8){
+					aGoomba.get(i).cambiarImgGoomba();
+					aContGoomba.set(i,0);
+					margenError = true;
+				}
+			}
+			else{
+				movGoomba = true;
+				for(int e = 0; e<aContGoomba.size(); e++){
+				aContGoomba.set(e,0);
+				}
+			}
 		}
 	}
 	
 	public void moverGoombaI(){
 		for(int i = 0; i<aGoomba.size(); i++){
-		aGoomba.get(i).move(aGoomba.get(i).getX() - 20, (aGoomba.get(i).getY()));
+//			aPosInicialGoomba.set(i, aPosInicialGoomba.get(i)-10);
+			aContGoomba.set(i, aContGoomba.get(i) + 1);
+//			if(aPosInicialGoomba.get(i).intValue() >= posInicialGoomba1Estatica - 760 || aPosInicialGoomba.get(i).intValue() >= posInicialGoomba2Estatica - 760){ //6440
+			if(!Mundo.interseccionGoombas() || margenError){
+			aGoomba.get(i).move(aGoomba.get(i).getX() - 10, (aGoomba.get(i).getY()));
+			if(aContGoomba.get(i) == 8){
+				aGoomba.get(i).cambiarImgGoomba();
+				aContGoomba.set(i,0);
+				margenError = false;
+			}
+			}
+			else{
+				movGoomba = false;
+				for(int e = 0; e<aContGoomba.size(); e++){
+					aContGoomba.set(e,0);
+				}
+			}
 		}
+	
 	}
 	
 	public void interaccionGoomba(){
 		for (int i = 0; i < aGoomba.size(); i++) {
 			if (Mario.getGrafico().getBounds().intersects(aGoomba.get(i).getBounds())){
-				if( Mario.getPosY() <= aGoomba.get(i).getY()){
-					aGoomba.get(i).setVisible(false);
+				if( Mario.getGrafico().getBounds().getMaxY()== 910){// 910 es mas o menos la posicion máxima de los goombas
+					caidaGoombaNumero = i;
+					caidaGoomba = true;
 				}
 				else{
-					Mario.setVida(Mario.getVida()-1);
+					perderVidaGoomba = true;
 				}
 			}		
 		}
+	}
+	
+	public static void caidaDeLosGoombas(int i){
+		perderVidaGoomba = false;
+		aGoomba.get(i).setLocation(aGoomba.get(i).getX(), aGoomba.get(i).getY()+20);
+		if(aGoomba.get(i).getY() >= 1100){
+			caidaGoomba = false;
+			aGoomba.get(i).setVisible(false);
+		}
+		
 	}
 	/**
 	 * Crea un nuevo Bloque y lo añade al panel visual
@@ -346,47 +452,47 @@ public class Mundo {
 		
 		//Triangulo de bloques 1
 		Bloque = new JLabelBloque();
-		Bloque.setLocation(13420, 899);
+		Bloque.setLocation(12910, 899);
 		panel.add(Bloque);
 		aBloques.add(Bloque);
 
 		Bloque = new JLabelBloque();
-		Bloque.setLocation(13520, 799);
+		Bloque.setLocation(13010, 799);
 		panel.add(Bloque);
 		aBloques.add(Bloque);
 		
 		Bloque = new JLabelBloque();
-		Bloque.setLocation(13520, 899);
+		Bloque.setLocation(13010, 899);
 		panel.add(Bloque);
 		aBloques.add(Bloque);
 
 		Bloque = new JLabelBloque();
-		Bloque.setLocation(13620, 699);
+		Bloque.setLocation(13110, 699);
 		panel.add(Bloque);
 		aBloques.add(Bloque);
 		
 		Bloque = new JLabelBloque();
-		Bloque.setLocation(13620, 799);
+		Bloque.setLocation(13110, 799);
 		panel.add(Bloque);
 		aBloques.add(Bloque);
 		
 		Bloque = new JLabelBloque();
-		Bloque.setLocation(13620, 899);
+		Bloque.setLocation(13110, 899);
 		panel.add(Bloque);
 		aBloques.add(Bloque);
 		
 		Bloque = new JLabelBloque();
-		Bloque.setLocation(13720, 799);
+		Bloque.setLocation(13210, 799);
 		panel.add(Bloque);
 		aBloques.add(Bloque);
 		
 		Bloque = new JLabelBloque();
-		Bloque.setLocation(13720, 899);
+		Bloque.setLocation(13210, 899);
 		panel.add(Bloque);
 		aBloques.add(Bloque);
 		
 		Bloque = new JLabelBloque();
-		Bloque.setLocation(13820, 899);
+		Bloque.setLocation(13310, 899);
 		panel.add(Bloque);
 		aBloques.add(Bloque);
 
@@ -829,6 +935,9 @@ public class Mundo {
 		for (int u = 0; u < aTuberiaGrande.size(); u++) {
 			aTuberiaGrande.get(u).move(aTuberiaGrande.get(u).getX() - 20, (aTuberiaGrande.get(u).getY()));
 		}
+		for (int u = 0; u < aGoomba.size(); u++) {
+			aGoomba.get(u).move(aGoomba.get(u).getX() - 20, (aGoomba.get(u).getY()));
+		}
 	}
 
 	// Método para mover Bloque Derecha
@@ -848,6 +957,9 @@ public class Mundo {
 		}
 		for (int u = 0; u < aTuberiaGrande.size(); u++) {
 			aTuberiaGrande.get(u).move(aTuberiaGrande.get(u).getX() + 20, (aTuberiaGrande.get(u).getY()));
+		}
+		for (int u = 0; u < aGoomba.size(); u++) {
+			aGoomba.get(u).move(aGoomba.get(u).getX() + 20, (aGoomba.get(u).getY()));
 		}
 	}
 
