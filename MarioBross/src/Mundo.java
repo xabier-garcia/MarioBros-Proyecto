@@ -1,49 +1,45 @@
 
 import java.util.ArrayList;
 import java.util.Random;
-
 import javax.swing.JPanel;
 
-
+/**
+ * Clase para definir instancias lógicas del mundo
+ */
 
 public class Mundo {
-	private JPanel panel; // panel visual del juego
-	static Mario Mario; // Mario del juego
-	private static long UltimaHora; // Para saber la última hora de creación de
-									// los caparazones verdes
-	private JLabelTuberia t;
+	private JPanel panel; // Atributo del panel visual del juego
+	static Mario Mario; // Atributo que contiene al Mario del juego
+	private static long UltimaHora; //Atributo para saber la última hora de creación de los caparazones
 	private Random numR = new Random(); // Nuevo generador de números random
-	
-	
-	// Variables de los Goombas
-	public boolean movGoomba = false;
-	private int posInicialGoomba1Estatica;
-	private int posInicialGoomba2Estatica;
-	private int contGoomba = 0;
-	private boolean margenError = false;
-	public static boolean caidaGoomba = false;
-	public int caidaGoombaNumero;
-	public static boolean perderVidaGoomba = false;
-	private int j;
-	static ArrayList<Integer> aPosInicialGoomba = new ArrayList<Integer>();
-	static ArrayList<Integer> aContGoomba = new ArrayList<Integer>();
-	JLabelCaparazonVerde CV = new JLabelCaparazonVerde(); // Nuevo Jlabel Para
-															// capazaron
-	JLabelTuberia Tuberia = new JLabelTuberia();
-	JLabelBloque Bloque = new JLabelBloque();
-	JLabelBloqueA BloqueA = new JLabelBloqueA();
-	JLabelCaida Caida = new JLabelCaida();
-	JLabelTuberiaGrande TuberiaGrande = new JLabelTuberiaGrande();
-	JLabelGoomba Goomba = new JLabelGoomba();
-	ArrayList<JLabelVida> aVida = new ArrayList();
-	static ArrayList<JLabelBloque> aBloques = new ArrayList();
-	static ArrayList<JLabelBloqueA> aBloquesA = new ArrayList();
-	static ArrayList<JLabelTuberia> aTuberias = new ArrayList();
-	static ArrayList<JLabelCaida> aCaida = new ArrayList();
-	static ArrayList<JLabelTuberiaGrande> aTuberiaGrande = new ArrayList();
-	static ArrayList<JLabelMoneda> aMonedas = new ArrayList();
-	static ArrayList<JLabelGoomba> aGoomba = new ArrayList();
-	ArrayList<JLabelCaparazonRojo>aCR=new ArrayList();
+	private JLabelTuberia t; //Atributo que contiene una etiqueta gráfica de una tubería
+	public boolean movGoomba = false; // Atributo que guarda variable de movimiento para el goomba
+	private int posInicialGoomba1Estatica; // Atributo que guarda la posición inicial del goomba
+	private int posInicialGoomba2Estatica; // Atributo que guarda la segunda posición inicial del goomba
+	private int contGoomba = 0; // Atributo contador del goomba
+	private boolean margenError = false; // Atributo que guarda el margen de error que se puede producir
+	public static boolean caidaGoomba = false; // Atributo que guarda si hay caida o no del goomba
+	public int caidaGoombaNumero; // Atributo que guarda el número para la caida del goomba
+	public static boolean perderVidaGoomba = false; // Atributo para saber si el goomba a muerto
+	private int j; //Atributo que guardara una variable que usaremos para la creacion de monedas
+	JLabelCaparazonVerde CV = new JLabelCaparazonVerde(); // Atributo Jlabel para caparazón verde
+	JLabelTuberia Tuberia = new JLabelTuberia(); // Atributo Jlabel para tuberia
+	JLabelBloque Bloque = new JLabelBloque(); // Atributo Jlabel para bloque
+	JLabelBloqueA BloqueA = new JLabelBloqueA(); // Atributo Jlabel para bloque amarillo
+	JLabelCaida Caida = new JLabelCaida(); // Atributo Jlabel para caida
+	JLabelTuberiaGrande TuberiaGrande = new JLabelTuberiaGrande(); // Atributo jlabel para la tuberia grande
+	JLabelGoomba Goomba = new JLabelGoomba(); // Atributo jlabel para el goomba
+	static ArrayList<Integer> aPosInicialGoomba = new ArrayList<Integer>(); // Array que guarda las posiciones iniciales de los goombas
+	static ArrayList<Integer> aContGoomba = new ArrayList<Integer>(); // Array que guarda los contadores de los gombas
+	static ArrayList<JLabelVida> aVida = new ArrayList(); // Array que guarda las vidas de Mario
+	static ArrayList<JLabelBloque> aBloques = new ArrayList(); //Aray que guarda los bloques
+	static ArrayList<JLabelBloqueA> aBloquesA = new ArrayList(); // Array que guarda los bloques amarillos
+	static ArrayList<JLabelTuberia> aTuberias = new ArrayList(); // Array que guarda las tuberias
+	static ArrayList<JLabelCaida> aCaida = new ArrayList(); // Array que guarda las caidas de Mario
+	static ArrayList<JLabelTuberiaGrande> aTuberiaGrande = new ArrayList(); // Array que guarda las tuberias grandes
+	static ArrayList<JLabelMoneda> aMonedas = new ArrayList(); // Array que guarda las monedas
+	static ArrayList<JLabelGoomba> aGoomba = new ArrayList(); // Array que guarda los goombas
+	static ArrayList<JLabelCaparazonRojo> aCR = new ArrayList(); //Array que guarda los caparazones rojos
 
 	/**
 	 * Construye un mundo de juego
@@ -63,6 +59,7 @@ public class Mundo {
 	 * @param posY
 	 *            Posición Y de píxel del nuevo Mario
 	 */
+	
 	public void creaMario(int posX, int posY) {
 		// Crear y añadir el Mario a la ventana
 		Mario = new Mario();
@@ -73,7 +70,7 @@ public class Mundo {
 	}
 
 	/**
-	 * Crea un nuevo Corazón que mostrará la vida y lo añade al panel visual
+	 * Método que crea un nuevo Corazón que mostrará la vida y lo añade al panel visual
 	 * 
 	 */
 
@@ -92,7 +89,7 @@ public class Mundo {
 	}
 
 	/**
-	 * Elimina corazon
+	 * Método que elimina un corazon del panel visual cuando Mario pierde una vida
 	 * 
 	 */
 
@@ -111,13 +108,18 @@ public class Mundo {
 
 	}
 	
-	public void creaMoneda(){
+	/**
+	 * Crea una nueva moneda y la añade al panel visual bajo los bloques
+	 * 
+	 */
+
+	public void creaMoneda() {
 
 		JLabelMoneda moneda = new JLabelMoneda();
 		moneda.setLocation(1220, 660);
 		panel.add(moneda);
 		aMonedas.add(moneda);
-		
+
 		moneda = new JLabelMoneda();
 		moneda.setLocation(1020, 660);
 		panel.add(moneda);
@@ -292,8 +294,8 @@ public class Mundo {
 		moneda.setLocation(12200, 799);
 		panel.add(moneda);
 		aMonedas.add(moneda);
-		
-		//Triangulo de monedas 1
+
+		// Triangulo de monedas 1
 		moneda = new JLabelMoneda();
 		moneda.setLocation(12910, 899);
 		panel.add(moneda);
@@ -303,7 +305,7 @@ public class Mundo {
 		moneda.setLocation(13010, 799);
 		panel.add(moneda);
 		aMonedas.add(moneda);
-		
+
 		moneda = new JLabelMoneda();
 		moneda.setLocation(13010, 899);
 		panel.add(moneda);
@@ -313,27 +315,27 @@ public class Mundo {
 		moneda.setLocation(13110, 699);
 		panel.add(moneda);
 		aMonedas.add(moneda);
-		
+
 		moneda = new JLabelMoneda();
 		moneda.setLocation(13110, 799);
 		panel.add(moneda);
 		aMonedas.add(moneda);
-		
+
 		moneda = new JLabelMoneda();
 		moneda.setLocation(13110, 899);
 		panel.add(moneda);
 		aMonedas.add(moneda);
-		
+
 		moneda = new JLabelMoneda();
 		moneda.setLocation(13210, 799);
 		panel.add(moneda);
 		aMonedas.add(moneda);
-		
+
 		moneda = new JLabelMoneda();
 		moneda.setLocation(13210, 899);
 		panel.add(moneda);
 		aMonedas.add(moneda);
-		
+
 		moneda = new JLabelMoneda();
 		moneda.setLocation(13310, 899);
 		panel.add(moneda);
@@ -565,53 +567,73 @@ public class Mundo {
 		aMonedas.add(moneda);
 	}
 
+	/**
+	 * Método que realiza la salida de una moneda desde dentro de un bloque
+	 * @return si hay una salida
+	 * 
+	 */
+	
 	public boolean SaleMoneda() {
 		for (int i = 0; i < aBloques.size(); i++) {
 			if (Mario.getGrafico().getBounds().intersects(aBloques.get(i).getBounds())
 					&& Mario.getPosY() > aBloques.get(i).getY() && Mario.getPosY() < 860) {
-					if(aMonedas.get(i)!=null){
+				if (aMonedas.get(i) != null) {
 					JLabelMoneda moneda = aMonedas.get(i);
 					moneda.move(moneda.getX(), moneda.getY() - 100);
 					j = i;
-					return true;}
-				
+					return true;
+				}
+
 			}
 		}
 		return false;
 	}
+
+	/**
+	 * Método que elimina la moneda que ha salido
+	 * 
+	 */
 	
-	// TODO
 	public void eliminaMoneda() {
 		JLabelMoneda moneda = aMonedas.get(j);
 		panel.remove(moneda);
 		aMonedas.set(j, null);
 		Mario.setMonedas(Mario.getMonedas() + 1);
-		System.out.println(Mario.getMonedas());
 		panel.repaint();
 	}
 
-	// Creacion de los goombas
-	public void crearGoomba(){
+	/**
+	 * Método para la creación de los goombas, los añadirá al panel visual
+	 * 
+	 */
+	
+	public void crearGoomba() {
 		Goomba = new JLabelGoomba();
-		Goomba.setLocation(7200,894);
+		Goomba.setLocation(7200, 894);
 		panel.add(Goomba);
 		aGoomba.add(Goomba);
-		
-//		aPosInicialGoomba.add(aGoomba.get(0).getX());
-//		posInicialGoomba1Estatica =  aGoomba.get(0).getX();
-		
-		Goomba= new JLabelGoomba();
-		Goomba.setLocation(14300,894);
+
+		// aPosInicialGoomba.add(aGoomba.get(0).getX());
+		// posInicialGoomba1Estatica = aGoomba.get(0).getX();
+
+		Goomba = new JLabelGoomba();
+		Goomba.setLocation(14300, 894);
 		panel.add(Goomba);
 		aGoomba.add(Goomba);
-		
-//		aPosInicialGoomba.add(aGoomba.get(1).getX());
-//		posInicialGoomba2Estatica =  aGoomba.get(1).getX();
-		
+
+		// aPosInicialGoomba.add(aGoomba.get(1).getX());
+		// posInicialGoomba2Estatica = aGoomba.get(1).getX();
+
 		aContGoomba.add(0);
 		aContGoomba.add(0);
 	}
 	
+	/**
+	 * Método que calcula si hay alguna intersección con los goombas
+	 * @return verdadero si hay una interseccion
+	 * 
+	 */
+
 	public static boolean interseccionGoombas() {
 		for (int n = 0; n < aGoomba.size(); n++) {
 			for (int i = 0; i < aTuberias.size(); i++) {
@@ -645,78 +667,102 @@ public class Mundo {
 		return false;
 	}
 	
-	public void moverGoombaD(){
-		for(int i = 0; i<aGoomba.size(); i++){
-//			aPosInicialGoomba.set(i, aPosInicialGoomba.get(i)+10);
+	/**
+	 * Método que mueve el goomba hacia la derecha
+	 * 
+	 */
+
+	public void moverGoombaD() {
+		for (int i = 0; i < aGoomba.size(); i++) {
+			// aPosInicialGoomba.set(i, aPosInicialGoomba.get(i)+10);
 			aContGoomba.set(i, aContGoomba.get(i) + 1);
-//			if(aPosInicialGoomba.get(i).intValue() <= posInicialGoomba1Estatica + 580 || aPosInicialGoomba.get(i).intValue() <= posInicialGoomba2Estatica + 580  ){ //7800
-			if(!Mundo.interseccionGoombas() || !margenError){
-			aGoomba.get(i).move(aGoomba.get(i).getX() + 10, (aGoomba.get(i).getY()));
-				if(aContGoomba.get(i) == 8){
+			// if(aPosInicialGoomba.get(i).intValue() <=
+			// posInicialGoomba1Estatica + 580 ||
+			// aPosInicialGoomba.get(i).intValue() <= posInicialGoomba2Estatica
+			// + 580 ){ //7800
+			if (!Mundo.interseccionGoombas() || !margenError) {
+				aGoomba.get(i).move(aGoomba.get(i).getX() + 10, (aGoomba.get(i).getY()));
+				if (aContGoomba.get(i) == 8) {
 					aGoomba.get(i).cambiarImgGoomba();
-					aContGoomba.set(i,0);
+					aContGoomba.set(i, 0);
 					margenError = true;
 				}
-			}
-			else{
+			} else {
 				movGoomba = true;
-				for(int e = 0; e<aContGoomba.size(); e++){
-				aContGoomba.set(e,0);
+				for (int e = 0; e < aContGoomba.size(); e++) {
+					aContGoomba.set(e, 0);
 				}
 			}
 		}
 	}
 	
-	public void moverGoombaI(){
-		for(int i = 0; i<aGoomba.size(); i++){
-//			aPosInicialGoomba.set(i, aPosInicialGoomba.get(i)-10);
-			aContGoomba.set(i, aContGoomba.get(i) + 1);
-//			if(aPosInicialGoomba.get(i).intValue() >= posInicialGoomba1Estatica - 760 || aPosInicialGoomba.get(i).intValue() >= posInicialGoomba2Estatica - 760){ //6440
-			if(!Mundo.interseccionGoombas() || margenError){
-			aGoomba.get(i).move(aGoomba.get(i).getX() - 10, (aGoomba.get(i).getY()));
-			if(aContGoomba.get(i) == 8){
-				aGoomba.get(i).cambiarImgGoomba();
-				aContGoomba.set(i,0);
-				margenError = false;
-			}
-			}
-			else{
-				movGoomba = false;
-				for(int e = 0; e<aContGoomba.size(); e++){
-					aContGoomba.set(e,0);
-				}
-			}
-		}
-	
-	}
-	
-	public void interaccionGoomba(){
+	/**
+	 * Método que mueve el goomba hacia la izquierda
+	 * 
+	 */
+
+	public void moverGoombaI() {
 		for (int i = 0; i < aGoomba.size(); i++) {
-			if (Mario.getGrafico().getBounds().intersects(aGoomba.get(i).getBounds())){
-				if( Mario.getGrafico().getBounds().getMaxY()== 910){// 910 es mas o menos la posicion máxima de los goombas
+			// aPosInicialGoomba.set(i, aPosInicialGoomba.get(i)-10);
+			aContGoomba.set(i, aContGoomba.get(i) + 1);
+			// if(aPosInicialGoomba.get(i).intValue() >=
+			// posInicialGoomba1Estatica - 760 ||
+			// aPosInicialGoomba.get(i).intValue() >= posInicialGoomba2Estatica
+			// - 760){ //6440
+			if (!Mundo.interseccionGoombas() || margenError) {
+				aGoomba.get(i).move(aGoomba.get(i).getX() - 10, (aGoomba.get(i).getY()));
+				if (aContGoomba.get(i) == 8) {
+					aGoomba.get(i).cambiarImgGoomba();
+					aContGoomba.set(i, 0);
+					margenError = false;
+				}
+			} else {
+				movGoomba = false;
+				for (int e = 0; e < aContGoomba.size(); e++) {
+					aContGoomba.set(e, 0);
+				}
+			}
+		}
+
+	}
+	
+	/**
+	 * Método que calcula si hay interacción con el goomba
+	 * 
+	 */
+
+	public void interaccionGoomba() {
+		for (int i = 0; i < aGoomba.size(); i++) {
+			if (Mario.getGrafico().getBounds().intersects(aGoomba.get(i).getBounds())) {
+				if (Mario.getGrafico().getBounds().getMaxY() == 910) {// 910 es más o menos la posición máxima de los goombas
 					caidaGoombaNumero = i;
 					caidaGoomba = true;
-				}
-				else{
+				} else {
 					perderVidaGoomba = true;
 				}
-			}		
+			}
 		}
 	}
+
+	/**
+	 * Método que calcula si el goomba cae, se realizará una caida tras perder una vida
+	 * 
+	 */
 	
-	public static void caidaDeLosGoombas(int i){
+	public static void caidaDeLosGoombas(int i) {
 		perderVidaGoomba = false;
-		aGoomba.get(i).setLocation(aGoomba.get(i).getX(), aGoomba.get(i).getY()+20);
-		if(aGoomba.get(i).getY() >= 1100){
+		aGoomba.get(i).setLocation(aGoomba.get(i).getX(), aGoomba.get(i).getY() + 20);
+		if (aGoomba.get(i).getY() >= 1100) {
 			caidaGoomba = false;
 			aGoomba.get(i).setVisible(false);
 		}
-		
+
 	}
+
 	/**
 	 * Crea un nuevo Bloque y lo añade al panel visual
 	 */
-	
+
 	public void creaBloque() {
 		Bloque = new JLabelBloque();
 		Bloque.setLocation(1220, 660);
@@ -897,8 +943,8 @@ public class Mundo {
 		Bloque.setLocation(12200, 799);
 		panel.add(Bloque);
 		aBloques.add(Bloque);
-		
-		//Triangulo de bloques 1
+
+		// Triangulo de bloques 1
 		Bloque = new JLabelBloque();
 		Bloque.setLocation(12910, 899);
 		panel.add(Bloque);
@@ -908,7 +954,7 @@ public class Mundo {
 		Bloque.setLocation(13010, 799);
 		panel.add(Bloque);
 		aBloques.add(Bloque);
-		
+
 		Bloque = new JLabelBloque();
 		Bloque.setLocation(13010, 899);
 		panel.add(Bloque);
@@ -918,27 +964,27 @@ public class Mundo {
 		Bloque.setLocation(13110, 699);
 		panel.add(Bloque);
 		aBloques.add(Bloque);
-		
+
 		Bloque = new JLabelBloque();
 		Bloque.setLocation(13110, 799);
 		panel.add(Bloque);
 		aBloques.add(Bloque);
-		
+
 		Bloque = new JLabelBloque();
 		Bloque.setLocation(13110, 899);
 		panel.add(Bloque);
 		aBloques.add(Bloque);
-		
+
 		Bloque = new JLabelBloque();
 		Bloque.setLocation(13210, 799);
 		panel.add(Bloque);
 		aBloques.add(Bloque);
-		
+
 		Bloque = new JLabelBloque();
 		Bloque.setLocation(13210, 899);
 		panel.add(Bloque);
 		aBloques.add(Bloque);
-		
+
 		Bloque = new JLabelBloque();
 		Bloque.setLocation(13310, 899);
 		panel.add(Bloque);
@@ -1169,6 +1215,11 @@ public class Mundo {
 		panel.add(Bloque);
 		aBloques.add(Bloque);
 	}
+	
+	/**
+	 * Método que crea las caidas y las añade al panel visual
+	 * 
+	 */
 
 	public void crearCaida() {
 
@@ -1267,11 +1318,10 @@ public class Mundo {
 
 	}
 
-	//
-	//
-	// /**
-	// * Crea una tubería y la añade al panel visual
-	// */
+	/**
+	 * Método que crea las tuberias pequeñas y las añade al panel visual
+	 * 
+	 */
 
 	public void crearTuberia() {
 
@@ -1295,6 +1345,11 @@ public class Mundo {
 		aTuberias.add(Tuberia);
 	}
 
+	/**
+	 * Método que crea las tuberias grandes y las añade al panel visual
+	 * 
+	 */
+	
 	public void crearTuberiaGrande() {
 
 		TuberiaGrande = new JLabelTuberiaGrande();
@@ -1321,14 +1376,13 @@ public class Mundo {
 		}
 
 	}
-	
+
 	/**
 	 * Si han pasado más de 1,2 segundos desde la última, * crea un caparazon
 	 * nuevo nuevo en una posición aleatoria y la añade al mundo y al panel
 	 * visual
 	 */
 
-	
 	public void creaCR() {
 
 		if (System.currentTimeMillis() - UltimaHora > 12000) {
@@ -1342,30 +1396,42 @@ public class Mundo {
 
 	}
 
-	// Método para mover caparazón verde
+	/**
+	 * Método que mueve el caparazón verde
+	 * 
+	 */
 
 	public void moverCV() {
 		CV.move(CV.getX(), CV.getY() + 10);
 	}
-	
 
-	// Método para mover caparazón rojo
+	/**
+	 * Método que mueve el caparazón rojo hacia la izquierda
+	 * 
+	 */
 
 	public void moverCR() {
-		for(int i=0; i<aCR.size();i++){
-			aCR.get(i).move(aCR.get(i).getX()-10, aCR.get(i).getY());
+		for (int i = 0; i < aCR.size(); i++) {
+			aCR.get(i).move(aCR.get(i).getX() - 10, aCR.get(i).getY());
 		}
 	}
-	
-	// Método para mover caparazón rojo
 
-		public void moverCR2() {
-			for(int i=0; i<aCR.size();i++){
-				aCR.get(i).move(aCR.get(i).getX()+20, aCR.get(i).getY());
-			}
+	/**
+	 * Método que mueve el caparazón rojo hacia la  derecha
+	 * 
+	 */
+
+	public void moverCR2() {
+		for (int i = 0; i < aCR.size(); i++) {
+			aCR.get(i).move(aCR.get(i).getX() + 20, aCR.get(i).getY());
 		}
+	}
 
-	// Método para mover Bloque Izquierda
+	/**
+	 * Método que mueve los bloques, los bloques amarillos, las tuberias pequeñas y grandes, los goombas y las monedas
+	 * hacia la izquierda
+	 * 
+	 */
 
 	public void moverObjetoI() {
 		for (int i = 0; i < aBloques.size(); i++) {
@@ -1386,14 +1452,19 @@ public class Mundo {
 		for (int v = 0; v < aGoomba.size(); v++) {
 			aGoomba.get(v).move(aGoomba.get(v).getX() - 20, (aGoomba.get(v).getY()));
 		}
-		for (int j=0; j<aMonedas.size();j++){
-			if(aMonedas.get(j)!=null){
-			aMonedas.get(j).move(aMonedas.get(j).getX()-20, (aMonedas.get(j).getY()));}
+		for (int j = 0; j < aMonedas.size(); j++) {
+			if (aMonedas.get(j) != null) {
+				aMonedas.get(j).move(aMonedas.get(j).getX() - 20, (aMonedas.get(j).getY()));
+			}
 		}
 	}
-	//TODO
-	// Método para mover Bloque Derecha
-
+	
+	/**
+	 * Método que mueve los bloques, los bloques amarillos, las tuberias pequeñas y grandes, los goombas y las monedas
+	 * hacia la derecha
+	 * 
+	 */
+	
 	public void moverObjetoD() {
 		for (int i = 0; i < aBloques.size(); i++) {
 			aBloques.get(i).move(aBloques.get(i).getX() + 20, (aBloques.get(i).getY()));
@@ -1413,14 +1484,18 @@ public class Mundo {
 		for (int v = 0; v < aGoomba.size(); v++) {
 			aGoomba.get(v).move(aGoomba.get(v).getX() + 20, (aGoomba.get(v).getY()));
 		}
-		for (int j=0; j<aMonedas.size();j++){
-			if(aMonedas.get(j)!=null){
-			aMonedas.get(j).move(aMonedas.get(j).getX()+20, (aMonedas.get(j).getY()));
-		}
+		for (int j = 0; j < aMonedas.size(); j++) {
+			if (aMonedas.get(j) != null) {
+				aMonedas.get(j).move(aMonedas.get(j).getX() + 20, (aMonedas.get(j).getY()));
+			}
 		}
 	}
 
-	// Método para fijar la caida
+	/**
+	 * Método que fija la caida
+	 * @return si hay o no caida
+	 * 
+	 */
 
 	public static boolean caida() {
 		for (int i = 0; i < aCaida.size(); i++) {
@@ -1432,7 +1507,12 @@ public class Mundo {
 		return false;
 
 	}
-	// Método para la intersección del choque horizontal
+	
+	/**
+	 * Método para la interseccion del choque horizontal
+	 * @return si hay o no interseccion
+	 * 
+	 */
 
 	public boolean interseccion() {
 
@@ -1463,7 +1543,13 @@ public class Mundo {
 
 		return false;
 	}
-
+	
+	/**
+	 * Método para la segunda interseccion del choque horizontal
+	 * @return si hay o no interseccion
+	 * 
+	 */
+	
 	public boolean interseccion2() {
 
 		for (int i = 0; i < aTuberias.size(); i++) {
@@ -1493,10 +1579,14 @@ public class Mundo {
 
 		return false;
 	}
-	
-	
+
+	/**
+	 * Método para la interseccion del caparazon rojo
+	 * @return si hay o no interseccion
+	 * 
+	 */
 	public boolean interseccionCR() {
-		
+
 		for (int n = 0; n < aCR.size(); n++) {
 			for (int i = 0; i < aTuberias.size(); i++) {
 				if (aCR.get(n).getBounds().intersects(aTuberias.get(i).getBounds())) {
@@ -1529,22 +1619,30 @@ public class Mundo {
 		return false;
 
 	}
-	
-	
-	public void eliminarCR(){
-	int i = this.aCR.size() - 1;
-	while (i >= 0) {
-		JLabelCaparazonRojo CR = aCR.get(i);
-		if (interseccionCR()) {
-			panel.remove(CR);
-			panel.repaint();
-			aCR.remove(CR);
+	/**
+	 * Método que elimina caparazón rojo
+	 * 
+	 */
 
+	public void eliminarCR() {
+		int i = this.aCR.size() - 1;
+		while (i >= 0) {
+			JLabelCaparazonRojo CR = aCR.get(i);
+			if (interseccionCR()) {
+				panel.remove(CR);
+				panel.repaint();
+				aCR.remove(CR);
+
+			}
+			--i;
 		}
-		--i;
 	}
-	}
-	// Método para que Mario se quede en los objetos
+	
+	/**
+	 * Método de apoyo para que mario se quede sobre los objetos
+	 * @return si hay o no apoyo
+	 * 
+	 */
 
 	public static boolean apoyo() {
 
@@ -1586,6 +1684,12 @@ public class Mundo {
 		return false;
 
 	}
+
+	/**
+	 * Método para saber si hay un choque vertical con algunos de los objetos del mundo
+	 * @return si hay o no choque vertical cn dicho objeto
+	 * 
+	 */
 	
 	public boolean choqueV() {
 		for (int i = 0; i < aBloques.size(); i++) {
@@ -1612,7 +1716,11 @@ public class Mundo {
 		return false;
 	}
 
-	// Método para saber si hay un choque con un cv
+	/**
+	 * Método para saber si hay un choque con un caparazon verde
+	 * @return si hay o no choque con dicho objeto
+	 * 
+	 */
 
 	public boolean choque() {
 		if (Mario.getGrafico().getBounds().intersects(CV.getBounds())) {
@@ -1624,7 +1732,13 @@ public class Mundo {
 
 	}
 
-	// Método para saber si hay un choque con un cr
+	
+	/**
+	 * Método para saber si hay un choque con un caparazon rojo
+	 * @return si hay o no choque con dicho objeto
+	 * 
+	 */
+	
 	public boolean choqueCR() {
 		if (!aCR.isEmpty()) {
 			for (int i = 0; i < aCR.size(); i++) {
@@ -1646,12 +1760,9 @@ public class Mundo {
 	 * 
 	 * @return Mario en el mundo. Si no lo hay, devuelve null
 	 */
+	
 	public Mario getMario() {
 		return Mario;
 	}
-
-
-
-
 
 }

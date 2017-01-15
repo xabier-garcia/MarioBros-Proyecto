@@ -9,28 +9,14 @@ import javax.swing.JLabel;
 public class JLabelMoneda extends JLabel {
 
 	private static final long serialVersionUID = 1L; // Para serialización
-
 	public static final int TAMANYO_COIN = 80; // píxels (igual ancho que largo)
+	public static final int RADIO_ESFERA_COIN = 38; // Radio en píxels del bounding circle de la moneda 
+	private static final boolean DIBUJAR_ESFERA_COIN = false; // Dibujado (paradepuración)del bounding circle de la moneda
 
-	public static final int RADIO_ESFERA_COIN = 38; // Radio en píxels del
-													// bounding circle del
-													// caparazón (para choques)
-
-	private static final boolean DIBUJAR_ESFERA_COIN = false; // Dibujado
-																// (paradepuración)del
-																// bounding
-																// circle de
-																// choque de
-																// Mario
-
-	private long hora = System.currentTimeMillis(); // Para saber la hora, lo
-													// utilizaremos para la
-													// creación de caparazones
-
-	public long getHora() {
-		return hora;
-	}
-
+	/**
+	 * Construye y devuelve el JLabel de la moneda con su gráfico y tamaño
+	 */
+	
 	public JLabelMoneda() {
 		try {
 
@@ -43,7 +29,7 @@ public class JLabelMoneda extends JLabel {
 	}
 
 	/**
-	 * Método para pintar el caparazón
+	 * Método para pintar la moneda
 	 */
 
 	@Override

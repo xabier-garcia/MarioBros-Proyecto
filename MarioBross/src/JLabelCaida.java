@@ -14,15 +14,11 @@ public class JLabelCaida extends JLabel {
 	
 	public static final int TAMANYO_ANCHO = 100; 
 
-	private static final boolean DIBUJAR_RECTANGULO_CAIDA = false; // Dibujado
-																	// (paradepuración)del
-																	// bounding
-																	// circle de
-																	// choque de
-																	// Mario
+	private static final boolean DIBUJAR_RECTANGULO_CAIDA = false; // Dibujado(paradepuración) del bounding rectangle de la caida
+																
 
 	/**
-	 * Construye y devuelve el JLabel del Bloque con su gráfico y tamaño
+	 * Construye y devuelve el JLabel de la caida con su gráfico y tamaño
 	 */
 
 	public JLabelCaida() {
@@ -38,7 +34,7 @@ public class JLabelCaida extends JLabel {
 	}
 
 	/**
-	 * Método para pintar el componente de Mario
+	 * Método para pintar el componente de la caida
 	 */
 
 	@Override

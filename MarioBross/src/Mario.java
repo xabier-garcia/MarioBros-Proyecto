@@ -1,31 +1,40 @@
 import javax.swing.JPanel;
 
+
+/**
+ * Clase heredera de personaje que define las instancias lógicas de Mario
+ */
+
 public class Mario extends Personaje{
 	
-	private JLabelMario Grafico; //Etiueta gráfica para mario
-	
-	public boolean salto = false;
-	public boolean caida = false;
-	public boolean cont = true;
-	public double gravedadFija = 0;
-	public double gravedad = 859;
-	private Mundo mundo;
+	private JLabelMario Grafico; // Atributo de etiqueta gráfica para mario
+	public boolean salto = false; // Atributo que guarda si Mario ha realizado un salto
+	public boolean caida = false; // Atributo que guarda si ha habido o no una caida
+	public boolean cont = true; // Atributo contador
+	public double gravedadFija = 0; // Atributo de gravedad fija
+	public double gravedad = 859; // Atributo de gravedad
+	private Mundo mundo; // Atributo que guarda el mundo del juego
 	
 	/**  Crea un nuevo personaje de juego (Mario)
 	 */
+	
 	public Mario() {
 		Grafico = new JLabelMario();
 	}
 	
-
-	
 	/** Devuelve el JLabel gráfico asociado al Mario de juego
 	 * @return	Etiqueta gráfica del Mario
 	 */
+	
 	public JLabelMario getGrafico() {
 		return Grafico;
 	}
 
+	/**
+	 * Getters y setters de los atributos de Mario
+	 * @return el atributo en cuestion
+	 */
+	
 	public void setPosX(double posX) {
 		super.setPosX(posX);
 		Grafico.setLocation((int) posX, Grafico.getY());
@@ -59,36 +68,7 @@ public class Mario extends Personaje{
 	public void setCont(boolean cont) {
 		this.cont = cont;
 	}
-
-
-
-	public void saltoMario(){ 	
-		if(salto && cont){
-			gravedad = gravedad - 20;
-			this.setPosY(gravedad);
-			if(this.getPosY() == this.gravedadFija - 440 || this.getPosY()<= 0){
-				cont = false;
-				caida = true;
-			}
-		}
-		if(!mundo.apoyo() && this.getPosY()!= 860 && !salto){
-			caida = true;
-		}
-		if(caida && !mundo.apoyo()){
-			if(this.getPosY() == 860 && !mundo.caida()){
-				caida = false;
-			}
-			else if(caida){
-			gravedad = gravedad + 20;
-			this.setPosY(gravedad);
-			if(this.getPosY() == 860 || mundo.apoyo()){
-				salto=false;
-				caida=false;
-			}		
-			}
-		}
-	}
-
+	
 
 
 	public boolean isSalto() {
@@ -118,6 +98,35 @@ public class Mario extends Personaje{
 	public void setGrafico(JLabelMario grafico) {
 		Grafico = grafico;
 	}	
-}
 
+	/**
+	 * Método que implementa el salto de este personaje 
+	 */
+
+	public void saltoMario() {
+		if (salto && cont) {
+			gravedad = gravedad - 20;
+			this.setPosY(gravedad);
+			if (this.getPosY() == this.gravedadFija - 440 || this.getPosY() <= 0) {
+				cont = false;
+				caida = true;
+			}
+		}
+		if (!mundo.apoyo() && this.getPosY() != 860 && !salto) {
+			caida = true;
+		}
+		if (caida && !mundo.apoyo()) {
+			if (this.getPosY() == 860 && !mundo.caida()) {
+				caida = false;
+			} else if (caida) {
+				gravedad = gravedad + 20;
+				this.setPosY(gravedad);
+				if (this.getPosY() == 860 || mundo.apoyo()) {
+					salto = false;
+					caida = false;
+				}
+			}
+		}
+	}
+}
 

@@ -1,5 +1,4 @@
 
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.FocusAdapter;
@@ -19,15 +18,17 @@ public class Ventana extends JFrame {
 	JPanel pPrincipal; // Panel del juego (layout nulo)
 	Mundo Mundo; // Mundo del juego
 	Mario Mario; // Mario del juego
-	JLabelGoomba Goomba;
+	JLabelGoomba Goomba; // Atributo que contiene el Jlabel del goomba
 	MiRunnable miHilo = null; // Hilo del bucle principal de juego
-	MiRunnable2 miHilo2 = null;
-	MiRunnable3 miHilo3= null;
-	MiRunnable4 miHilo4= null;
-	MiRunnable5 miHilo5= null;
-	Boolean[] aPulsada = new Boolean[3]; // Array que almacena estado de la
-											// tecla
-
+	MiRunnable2 miHilo2 = null; // Hilo para los caparazones verdes 
+	MiRunnable3 miHilo3= null; // Hilo para los caparazones rojos
+	MiRunnable4 miHilo4= null; // Hilo para la vida de Mario
+	MiRunnable5 miHilo5= null; // Hilo para las monedas
+	Boolean[] aPulsada = new Boolean[3]; // Array que almacena estado de la tecla
+	
+	/**
+	 * Constructor que inicializa el array de teclas
+	 */
 
 	public void InicializadorArray() {
 		for (int i = 0; i < aPulsada.length; i++) {
@@ -39,6 +40,7 @@ public class Ventana extends JFrame {
 	 * Constructor de la ventana de juego. Crea y devuelve la ventana
 	 * inicializada sin coches dentro
 	 */
+	
 	public Ventana() {
 		// Liberación de la ventana por defecto al cerrar
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -123,6 +125,7 @@ public class Ventana extends JFrame {
 	 * 
 	 * @param args
 	 */
+	
 	public static void main(String[] args) {
 		// Crea y visibiliza la ventana con el coche
 		try {
@@ -166,7 +169,11 @@ public class Ventana extends JFrame {
 		}
 	}
 	
-	// TODO
+	/**
+	 * Clase que implementa la interfaz Runnable, 
+	 * inicializa el hilo de las monedas
+	 */
+	
 	class MiRunnable5 implements Runnable {
 		boolean sigo = true;
 
@@ -185,7 +192,7 @@ public class Ventana extends JFrame {
 						e.printStackTrace();
 					}
 				}
-				// Dormir el hilo 5 milisegundos
+				// Dormir el hilo 1 milisegundos
 				try {
 					pPrincipal.repaint();
 					Thread.sleep(1);
@@ -195,11 +202,20 @@ public class Ventana extends JFrame {
 
 			}
 		}
+		
+		/**
+		 * Ordena al hilo detenerse en cuanto sea posible
+		 */
 
 		public void acaba() {
 			sigo = false;
 		}
 	}
+	
+	/**
+	 * Clase que implementa la interfaz Runnable, 
+	 * inicializa el hilo de los caparazones rojos
+	 */
 
 	class MiRunnable4 implements Runnable {
 		boolean sigo = true;
@@ -228,18 +244,28 @@ public class Ventana extends JFrame {
 				// Dormir el hilo 10 milisegundos
 				try {
 					pPrincipal.repaint();
-					Thread.sleep(5);
+					Thread.sleep(10);
 					pPrincipal.repaint();
 				} catch (Exception e) {
 				}
 			}
 		}
 
+		/**
+		 * Ordena al hilo detenerse en cuanto sea posible
+		 */
+		
 		public void acaba() {
 			sigo = false;
 		}
 
 	}
+	
+	/**
+	 * Clase que implementa la interfaz Runnable, 
+	 * inicializa el hilo de la vida
+	 */
+	
 	class MiRunnable3 implements Runnable {
 		boolean sigo = true;
 
@@ -263,8 +289,8 @@ public class Ventana extends JFrame {
 					}
 
 				}
-
-				// Dormir el hilo 20 milisegundos
+				
+				// Dormir el hilo 15 milisegundos
 				try {
 					pPrincipal.repaint();
 					Thread.sleep(15);
@@ -275,10 +301,19 @@ public class Ventana extends JFrame {
 			}
 		}
 
+		/**
+		 * Ordena al hilo detenerse en cuanto sea posible
+		 */
+		
 		public void acaba() {
 			sigo = false;
 		}
 	}
+	
+	/**
+	 * Clase que implementa la interfaz Runnable, 
+	 * inicializa el hilo de los caparazones verdes
+	 */
 	
 	class MiRunnable2 implements Runnable {
 		boolean sigo = true;
@@ -323,6 +358,10 @@ public class Ventana extends JFrame {
 //				}
 //			}
 		}
+		
+		/**
+		 * Ordena al hilo detenerse en cuanto sea posible
+		 */
 
 		public void acaba() {
 			sigo = false;
@@ -431,6 +470,7 @@ public class Ventana extends JFrame {
 		/**
 		 * Ordena al hilo detenerse en cuanto sea posible
 		 */
+		
 		public void acaba() {
 			sigo = false;
 		}

@@ -12,12 +12,12 @@ public class JLabelGoomba extends JLabel{
 	
 	public static final int TAMANYO_GOOMBA = 115; // píxels (igual ancho que largo)
 
-	private static final boolean DIBUJAR_RECTANGULO_BLOQUE = false; // Dibujado (paradepuración)del bounding circle de choque de Mario
+	private static final boolean DIBUJAR_RECTANGULO_BLOQUE = false; // Dibujado (paradepuración)del bounding rectangle del goomba
 	
 	
 
 	/**
-	 * Construye y devuelve el JLabel del Bloque con su gráfico y tamaño
+	 * Construye y devuelve el JLabel del goomba con su gráfico y tamaño
 	 */
 	
 	public JLabelGoomba() {
@@ -32,6 +32,11 @@ public class JLabelGoomba extends JLabel{
 
 	}
 	
+	/**
+	 * Método que construye el JLabel del goomba con su gráfico y tamaño, 
+	 * pero con una orientacion diferente a la inicial
+	 */
+	
 	public void setComponentOrientationGoomba1() {
 		try {
 
@@ -44,6 +49,11 @@ public class JLabelGoomba extends JLabel{
 		setSize(TAMANYO_GOOMBA, TAMANYO_GOOMBA);
 		
 	}
+	
+	/**
+	 * Método que construye el JLabel del goomba con su gráfico y tamaño, 
+	 * pero con una orientacion diferente a la inicial
+	 */
 	
 	public void setComponentOrientationGoomba2() {
 		try {
@@ -58,7 +68,9 @@ public class JLabelGoomba extends JLabel{
 
 	}
 	
-	
+	/**
+	 * Método que cambia la imagen del goomba
+	 */
 	
 	public void cambiarImgGoomba(){
 		if(iden){
@@ -70,7 +82,7 @@ public class JLabelGoomba extends JLabel{
 	}
 	
 	/**
-	 * Método para pintar el componente de Bloque
+	 * Método para pintar el componente del goomba
 	 */
 
 	@Override

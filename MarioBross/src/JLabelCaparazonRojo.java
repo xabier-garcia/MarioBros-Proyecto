@@ -14,13 +14,22 @@ private static final long serialVersionUID = 1L; // Para serialización
 	
 	public static final int RADIO_ESFERA_CR= 35; // Radio en píxels del bounding circle del caparazón (para choques)
 	
-	private static final boolean DIBUJAR_ESFERA_CR = false; // Dibujado (paradepuración)del bounding circle de choque de Mario
+	private static final boolean DIBUJAR_ESFERA_CR = false; // Dibujado (paradepuración)del bounding circle de choque del caparazon rojo
 	
 	private long hora=System.currentTimeMillis(); // Para saber la hora, lo utilizaremos para la creación de caparazones
 
+	/**
+	 * Getter de la hora
+	 * @return atributo de hora
+	 */
+	
 	public long getHora() {
 		return hora;
 	}
+	
+	/**
+	 * Construye y devuelve el JLabel del caparazon rojo con su gráfico y tamaño
+	 */
 	
 	public JLabelCaparazonRojo() {
 		try {

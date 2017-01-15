@@ -14,7 +14,7 @@ public class JLabelMario extends JLabel {
 	
 	public static final int ARISTA_RECTANGULO_MARIO = 148; // Radio en píxels del rectangulo del Mario(para choques)
 	
-	private static final boolean DIBUJAR_RECTANGULO_MARIO = false; // Dibujado (paradepuración)del bounding circle de choque de Mario
+	private static final boolean DIBUJAR_RECTANGULO_MARIO = false; // Dibujado (paradepuración)del bounding rectangle de choque de Mario
 	
 	private boolean Espejo = false; //Atributo para saber si hay que aplicarle el método de espejo a la imagen de Mario
 	
@@ -123,7 +123,10 @@ public class JLabelMario extends JLabel {
 		Espejo = true;
 	}
 
-	// Get que devuelve booleano espejo
+	/**
+	 * Método get que sirve para saber si el componente está en espejo
+	 * @return si es o no espejo
+	 */
 	
 	public boolean EsEspejo() {
 		return Espejo;

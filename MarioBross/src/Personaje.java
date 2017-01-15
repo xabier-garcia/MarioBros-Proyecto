@@ -2,26 +2,19 @@
 /**
  * Clase para definir instancias lógicas de un Personaje
  */
+
 public class Personaje {
-	protected double posX; // Posición en X (horizontal)
-	protected double posY; // Posición en Y (vertical)
-	protected String nombre; // Nombre del personaje
-	protected boolean caida;
-	protected int vida=5;
-	protected int monedas=0;
+	protected double posX; // Atributo que guarda la posición en X (horizontal)
+	protected double posY; // Atributo que guarda la posición en Y (vertical)
+	protected String nombre; // Atributo que guarda el nombre del personaje
+	protected boolean caida; // Atributo que devuelve si hay o no una caida
+	protected int vida=5; //Atributo para saber la vida que tiene el personaje
+	protected int monedas=0; //Atributo que sirve como contador de las monedas que ha recogido el personaje
 
-	public int getVida() {
-		return vida;
-	}
+	/**
+	 * Constructor del Personaje
+	 */
 	
-	@Override
-	public String toString() {
-		return "[" + vida + "]";
-	}
-
-	public void setVida(int vida) {
-		this.vida = vida;
-	}
 
 	public Personaje() {
 		this.posX = posX;
@@ -32,6 +25,20 @@ public class Personaje {
 		this.monedas=monedas;
 
 	}
+	
+	/**
+	 * Getters y setters de los atributos del personaje
+	 * @return el atributo en cuestion
+	 */
+	
+	public int getVida() {
+		return vida;
+	}
+	
+	public void setVida(int vida) {
+		this.vida = vida;
+	}
+
 
 	public int getMonedas() {
 		return monedas;
@@ -76,6 +83,16 @@ public class Personaje {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+	
+	/**
+	 * Método toString que nos devuelve por escrito la vida que tiene el personaje
+	 * @return vida
+	 */
+	
+	@Override
+	public String toString() {
+		return "[" + vida + "]";
 	}
 
 }

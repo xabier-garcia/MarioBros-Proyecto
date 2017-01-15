@@ -13,15 +13,9 @@ public class JLabelBloqueA extends JLabel {
 	public static final int TAMANYO_BLOQUE = 100; // píxels (igual ancho que
 													// largo)
 
-	private static final boolean DIBUJAR_RECTANGULO_BLOQUE = false; // Dibujado
-																	// (paradepuración)del
-																	// bounding
-																	// circle de
-																	// choque de
-																	// Mario
-
+	private static final boolean DIBUJAR_RECTANGULO_BLOQUE = false; // Dibujado (paradepuración)del bounding rectangle del bloque amarillo
 	/**
-	 * Construye y devuelve el JLabel del Bloque con su gráfico y tamaño
+	 * Construye y devuelve el JLabel del Bloque Amarillo con su gráfico y tamaño
 	 */
 
 	public JLabelBloqueA() {
@@ -29,7 +23,7 @@ public class JLabelBloqueA extends JLabel {
 
 			setIcon(new ImageIcon(JLabelMario.class.getResource("Imagenes/BloqueAmarilloMario.jpg").toURI().toURL()));
 		} catch (Exception e) {
-			System.err.println("Error en carga de recurso: Mario.png no encontrado");
+			System.err.println("Error en carga de recurso: BloqueAmarilloMario.jpg no encontrado");
 			e.printStackTrace();
 		}
 		setBounds(0, 0, TAMANYO_BLOQUE+1, TAMANYO_BLOQUE+1);
@@ -37,7 +31,7 @@ public class JLabelBloqueA extends JLabel {
 	}
 
 	/**
-	 * Método para pintar el componente de Mario
+	 * Método para pintar el componente del Bloque Amarillo
 	 */
 
 	@Override
