@@ -8,6 +8,7 @@ public class Personaje {
 	protected String nombre; // Nombre del personaje
 	protected boolean caida;
 	protected int vida=5;
+	protected int monedas=0;
 
 	public int getVida() {
 		return vida;
@@ -28,7 +29,16 @@ public class Personaje {
 		this.nombre = nombre;
 		this.caida=false;
 		this.vida=vida;
+		this.monedas=monedas;
 
+	}
+
+	public int getMonedas() {
+		return monedas;
+	}
+
+	public void setMonedas(int monedas) {
+		this.monedas = monedas;
 	}
 
 	public boolean isCaida() {

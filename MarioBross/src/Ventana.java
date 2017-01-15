@@ -176,11 +176,19 @@ public class Ventana extends JFrame {
 			while (sigo) {
 
 				Mundo.SaleMoneda();
-
-				// Dormir el hilo 40 milisegundos
+				if(Mundo.SaleMoneda()){
+					try {
+						Thread.sleep(300);
+						Mundo.eliminaMoneda();
+						pPrincipal.repaint();
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+				// Dormir el hilo 5 milisegundos
 				try {
 					pPrincipal.repaint();
-					Thread.sleep(40);
+					Thread.sleep(1);
 					pPrincipal.repaint();
 				} catch (Exception e) {
 				}
@@ -220,7 +228,7 @@ public class Ventana extends JFrame {
 				// Dormir el hilo 10 milisegundos
 				try {
 					pPrincipal.repaint();
-					Thread.sleep(10);
+					Thread.sleep(5);
 					pPrincipal.repaint();
 				} catch (Exception e) {
 				}
@@ -259,7 +267,7 @@ public class Ventana extends JFrame {
 				// Dormir el hilo 20 milisegundos
 				try {
 					pPrincipal.repaint();
-					Thread.sleep(20);
+					Thread.sleep(15);
 					pPrincipal.repaint();
 				} catch (Exception e) {
 				}
@@ -410,10 +418,10 @@ public class Ventana extends JFrame {
 					sigo=false;
 					}
 
-				// Dormir el hilo 40 milisegundos
+				// Dormir el hilo 30 milisegundos
 				try {
 					pPrincipal.repaint();
-					Thread.sleep(35);
+					Thread.sleep(27);
 					pPrincipal.repaint();
 				} catch (Exception e) {
 				}

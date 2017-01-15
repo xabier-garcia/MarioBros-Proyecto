@@ -24,6 +24,7 @@ public class Mundo {
 	public static boolean caidaGoomba = false;
 	public int caidaGoombaNumero;
 	public static boolean perderVidaGoomba = false;
+	private int j;
 	static ArrayList<Integer> aPosInicialGoomba = new ArrayList<Integer>();
 	static ArrayList<Integer> aContGoomba = new ArrayList<Integer>();
 	JLabelCaparazonVerde CV = new JLabelCaparazonVerde(); // Nuevo Jlabel Para
@@ -568,28 +569,27 @@ public class Mundo {
 		for (int i = 0; i < aBloques.size(); i++) {
 			if (Mario.getGrafico().getBounds().intersects(aBloques.get(i).getBounds())
 					&& Mario.getPosY() > aBloques.get(i).getY() && Mario.getPosY() < 860) {
-				JLabelMoneda moneda = aMonedas.get(i);
-				moneda.move(moneda.getX(), moneda.getY()-100);
-				return true;
+					if(aMonedas.get(i)!=null){
+					JLabelMoneda moneda = aMonedas.get(i);
+					moneda.move(moneda.getX(), moneda.getY() - 100);
+					j = i;
+					return true;}
+				
 			}
 		}
 		return false;
 	}
 	
-	//TODO
+	// TODO
 	public void eliminaMoneda() {
-		for (int i = 0; i < aBloques.size(); i++) {
-			if (Mario.getGrafico().getBounds().intersects(aBloques.get(i).getBounds())
-					&& Mario.getPosY() > aBloques.get(i).getY() && Mario.getPosY() < 860) {
-				JLabelMoneda moneda = aMonedas.get(i);
-				aMonedas.remove(moneda);
-				panel.remove(moneda);
-				panel.repaint();
-			}
-		}
-
+		JLabelMoneda moneda = aMonedas.get(j);
+		panel.remove(moneda);
+		aMonedas.set(j, null);
+		Mario.setMonedas(Mario.getMonedas() + 1);
+		System.out.println(Mario.getMonedas());
+		panel.repaint();
 	}
-	
+
 	// Creacion de los goombas
 	public void crearGoomba(){
 		Goomba = new JLabelGoomba();
@@ -1387,7 +1387,8 @@ public class Mundo {
 			aGoomba.get(v).move(aGoomba.get(v).getX() - 20, (aGoomba.get(v).getY()));
 		}
 		for (int j=0; j<aMonedas.size();j++){
-			aMonedas.get(j).move(aMonedas.get(j).getX()-20, (aMonedas.get(j).getY()));
+			if(aMonedas.get(j)!=null){
+			aMonedas.get(j).move(aMonedas.get(j).getX()-20, (aMonedas.get(j).getY()));}
 		}
 	}
 	//TODO
@@ -1413,9 +1414,10 @@ public class Mundo {
 			aGoomba.get(v).move(aGoomba.get(v).getX() + 20, (aGoomba.get(v).getY()));
 		}
 		for (int j=0; j<aMonedas.size();j++){
+			if(aMonedas.get(j)!=null){
 			aMonedas.get(j).move(aMonedas.get(j).getX()+20, (aMonedas.get(j).getY()));
 		}
-		
+		}
 	}
 
 	// Método para fijar la caida
