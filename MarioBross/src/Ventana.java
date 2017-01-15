@@ -310,7 +310,7 @@ public class Ventana extends JFrame {
 				// efecto óptico de movimiento
 				Mundo.choqueV();
 				Mundo.interaccionGoomba();
-				//Mundo.SaleMoneda();
+				Mundo.SaleMoneda();
 				if(Mundo.caidaGoomba){
 					Mundo.caidaDeLosGoombas(Mundo.caidaGoombaNumero);
 				}
