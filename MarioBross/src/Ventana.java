@@ -24,6 +24,7 @@ public class Ventana extends JFrame {
 	MiRunnable2 miHilo2 = null;
 	MiRunnable3 miHilo3= null;
 	MiRunnable4 miHilo4= null;
+	MiRunnable5 miHilo5= null;
 	Boolean[] aPulsada = new Boolean[3]; // Array que almacena estado de la
 											// tecla
 
@@ -147,18 +148,48 @@ public class Ventana extends JFrame {
 			Ventana.miHilo = Ventana.new MiRunnable(); // Sintaxis de new
 			Ventana.miHilo2 = Ventana.new MiRunnable2();
 			Ventana.miHilo3 = Ventana.new MiRunnable3();
-			Ventana.miHilo4 = Ventana.new MiRunnable4();// para clase
+			Ventana.miHilo4 = Ventana.new MiRunnable4();
+			Ventana.miHilo5 = Ventana.new MiRunnable5();// para clase
 			// interna
 			Thread nuevoHilo = new Thread(Ventana.miHilo);
 			Thread nuevoHilo2 = new Thread(Ventana.miHilo2);
 			Thread nuevoHilo3 = new Thread(Ventana.miHilo3);
 			Thread nuevoHilo4 = new Thread(Ventana.miHilo4);
+			Thread nuevoHilo5 = new Thread(Ventana.miHilo5);
 			nuevoHilo.start();
 			nuevoHilo2.start();
 			nuevoHilo3.start();
 			nuevoHilo4.start();
+			nuevoHilo5.start();
 		} catch (Exception e) {
 			System.exit(1); // Error anormal
+		}
+	}
+	
+	// TODO
+	class MiRunnable5 implements Runnable {
+		boolean sigo = true;
+
+		@Override
+		public void run() {
+
+			while (sigo) {
+
+				Mundo.SaleMoneda();
+
+				// Dormir el hilo 40 milisegundos
+				try {
+					pPrincipal.repaint();
+					Thread.sleep(40);
+					pPrincipal.repaint();
+				} catch (Exception e) {
+				}
+
+			}
+		}
+
+		public void acaba() {
+			sigo = false;
 		}
 	}
 
@@ -310,7 +341,7 @@ public class Ventana extends JFrame {
 				// efecto óptico de movimiento
 				Mundo.choqueV();
 				Mundo.interaccionGoomba();
-				Mundo.SaleMoneda();
+				
 				if(Mundo.caidaGoomba){
 					Mundo.caidaDeLosGoombas(Mundo.caidaGoombaNumero);
 				}
@@ -335,7 +366,6 @@ public class Ventana extends JFrame {
 							repaint();
 						}
 					}
-					//Mario.setPosX(620);
 				}
 
 				if (!Mundo.interseccion()) {
@@ -350,7 +380,6 @@ public class Ventana extends JFrame {
 
 							}
 						}
-						//Mario.setPosX(620);
 					}
 				}
 
@@ -366,12 +395,10 @@ public class Ventana extends JFrame {
 								Mundo.moverObjetoD();
 							}
 						}
-						//Mario.setPosX(620);
 					}
 
 				}
 				
-				//Mario.setPosX(620);
 				Mundo.caida();
 				if (Mario.getPosY() >= 1100) {
 					Mario.setVida(0);

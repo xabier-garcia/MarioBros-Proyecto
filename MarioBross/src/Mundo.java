@@ -564,27 +564,31 @@ public class Mundo {
 		aMonedas.add(moneda);
 	}
 
-	//TODO
-	public void SaleMoneda() {
+	public boolean SaleMoneda() {
 		for (int i = 0; i < aBloques.size(); i++) {
-
 			if (Mario.getGrafico().getBounds().intersects(aBloques.get(i).getBounds())
 					&& Mario.getPosY() > aBloques.get(i).getY() && Mario.getPosY() < 860) {
 				JLabelMoneda moneda = aMonedas.get(i);
 				moneda.move(moneda.getX(), moneda.getY()-100);
+				return true;
 			}
 		}
+		return false;
 	}
 	
+	//TODO
 	public void eliminaMoneda() {
-		if (choqueV()) {
-			JLabelMoneda moneda = aMonedas.get(0);
-			panel.remove(moneda);
-			aMonedas.remove(moneda);
-			panel.repaint();
+		for (int i = 0; i < aBloques.size(); i++) {
+			if (Mario.getGrafico().getBounds().intersects(aBloques.get(i).getBounds())
+					&& Mario.getPosY() > aBloques.get(i).getY() && Mario.getPosY() < 860) {
+				JLabelMoneda moneda = aMonedas.get(i);
+				aMonedas.remove(moneda);
+				panel.remove(moneda);
+				panel.repaint();
+			}
 		}
+
 	}
-	
 	
 	// Creacion de los goombas
 	public void crearGoomba(){
