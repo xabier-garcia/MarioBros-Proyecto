@@ -39,7 +39,8 @@ public class Mundo {
 	static ArrayList<JLabelTuberiaGrande> aTuberiaGrande = new ArrayList(); // Array que guarda las tuberias grandes
 	static ArrayList<JLabelMoneda> aMonedas = new ArrayList(); // Array que guarda las monedas
 	static ArrayList<JLabelGoomba> aGoomba = new ArrayList(); // Array que guarda los goombas
-	static ArrayList<JLabelCaparazonRojo> aCR = new ArrayList(); //Array que guarda los caparazones rojos
+	static ArrayList<JLabelCaparazonRojo> aCR = new ArrayList(); // Array que guarda los caparazones rojos
+	static ArrayList<JLabelCaparazonVerde> aCV = new ArrayList(); // Array que guarda los caparazones verdes
 
 	/**
 	 * Construye un mundo de juego
@@ -1248,6 +1249,7 @@ public class Mundo {
 	/**
 	 * Crea un nuevo Bloque Amarillo y lo añade al panel visual
 	 */
+	
 	public void creaBloqueA() {
 
 		BloqueA = new JLabelBloqueA();
@@ -1368,10 +1370,11 @@ public class Mundo {
 	public void creaCV() {
 
 		if (System.currentTimeMillis() - UltimaHora > 12000) {
+			JLabelCaparazonVerde CV = new JLabelCaparazonVerde();
 			CV.setLocation(numR.nextInt(panel.getWidth() - CV.TAMANYO_CV), this.panel.getHeight() - 1080);
 			panel.add(CV);
 			CV.repaint();
-
+			aCV.add(CV);
 			UltimaHora = System.currentTimeMillis();
 		}
 
@@ -1402,7 +1405,9 @@ public class Mundo {
 	 */
 
 	public void moverCV() {
-		CV.move(CV.getX(), CV.getY() + 10);
+		for (int i = 0; i < aCV.size(); i++) {
+			aCV.get(i).move(aCV.get(i).getX(), aCV.get(i).getY() + 10);
+		}
 	}
 
 	/**
@@ -1619,6 +1624,7 @@ public class Mundo {
 		return false;
 
 	}
+	
 	/**
 	 * Método que elimina caparazón rojo
 	 * 
@@ -1637,6 +1643,25 @@ public class Mundo {
 			--i;
 		}
 	}
+	
+
+	/**
+	 * Método que elimina caparazón verde
+	 * 
+	 */
+
+	public void eliminarCV() {
+		int i = this.aCV.size() - 1;
+		while (i >= 0) {
+			JLabelCaparazonVerde CV = aCV.get(i);
+			if (CV.getY() <= 0) {
+				panel.remove(CV);
+				panel.repaint();
+				aCV.remove(CV);
+			}
+		}
+	}
+	
 	
 	/**
 	 * Método de apoyo para que mario se quede sobre los objetos
