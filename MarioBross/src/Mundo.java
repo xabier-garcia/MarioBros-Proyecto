@@ -1462,6 +1462,12 @@ public class Mundo {
 				aMonedas.get(j).move(aMonedas.get(j).getX() - 20, (aMonedas.get(j).getY()));
 			}
 		}
+
+		for (int k = 0; k < aCV.size(); k++) {
+			if (!aCV.isEmpty() && aCV.get(k) != null) {
+				aCV.get(k).move(aCV.get(k).getX() - 20, (aCV.get(k).getY()));
+			}
+		}
 	}
 	
 	/**
@@ -1492,6 +1498,12 @@ public class Mundo {
 		for (int j = 0; j < aMonedas.size(); j++) {
 			if (aMonedas.get(j) != null) {
 				aMonedas.get(j).move(aMonedas.get(j).getX() + 20, (aMonedas.get(j).getY()));
+			}
+		}
+
+		for (int k = 0; k < aCV.size(); k++) {
+			if (!aCV.isEmpty() && aCV.get(k) != null) {
+				aCV.get(k).move(aCV.get(k).getX() + 20, (aCV.get(k).getY()));
 			}
 		}
 	}
@@ -1654,7 +1666,7 @@ public class Mundo {
 		int i = this.aCV.size() - 1;
 		while (i >= 0) {
 			JLabelCaparazonVerde CV = aCV.get(i);
-			if (CV.getY() <= 0) {
+			if (CV.getY()>=900) {
 				panel.remove(CV);
 				panel.repaint();
 				aCV.remove(CV);

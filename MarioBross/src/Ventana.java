@@ -147,6 +147,7 @@ public class Ventana extends JFrame {
 			Ventana.Mundo.creaCorazon();
 			Ventana.Mundo.crearGoomba();
 			Ventana.Mundo.creaMoneda();
+			Ventana.Mundo.creaCV();
 			Ventana.Mario.setNombre("Mario Bros");
 			Ventana.miHilo = Ventana.new MiRunnable(); // Sintaxis de new
 			Ventana.miHilo2 = Ventana.new MiRunnable2();
@@ -321,42 +322,26 @@ public class Ventana extends JFrame {
 		@Override
 		public void run() {
 
-//			while (sigo) {
-//				Ventana.this.Mundo.creaCV();
-//				Ventana.this.Mundo.moverCV();
-//
-//				if (aPulsada[1] && !aPulsada[0] && ((JPanelFondo) pPrincipal).getVar() != -18840) {
-//					Mundo.CV.move(Mundo.CV.getX() - 20, Mundo.CV.getY());
-//				}
-//
-//				if (aPulsada[2] && !aPulsada[0] && ((JPanelFondo) pPrincipal).getVar() != -60) {
-//					Mundo.CV.move(Mundo.CV.getX() + 20, Mundo.CV.getY());	
-//				}
-//
-//				if (aPulsada[1] && aPulsada[0] && ((JPanelFondo) pPrincipal).getVar() != -18840) {
-//					Mundo.CV.move(Mundo.CV.getX() - 20, Mundo.CV.getY());
-//					Mundo.CV.move(Mundo.CV.getX() + 10, Mundo.CV.getY());
-//				}
-//
-//				if (aPulsada[2] && aPulsada[0] && ((JPanelFondo) pPrincipal).getVar() != -60) {
-//					Mundo.CV.move(Mundo.CV.getX() + 20, Mundo.CV.getY());
-//					Mundo.CV.move(Mundo.CV.getX() - 10, Mundo.CV.getY());
-//				}
-//						
-//				if(Mario.getVida()==0){
-//					sigo=false;
-//				}
-//				
-//				
-//
-//				// Dormir el hilo 30 milisegundos
-//				try {
-//					pPrincipal.repaint();
-//					Thread.sleep(30);
-//					pPrincipal.repaint();
-//				} catch (Exception e) {
-//				}
-//			}
+			while (sigo) {
+				
+				
+				Ventana.this.Mundo.moverCV();
+				//Ventana.this.Mundo.eliminarCV();
+						
+				if(Mario.getVida()==0){
+					sigo=false;
+				}
+				
+				
+
+				// Dormir el hilo 30 milisegundos
+				try {
+					pPrincipal.repaint();
+					Thread.sleep(30);
+					pPrincipal.repaint();
+				} catch (Exception e) {
+				}
+			}
 		}
 		
 		/**
