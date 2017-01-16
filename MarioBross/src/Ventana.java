@@ -127,7 +127,7 @@ public class Ventana extends JFrame {
 	 */
 	
 	public static void main(String[] args) {
-		// Crea y visibiliza la ventana con el coche
+		// Crea y visibiliza la ventana con el Mario
 		try {
 			final Ventana Ventana = new Ventana();
 			SwingUtilities.invokeAndWait(new Runnable() {
