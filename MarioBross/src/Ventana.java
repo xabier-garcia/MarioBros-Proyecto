@@ -52,7 +52,7 @@ public class Ventana extends JFrame {
 		// Añadido de componentes a contenedores
 		add(pPrincipal, BorderLayout.CENTER);
 		// Formato de ventana
-		setSize(2000, 1500);
+		setSize(1920, 1080);
 		setResizable(false);
 
 		// Añadido para que también se gestione por teclado con el KeyListener
@@ -228,7 +228,6 @@ public class Ventana extends JFrame {
 				Ventana.this.Mundo.creaCR();
 				Ventana.this.Mundo.moverCR();
 				if (Ventana.this.Mundo.interseccionCR()) {
-
 					Ventana.this.Mundo.eliminarCR();
 				}
 				
@@ -274,7 +273,7 @@ public class Ventana extends JFrame {
 		public void run() {
 
 			while (sigo) {
-				if (Mundo.choque() || Mundo.choqueCR() || Mundo.perderVidaGoomba) {
+				if (Mundo.choqueCV() || Mundo.choqueCR() || Mundo.perderVidaGoomba) {
 					try {
 						Thread.sleep(1000);
 						Mario.setVida(Mario.getVida() - 1);
@@ -312,10 +311,10 @@ public class Ventana extends JFrame {
 	}
 	
 	/**
-	 * Clase que implementa la interfaz Runnable, 
-	 * inicializa el hilo de los caparazones verdes
+	 * Clase que implementa la interfaz Runnable, inicializa el hilo de los
+	 * caparazones verdes
 	 */
-	
+
 	class MiRunnable2 implements Runnable {
 		boolean sigo = true;
 
@@ -323,16 +322,12 @@ public class Ventana extends JFrame {
 		public void run() {
 
 			while (sigo) {
-				
-				
+
 				Ventana.this.Mundo.moverCV();
-				//Ventana.this.Mundo.eliminarCV();
-						
-				if(Mario.getVida()==0){
-					sigo=false;
+
+				if (Mario.getVida() == 0) {
+					sigo = false;
 				}
-				
-				
 
 				// Dormir el hilo 30 milisegundos
 				try {
