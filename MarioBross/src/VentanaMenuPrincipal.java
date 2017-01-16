@@ -13,6 +13,7 @@ import javax.swing.SwingUtilities;
 public class VentanaMenuPrincipal extends JFrame {
 	private static final long serialVersionUID = 1L; // Para serialización
 	JPanel pPrincipal; // Panel del juego (layout nulo)
+	VentanaMenuPrincipal Ventana; // Ventana del menu principal
 
 	public VentanaMenuPrincipal() {
 		// Liberación de la ventana por defecto al cerrar
@@ -34,14 +35,15 @@ public class VentanaMenuPrincipal extends JFrame {
 		bJugar.setForeground(Color.BLACK);
 		bJugar.setFont(new Font("Tahoma", Font.PLAIN, 100));
 		pPrincipal.add(bJugar);
-		
 		bJugar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				
+				Ventana ventana2 = new Ventana();
+				ventana2.setVisible(true);
+				ventana2.Arranque();
 			}
 		});
-			
+
 	}
 
 	public static void main(String[] args) {

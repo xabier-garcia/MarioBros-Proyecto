@@ -126,48 +126,38 @@ public class Ventana extends JFrame {
 	 * @param args
 	 */
 	
-	public static void main(String[] args) {
+	public void Arranque() {
 		// Crea y visibiliza la ventana con el Mario
-		try {
-			final Ventana Ventana = new Ventana();
-			SwingUtilities.invokeAndWait(new Runnable() {
-				@Override
-				public void run() {
-					Ventana.setVisible(true);
-				}
-			});
-			Ventana.Mundo = new Mundo(Ventana.pPrincipal);
-			Ventana.Mundo.creaMario(620, 860);
-			Ventana.Mario = Ventana.Mundo.getMario();
-			Ventana.Mundo.creaBloque();
-			Ventana.Mundo.creaBloqueA();
-			Ventana.Mundo.crearTuberia();
-			Ventana.Mundo.crearTuberiaGrande();
-			Ventana.Mundo.crearCaida();
-			Ventana.Mundo.creaCorazon();
-			Ventana.Mundo.crearGoomba();
-			Ventana.Mundo.creaMoneda();
-			Ventana.Mundo.creaCV();
-			Ventana.Mario.setNombre("Mario Bros");
-			Ventana.miHilo = Ventana.new MiRunnable(); // Sintaxis de new
-			Ventana.miHilo2 = Ventana.new MiRunnable2();
-			Ventana.miHilo3 = Ventana.new MiRunnable3();
-			Ventana.miHilo4 = Ventana.new MiRunnable4();
-			Ventana.miHilo5 = Ventana.new MiRunnable5();// para clase
+		
+			this.Mundo = new Mundo(this.pPrincipal);
+			this.Mundo.creaMario(620, 860);
+			this.Mario = this.Mundo.getMario();
+			this.Mundo.creaBloque();
+			this.Mundo.creaBloqueA();
+			this.Mundo.crearTuberia();
+			this.Mundo.crearTuberiaGrande();
+			this.Mundo.crearCaida();
+			this.Mundo.creaCorazon();
+			this.Mundo.crearGoomba();
+			this.Mundo.creaMoneda();
+			this.Mundo.creaCV();
+			this.Mario.setNombre("Mario Bros");
+			this.miHilo = this.new MiRunnable(); // Sintaxis de new
+			this.miHilo2 = this.new MiRunnable2();
+			this.miHilo3 = this.new MiRunnable3();
+			this.miHilo4 = this.new MiRunnable4();
+			this.miHilo5 = this.new MiRunnable5();// para clase
 			// interna
-			Thread nuevoHilo = new Thread(Ventana.miHilo);
-			Thread nuevoHilo2 = new Thread(Ventana.miHilo2);
-			Thread nuevoHilo3 = new Thread(Ventana.miHilo3);
-			Thread nuevoHilo4 = new Thread(Ventana.miHilo4);
-			Thread nuevoHilo5 = new Thread(Ventana.miHilo5);
+			Thread nuevoHilo = new Thread(this.miHilo);
+			Thread nuevoHilo2 = new Thread(this.miHilo2);
+			Thread nuevoHilo3 = new Thread(this.miHilo3);
+			Thread nuevoHilo4 = new Thread(this.miHilo4);
+			Thread nuevoHilo5 = new Thread(this.miHilo5);
 			nuevoHilo.start();
 			nuevoHilo2.start();
 			nuevoHilo3.start();
 			nuevoHilo4.start();
 			nuevoHilo5.start();
-		} catch (Exception e) {
-			System.exit(1); // Error anormal
-		}
 	}
 	
 	/**
@@ -227,19 +217,23 @@ public class Ventana extends JFrame {
 			while (sigo) {
 				Ventana.this.Mundo.creaCR();
 				Ventana.this.Mundo.moverCR();
-				if (Ventana.this.Mundo.interseccionCR()) {
-					Ventana.this.Mundo.eliminarCR();
+				if (!Mundo.aCR.isEmpty()) {
+					for (int i = 0; i < Mundo.aCR.size(); i++) {
+						if (Mundo.aCR.get(i) != null) {
+							if (Ventana.this.Mundo.interseccionCR()) {
+								Ventana.this.Mundo.eliminarCR();
+							}
+
+							if (aPulsada[2]) {
+								Ventana.this.Mundo.moverCR2();
+							}
+						}
+					}
 				}
-				
-				if(aPulsada[2]){
-					Ventana.this.Mundo.moverCR2();
+
+				if (Mario.getVida() == 0) {
+					sigo = false;
 				}
-				
-				if(Mario.getVida()==0){
-					sigo=false;
-				}
-				
-				
 
 				// Dormir el hilo 10 milisegundos
 				try {
