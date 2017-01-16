@@ -41,6 +41,7 @@ public class VentanaMenuPrincipal extends JFrame {
 				Ventana ventana2 = new Ventana();
 				ventana2.setVisible(true);
 				ventana2.Arranque();
+				dispose();
 			}
 		});
 
