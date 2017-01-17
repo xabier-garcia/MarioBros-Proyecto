@@ -1,3 +1,5 @@
+
+
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -6,30 +8,33 @@ import java.awt.RenderingHints;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-public class JLabelMoneda extends JLabel {
+public class JLabelBloqueUsado extends JLabel {
+	private static final long serialVersionUID = 3L; // Para serialización
+	
+	public static final int TAMANYO_BLOQUEUSADO = 100; // píxels (igual ancho que largo)
 
-	private static final long serialVersionUID = 9L; // Para serialización
-	public static final int TAMANYO_COIN = 100; // píxels (igual ancho que largo)
-//	public static final int RADIO_ESFERA_COIN = 38; // Radio en píxels del bounding circle de la moneda 
-	private static final boolean DIBUJAR_ESFERA_COIN = false; // Dibujado (paradepuración)del bounding circle de la moneda
+	private static final boolean DIBUJAR_RECTANGULO_BLOQUEUSADO = false; // Dibujado (paradepuración)del bounding rectangle del bloque
+	
+	
 
 	/**
-	 * Construye y devuelve el JLabel de la moneda con su gráfico y tamaño
+	 * Construye y devuelve el JLabel del Bloque con su gráfico y tamaño
 	 */
 	
-	public JLabelMoneda() {
+	public JLabelBloqueUsado() {
 		try {
 
-			setIcon(new ImageIcon(JLabelMario.class.getResource("Imagenes/mariobroscoin.png").toURI().toURL()));
+			setIcon(new ImageIcon(JLabelMario.class.getResource("Imagenes/Bloque_usado.png").toURI().toURL()));
 		} catch (Exception e) {
-			System.err.println("Error en carga de recurso: mariobroscoin.png no encontrado");
+			System.err.println("Error en carga de recurso: BloqueMario.jpg no encontrado");
 			e.printStackTrace();
 		}
-		setBounds(0, 0, TAMANYO_COIN+10, TAMANYO_COIN+10);
-	}
+		setBounds(0, 0, TAMANYO_BLOQUEUSADO+1, TAMANYO_BLOQUEUSADO+1);
 
+	}
+	
 	/**
-	 * Método para pintar la moneda
+	 * Método para pintar el componente de Bloque
 	 */
 
 	@Override
@@ -44,9 +49,10 @@ public class JLabelMoneda extends JLabel {
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		// Prepara rotación (siguientes operaciones se rotarán)
 		// Dibujado de la imagen
-		g2.drawImage(img, 0, 0, TAMANYO_COIN, TAMANYO_COIN, null);
-		if (DIBUJAR_ESFERA_COIN)
-			g2.drawRect(0, 0, TAMANYO_COIN, TAMANYO_COIN);
-	}
-	
+		g2.drawImage(img, 0, 0, TAMANYO_BLOQUEUSADO, TAMANYO_BLOQUEUSADO, null);
+		
+		if (DIBUJAR_RECTANGULO_BLOQUEUSADO)
+			g2.drawRect(0,0,TAMANYO_BLOQUEUSADO,TAMANYO_BLOQUEUSADO);	
+			}
+
 }

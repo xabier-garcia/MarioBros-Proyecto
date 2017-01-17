@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 
 public class JLabelGoomba extends JLabel{
 	private boolean iden;
-	private static final long serialVersionUID = 1L; // Para serialización
+	private static final long serialVersionUID = 7L; // Para serialización
 	
 	public static final int TAMANYO_GOOMBA = 115; // píxels (igual ancho que largo)
 

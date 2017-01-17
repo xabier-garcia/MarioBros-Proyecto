@@ -1,3 +1,4 @@
+
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -6,10 +7,10 @@ import java.awt.RenderingHints;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-public class JLabelMoneda extends JLabel {
+public class JLabelMiniMoneda extends JLabel {
 
 	private static final long serialVersionUID = 9L; // Para serialización
-	public static final int TAMANYO_COIN = 100; // píxels (igual ancho que largo)
+	public static final int TAMANYO_COIN = 35; // píxels (igual ancho que largo)
 //	public static final int RADIO_ESFERA_COIN = 38; // Radio en píxels del bounding circle de la moneda 
 	private static final boolean DIBUJAR_ESFERA_COIN = false; // Dibujado (paradepuración)del bounding circle de la moneda
 
@@ -17,7 +18,7 @@ public class JLabelMoneda extends JLabel {
 	 * Construye y devuelve el JLabel de la moneda con su gráfico y tamaño
 	 */
 	
-	public JLabelMoneda() {
+	public JLabelMiniMoneda() {
 		try {
 
 			setIcon(new ImageIcon(JLabelMario.class.getResource("Imagenes/mariobroscoin.png").toURI().toURL()));

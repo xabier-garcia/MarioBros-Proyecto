@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 
 public class JLabelCaparazonRojo extends JLabel {
 	
-private static final long serialVersionUID = 1L; // Para serialización
+private static final long serialVersionUID = 5L; // Para serialización
 	
 	public static final int TAMANYO_CR = 70; // píxels (igual ancho que largo)
 	

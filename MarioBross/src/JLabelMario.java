@@ -8,7 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public class JLabelMario extends JLabel {
-	private static final long serialVersionUID = 1L; // Para serialización
+	private static final long serialVersionUID = 8L; // Para serialización
 	
 	public static final int TAMANYO_MARIO = 150; // píxels (igual ancho que largo)
 	
