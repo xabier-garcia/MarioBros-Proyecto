@@ -6,26 +6,25 @@ import java.awt.RenderingHints;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-public class JLabelMoneda extends JLabel {
+public class JLabelSetaVida extends JLabel {
 
-	private static final long serialVersionUID = 9L; // Para serialización
-	public static final int TAMANYO_COIN = 100; // píxels (igual ancho que largo)
-//	public static final int RADIO_ESFERA_COIN = 38; // Radio en píxels del bounding circle de la moneda 
-	private static final boolean DIBUJAR_ESFERA_COIN = false; // Dibujado (paradepuración)del bounding circle de la moneda
+	private static final long serialVersionUID = 10L; // Para serialización
+	public static final int TAMANYO_SETAVIDA = 100; // píxels (igual ancho que largo)
+	private static final boolean DIBUJAR_SETAVIDA = false; // Dibujado (paradepuración)del bounding circle de la moneda
 
 	/**
 	 * Construye y devuelve el JLabel de la moneda con su gráfico y tamaño
 	 */
 	
-	public JLabelMoneda() {
+	public JLabelSetaVida() {
 		try {
 
-			setIcon(new ImageIcon(JLabelMario.class.getResource("Imagenes/mariobroscoin.png").toURI().toURL()));
+			setIcon(new ImageIcon(JLabelMario.class.getResource("Imagenes/SetaVidaMarioSinFondo.png").toURI().toURL()));
 		} catch (Exception e) {
 			System.err.println("Error en carga de recurso: mariobroscoin.png no encontrado");
 			e.printStackTrace();
 		}
-		setBounds(0, 0, TAMANYO_COIN+10, TAMANYO_COIN+10);
+		setSize(TAMANYO_SETAVIDA+10, TAMANYO_SETAVIDA+10);
 	}
 
 	/**
@@ -44,9 +43,10 @@ public class JLabelMoneda extends JLabel {
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		// Prepara rotación (siguientes operaciones se rotarán)
 		// Dibujado de la imagen
-		g2.drawImage(img, 0, 0, TAMANYO_COIN, TAMANYO_COIN, null);
-		if (DIBUJAR_ESFERA_COIN)
-			g2.drawRect(0, 0, TAMANYO_COIN, TAMANYO_COIN);
+		g2.drawImage(img, 0, 0, TAMANYO_SETAVIDA, TAMANYO_SETAVIDA, null);
+		
+		if (DIBUJAR_SETAVIDA)
+			g2.drawRect(0, 0, TAMANYO_SETAVIDA, TAMANYO_SETAVIDA);
 	}
-	
+
 }

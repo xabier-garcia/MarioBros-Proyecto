@@ -8,7 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public class JLabelBloqueA extends JLabel {
-	private static final long serialVersionUID = 1L; // Para serialización
+	private static final long serialVersionUID = 2L; // Para serialización
 
 	public static final int TAMANYO_BLOQUE = 100; // píxels (igual ancho que
 													// largo)

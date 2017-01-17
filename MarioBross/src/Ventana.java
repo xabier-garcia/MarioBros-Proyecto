@@ -5,6 +5,7 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -12,6 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+import javax.swing.plaf.synth.SynthSpinnerUI;
 
 public class Ventana extends JFrame {
 	private static final long serialVersionUID = 1L; // Para serialización
@@ -141,6 +143,7 @@ public class Ventana extends JFrame {
 			this.Mundo.crearGoomba();
 			this.Mundo.creaMoneda();
 			this.Mundo.creaCV();
+			this.Mundo.crearSetaVida();
 			this.Mario.setNombre("Mario Bros");
 			this.miHilo = this.new MiRunnable(); // Sintaxis de new
 			this.miHilo2 = this.new MiRunnable2();
@@ -172,17 +175,21 @@ public class Ventana extends JFrame {
 		public void run() {
 
 			while (sigo) {
-
 				Mundo.SaleMoneda();
-				if(Mundo.SaleMoneda()){
-					try {
-						Thread.sleep(300);
-						Mundo.eliminaMoneda();
-						pPrincipal.repaint();
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
+				Mundo.elevarMoneda();
+				if(Mundo.crearMiniMonedasBoolean){
+				Mundo.creaMiniMoneda();
+				Mundo.crearMiniMonedasBoolean = false;
 				}
+				
+//					try {
+//						Thread.sleep(300);
+//						Mundo.SaleMoneda();
+//						Mundo.eliminaMoneda();
+//						pPrincipal.repaint();
+//					} catch (InterruptedException e) {
+//						e.printStackTrace();
+//					}
 				// Dormir el hilo 1 milisegundos
 				try {
 					pPrincipal.repaint();
@@ -267,13 +274,20 @@ public class Ventana extends JFrame {
 		public void run() {
 
 			while (sigo) {
-				if (Mundo.choqueCV() || Mundo.choqueCR() || Mundo.perderVidaGoomba) {
+				if (Mundo.choqueCV() || Mundo.choqueCR() || Mundo.perderVidaGoomba|| Mundo.ganarVidaSeta) {
 					try {
 						Thread.sleep(1000);
+						if(Mundo.ganarVidaSeta){
+							Mario.setVida(Mario.getVida() + 1);
+							Mundo.creaCorazon();
+							Mundo.ganarVidaSeta = false;
+						}
+						else{
 						Mario.setVida(Mario.getVida() - 1);
 						Mundo.eliminaCorazon();
 						pPrincipal.repaint();
 						Mundo.perderVidaGoomba = false;
+						}
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
@@ -357,12 +371,17 @@ public class Ventana extends JFrame {
 			// Bucle principal forever hasta que se pare el juego...
 			while (sigo) {
 				pPrincipal.repaint();
-				Mario.saltoMario();
-				// Mover "Mario"(Realmente lo que movemos es el fondo creando un
-				// efecto óptico de movimiento
+
+				// Relacionado con las setas
+				Mundo.SaleSetaVida();
+				Mundo.eliminarSetaVida();
+				Mundo.cambioBloqueAmarilloBloqueUsado();
+				Mundo.cambioBloqueNormalBloqueUsado();
+				
+				
+				//Relacionado con los goombas
 				Mundo.choqueV();
 				Mundo.interaccionGoomba();
-				
 				if(Mundo.caidaGoomba){
 					Mundo.caidaDeLosGoombas(Mundo.caidaGoombaNumero);
 				}
@@ -374,6 +393,10 @@ public class Ventana extends JFrame {
 					Mundo.moverGoombaI();
 				}
 				
+				// Mover "Mario"(Realmente lo que movemos es el fondo creando un
+				// efecto óptico de movimiento
+				
+				Mario.saltoMario();
 				if (aPulsada[0]) {
 					if (!Mario.salto && !Mundo.choqueV() && !Mario.caida) {
 						Mario.gravedad = Mario.getPosY();
@@ -398,7 +421,6 @@ public class Ventana extends JFrame {
 						} else {
 							if (aPulsada[1] && !aPulsada[2]) {
 								Mundo.moverObjetoI();
-
 							}
 						}
 					}
@@ -430,6 +452,21 @@ public class Ventana extends JFrame {
 				if(Mario.getVida()==0){
 					sigo=false;
 					}
+				
+				if(((JPanelFondo) pPrincipal).getVar()==-18840){
+					VentanaHasGanado G= new VentanaHasGanado();
+					G.setVisible(true);
+					dispose();
+					((JPanelFondo) pPrincipal).setVar(0);
+					sigo=false;
+				}
+				
+				if(Mario.caida==true && Mario.getVida()==0){
+					VentanaHasPerdido V = new VentanaHasPerdido();
+					V.setVisible(true);
+					dispose();
+					sigo=false;
+				}
 
 				// Dormir el hilo 30 milisegundos
 				try {
@@ -438,6 +475,7 @@ public class Ventana extends JFrame {
 					pPrincipal.repaint();
 				} catch (Exception e) {
 				}
+				
 			}
 		}
 

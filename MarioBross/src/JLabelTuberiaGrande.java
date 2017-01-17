@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public class JLabelTuberiaGrande extends JLabel {
-	private static final long serialVersionUID = 1L; // Para serialización
+	private static final long serialVersionUID = 12L; // Para serialización
 
 	public static final int TAMANYO_BLOQUE = 200; // píxels (igual ancho que
 													// largo)

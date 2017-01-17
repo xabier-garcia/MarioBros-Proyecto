@@ -10,30 +10,30 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-public class VentanaMenuPrincipal extends JFrame {
+public class VentanaHasPerdido extends JFrame {
 	private static final long serialVersionUID = 1L; // Para serialización
 	JPanel pPrincipal; // Panel del juego (layout nulo)
-	VentanaMenuPrincipal Ventana; // Ventana del menu principal
+	VentanaHasPerdido Ventana; // Ventana del menu principal
 
-	public VentanaMenuPrincipal() {
+	public VentanaHasPerdido() {
 		// Liberación de la ventana por defecto al cerrar
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		// Creación contenedores y componentes
-		pPrincipal = new JPanelFondoP();
+		pPrincipal = new JPanelFondoL();
 		// Formato y layouts
 		pPrincipal.setLayout(null);
 		pPrincipal.setBackground(Color.white);
 		// Añadido de componentes a contenedores
 		add(pPrincipal, BorderLayout.CENTER);
 		// Formato de ventana
-		setSize(1600, 900);
+		setSize(1920, 1080);
 		setResizable(false);
 		JButton bJugar= new JButton();
-		bJugar.setText("Jugar");
+		bJugar.setText("Volver a jugar");
 		bJugar.setFocusable(false);
-		bJugar.setBounds(850, 358, 300, 142);
+		bJugar.setBounds(1050, 558, 500, 142);
 		bJugar.setForeground(Color.BLACK);
-		bJugar.setFont(new Font("Tahoma", Font.PLAIN, 100));
+		bJugar.setFont(new Font("Tahoma", Font.PLAIN, 50));
 		pPrincipal.add(bJugar);
 		bJugar.addMouseListener(new MouseAdapter() {
 			@Override
@@ -50,7 +50,7 @@ public class VentanaMenuPrincipal extends JFrame {
 	public static void main(String[] args) {
 		// Crea y visibiliza la ventana con el coche
 		try {
-			final VentanaMenuPrincipal Ventana = new VentanaMenuPrincipal();
+			final VentanaHasPerdido Ventana = new VentanaHasPerdido();
 			SwingUtilities.invokeAndWait(new Runnable() {
 				@Override
 				public void run() {

@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public class JLabelCaida extends JLabel {
-	private static final long serialVersionUID = 1L; // Para serialización
+	private static final long serialVersionUID = 4L; // Para serialización
 
 	public static final int TAMANYO_LARGO = 320; // píxels (igual ancho que
 													// largo)

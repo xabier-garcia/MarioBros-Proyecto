@@ -8,9 +8,9 @@ import javax.swing.JLabel;
 
 public class JLabelVida extends JLabel {
 
-	private static final long serialVersionUID = 1L; // Para serialización
+	private static final long serialVersionUID = 13L; // Para serialización
 
-	public static final int TAMANYO_CORAZON = 60; // píxels (igual ancho que
+	public static final int TAMANYO_CORAZON = 35; // píxels (igual ancho que
 													// largo)
 
 	/**

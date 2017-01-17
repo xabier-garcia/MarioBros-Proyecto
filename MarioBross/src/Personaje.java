@@ -8,7 +8,7 @@ public class Personaje {
 	protected double posY; // Atributo que guarda la posición en Y (vertical)
 	protected String nombre; // Atributo que guarda el nombre del personaje
 	protected boolean caida; // Atributo que devuelve si hay o no una caida
-	protected int vida=5; //Atributo para saber la vida que tiene el personaje
+	protected int vida=3; //Atributo para saber la vida que tiene el personaje
 	protected int monedas=0; //Atributo que sirve como contador de las monedas que ha recogido el personaje
 
 	/**

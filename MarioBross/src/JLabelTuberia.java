@@ -8,7 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public class JLabelTuberia extends JLabel {
-	private static final long serialVersionUID = 1L; // Para serialización
+	private static final long serialVersionUID = 11L; // Para serialización
 
 	public static final int TAMANYO_TUBERIA = 200; // píxels (igual ancho que
 													// largo)

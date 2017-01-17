@@ -1,4 +1,5 @@
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.JPanel;
@@ -21,7 +22,10 @@ public class Mundo {
 	public static boolean caidaGoomba = false; // Atributo que guarda si hay caida o no del goomba
 	public int caidaGoombaNumero; // Atributo que guarda el número para la caida del goomba
 	public static boolean perderVidaGoomba = false; // Atributo para saber si el goomba a muerto
-	private int j; //Atributo que guardara una variable que usaremos para la creacion de monedas
+	public static boolean ganarVidaSeta = false;// Atributo para saber si se suma vida
+//	private int j; //Atributo que guardara una variable que usaremos para la creacion de monedas
+	public boolean crearMiniMonedasBoolean = false;
+	
 	JLabelCaparazonVerde CV = new JLabelCaparazonVerde(); // Atributo Jlabel para caparazón verde
 	JLabelTuberia Tuberia = new JLabelTuberia(); // Atributo Jlabel para tuberia
 	JLabelBloque Bloque = new JLabelBloque(); // Atributo Jlabel para bloque
@@ -30,6 +34,9 @@ public class Mundo {
 	JLabelMoneda Moneda = new JLabelMoneda(); //Atributo Jlabel para monedass
 	JLabelTuberiaGrande TuberiaGrande = new JLabelTuberiaGrande(); // Atributo jlabel para la tuberia grande
 	JLabelGoomba Goomba = new JLabelGoomba(); // Atributo jlabel para el goomba
+	JLabelSetaVida setaVida = new JLabelSetaVida(); // Atributo jlabel de la seta vida
+	JLabelBloqueUsado bloqueUsado = new JLabelBloqueUsado(); // Atributo jlabel del bloque usado
+	
 	static ArrayList<Integer> aPosInicialGoomba = new ArrayList<Integer>(); // Array que guarda las posiciones iniciales de los goombas
 	static ArrayList<Integer> aContGoomba = new ArrayList<Integer>(); // Array que guarda los contadores de los gombas
 	static ArrayList<JLabelVida> aVida = new ArrayList(); // Array que guarda las vidas de Mario
@@ -39,10 +46,14 @@ public class Mundo {
 	static ArrayList<JLabelCaida> aCaida = new ArrayList(); // Array que guarda las caidas de Mario
 	static ArrayList<JLabelTuberiaGrande> aTuberiaGrande = new ArrayList(); // Array que guarda las tuberias grandes
 	static ArrayList<JLabelMoneda> aMonedas = new ArrayList(); // Array que guarda las monedas
+	static ArrayList<JLabelMoneda> aMonedasReserva = new ArrayList();
+	static ArrayList<JLabelMiniMoneda> aMiniMonedas = new ArrayList();
 	static ArrayList<JLabelGoomba> aGoomba = new ArrayList(); // Array que guarda los goombas
 	static ArrayList<JLabelCaparazonRojo> aCR = new ArrayList(); // Array que guarda los caparazones rojos
 	static ArrayList<JLabelCaparazonVerde> aCV = new ArrayList(); // Array que guarda los caparazones verdes
-
+	static ArrayList<JLabelSetaVida> aSetaVida = new ArrayList(); // Array que guarda las setas de vida
+	static ArrayList<JLabelBloqueUsado> aBloquesUsados = new ArrayList(); // Array que guarda los bloques usados
+	
 	/**
 	 * Construye un mundo de juego
 	 * 
@@ -70,7 +81,108 @@ public class Mundo {
 		Mario.getGrafico().repaint(); // Refresca el dibujado de Mario
 
 	}
+	
+	/**
+	 * Método que crea una nueva seta de vida y lo añade al panel visual
+	 * 
+	 */
+	
+	public void crearSetaVida(){
+		setaVida = new JLabelSetaVida();
+		setaVida.setLocation(1120, 660);
+		panel.add(setaVida);
+		aSetaVida.add(setaVida);
+		
+		setaVida = new JLabelSetaVida();
+		setaVida.setLocation(6320, 320);
+		panel.add(setaVida);
+		aSetaVida.add(setaVida);
+		
+		setaVida = new JLabelSetaVida();
+		setaVida.setLocation(9720, 320);
+		panel.add(setaVida);
+		aSetaVida.add(setaVida);
+		
 
+		setaVida = new JLabelSetaVida();
+		setaVida.setLocation(17700, 660);
+		panel.add(setaVida);
+		aSetaVida.add(setaVida);
+	}
+	
+	/**
+	 * Método que realiza la salida de una setavida desde dentro de un bloque
+	 * @return si hay una salida
+	 * 
+	 */
+	
+	public void SaleSetaVida() {
+		for (int i = 0; i < aSetaVida.size(); i++) {
+			if (Mario.getGrafico().getBounds().intersects(aSetaVida.get(i).getBounds())
+					&& Mario.getPosY() < 860 && Mario.getPosY()>aBloquesA.get(i).getY()) {
+				if(aSetaVida.get(i) != null){
+					JLabelSetaVida setaVida = aSetaVida.get(i);
+					setaVida.move(setaVida.getX(), setaVida.getY() - 105);	
+					}
+			}
+		}
+	}
+	
+	/**
+	 * Método que cambia de bloque amarillo por el usado
+	 */
+	public void cambioBloqueAmarilloBloqueUsado(){
+		for(int i = 0; i<aBloquesA.size(); i++){
+			if(Mario.getGrafico().getBounds().intersects(aBloquesA.get(i).getBounds()) 
+					&& Mario.getPosY()>aBloquesA.get(i).getY() && Mario.getPosY() < 860 ){
+				aBloquesA.get(i).setVisible(false);
+				bloqueUsado = new JLabelBloqueUsado();
+				bloqueUsado.setLocation(aBloquesA.get(i).getX(), aBloquesA.get(i).getY());
+				panel.add(bloqueUsado);
+				aBloquesUsados.add(bloqueUsado);
+			}
+		}
+	}
+	
+	/**
+	 * Método que cambia de bloque normal por el usado
+	 */
+	public void cambioBloqueNormalBloqueUsado(){
+		for(int i = 0; i<aBloquesA.size(); i++){
+			if(Mario.getGrafico().getBounds().intersects(aBloquesA.get(i).getBounds()) 
+					&& Mario.getPosY()>aBloquesA.get(i).getY() && Mario.getPosY() < 860 ){
+				aBloquesA.get(i).setBackground(Color.black);
+				aBloquesA.get(i).setOpaque(true);
+			}
+		}
+	}
+	
+//	/**
+//	 * Método que devuelve el bloque que toca mario
+//	 */
+//	public int devolverBloqueA(){
+//		for(int i = 0; i<aBloquesA.size();i++){
+//			if(Mario.getGrafico().getBounds().intersects(aBloquesA.get(i).getBounds())){
+//				return i;
+//			}
+//		}
+//		return -1;
+//	}
+//	
+	
+	public void eliminarSetaVida() {
+		for(int k = 0; k<aSetaVida.size();k++){
+		if(Mario.getGrafico().getBounds().intersects(aSetaVida.get(k).getBounds())){
+		JLabelSetaVida setaVida = aSetaVida.get(k);
+		panel.remove(setaVida);
+		setaVida.move(setaVida.getX(), setaVida.getY() - 1000);
+		panel.repaint();
+		ganarVidaSeta = true;
+		}
+		}
+	}
+
+	
 	/**
 	 * Método que crea un nuevo Corazón que mostrará la vida y lo añade al panel visual
 	 * 
@@ -78,14 +190,32 @@ public class Mundo {
 
 	public void creaCorazon() {
 		int cont = Mario.getVida();
-		int x = 50;
+		int x = 35;
 		for (int i = 0; i < cont; i++) {
 			JLabelVida Corazon = new JLabelVida();
-			Corazon.setLocation(x, 50);
+			Corazon.setLocation(x, 25);
 			panel.add(Corazon);
 			panel.repaint();
 			aVida.add(Corazon);
-			x = x + 20;
+			x = x + 30;
+		}
+
+	}
+	
+	/**
+	 * Método que crea una nueva mini moneda para saber cuantas hay
+	 * 
+	 */
+	public void creaMiniMoneda() {
+		int cont = Mario.getMonedas();
+		int x = 35;
+		for (int i = 0; i < cont; i++) {
+			JLabelMiniMoneda Moneda = new JLabelMiniMoneda();
+			Moneda.setLocation(x, 65);
+			panel.add(Moneda);
+			panel.repaint();
+			aMiniMonedas.add(Moneda);
+			x = x + 30;
 		}
 
 	}
@@ -188,31 +318,6 @@ public class Mundo {
 		aMonedas.add(Moneda);
 
 		Moneda = new JLabelMoneda();
-		Moneda.setLocation(6320, 900);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(6320, 800);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(7920, 900);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(8020, 900);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(8020, 800);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		Moneda = new JLabelMoneda();
 		Moneda.setLocation(9120, 660);
 		panel.add(Moneda);
 		aMonedas.add(Moneda);
@@ -286,160 +391,7 @@ public class Mundo {
 		Moneda.setLocation(10120, 320);
 		panel.add(Moneda);
 		aMonedas.add(Moneda);
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(12200, 899);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(12200, 799);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		// Triangulo de Monedas 1
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(13000, 899);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(13100, 799);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(13100, 899);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(13200, 699);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(13200, 799);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(13200, 899);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(13300, 799);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(13300, 899);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(13400, 899);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		// Primer cuadrado de Monedas
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(14920, 899);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(14920, 799);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(14920, 699);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(15020, 699);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(15120, 699);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(15220, 699);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(15320, 699);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(15320, 799);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(15320, 899);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		// Segundo cuadrado de Monedas
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(16200, 999);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(16200, 899);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(16200, 799);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(16200, 699);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(16300, 699);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(16400, 699);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(16500, 699);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(16500, 799);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(16500, 899);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(16500, 999);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
+		
 		Moneda = new JLabelMoneda();
 		Moneda.setLocation(17600, 660);
 		panel.add(Moneda);
@@ -447,124 +399,6 @@ public class Mundo {
 
 		Moneda = new JLabelMoneda();
 		Moneda.setLocation(17800, 660);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		// Piramide de Monedas final
-		// -- fila 1
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(18910, 899);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(19010, 899);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(19110, 899);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(19210, 899);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(19310, 899);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(19410, 899);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		// -- fila 2
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(19010, 799);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(19110, 799);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(19210, 799);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(19310, 799);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(19410, 799);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		// -- fila 3
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(19110, 699);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(19210, 699);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(19310, 699);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(19410, 699);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		// -- fila 4
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(19210, 599);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(19310, 599);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(19410, 599);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		// -- fila 5
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(19310, 499);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(19410, 499);
-		panel.add(Moneda);
-		aMonedas.add(Moneda);
-
-		// -- fila 6
-
-		Moneda = new JLabelMoneda();
-		Moneda.setLocation(19410, 399);
 		panel.add(Moneda);
 		aMonedas.add(Moneda);
 	}
@@ -575,20 +409,26 @@ public class Mundo {
 	 * 
 	 */
 	
-	public boolean SaleMoneda() {
-		for (int i = 0; i < aBloques.size(); i++) {
-			if (Mario.getGrafico().getBounds().intersects(aBloques.get(i).getBounds())
-					&& Mario.getPosY() > aBloques.get(i).getY() && Mario.getPosY() < 860) {
+	public void SaleMoneda() {
+		for (int i = 0; i < aMonedas.size(); i++) {
+			if (Mario.getGrafico().getBounds().intersects(aMonedas.get(i).getBounds())
+					&& Mario.getPosY() > aMonedas.get(i).getY() && Mario.getPosY() < 860) {
 				if (aMonedas.get(i) != null) {
 					JLabelMoneda moneda = aMonedas.get(i);
 					moneda.move(moneda.getX(), moneda.getY() - 100);
-					j = i;
-					return true;
-				}
-
+					aMonedasReserva.add(moneda);
+					}
 			}
 		}
-		return false;
+	}
+	
+	public void elevarMoneda(){
+		for(int i = 0; i<aMonedasReserva.size(); i++){
+			aMonedasReserva.get(i).move(aMonedasReserva.get(i).getX(), aMonedasReserva.get(i).getY() - 2);
+			if(aMonedasReserva.get(i).getY()== 0){
+				eliminaMoneda(i);
+			}
+		}
 	}
 
 	/**
@@ -596,12 +436,14 @@ public class Mundo {
 	 * 
 	 */
 	
-	public void eliminaMoneda() {
+	public void eliminaMoneda(int j) {
 		JLabelMoneda moneda = aMonedas.get(j);
+		moneda.setVisible(false);
 		panel.remove(moneda);
-		aMonedas.set(j, null);
-		Mario.setMonedas(Mario.getMonedas() + 1);
 		panel.repaint();
+		Mario.setMonedas(Mario.getMonedas()+1);
+		crearMiniMonedasBoolean = true;
+		
 	}
 
 	/**
@@ -1252,14 +1094,15 @@ public class Mundo {
 	 */
 	
 	public void creaBloqueA() {
+		
 
 		BloqueA = new JLabelBloqueA();
-		BloqueA.setLocation(3420, 320);
+		BloqueA.setLocation(1120, 660);
 		panel.add(BloqueA);
 		aBloquesA.add(BloqueA);
 
 		BloqueA = new JLabelBloqueA();
-		BloqueA.setLocation(1120, 660);
+		BloqueA.setLocation(3420, 320);
 		panel.add(BloqueA);
 		aBloquesA.add(BloqueA);
 
@@ -1469,11 +1312,20 @@ public class Mundo {
 				aMonedas.get(j).move(aMonedas.get(j).getX() - 20, (aMonedas.get(j).getY()));
 			}
 		}
+		for (int l = 0; l < aSetaVida.size(); l++) {
+			if(aSetaVida.get(l) != null){
+				aSetaVida.get(l).move(aSetaVida.get(l).getX() - 20, (aSetaVida.get(l).getY()));
+			}
+		}
 
 		for (int k = 0; k < aCV.size(); k++) {
 			if (!aCV.isEmpty() && aCV.get(k) != null) {
 				aCV.get(k).move(aCV.get(k).getX() - 20, (aCV.get(k).getY()));
 			}
+		}
+		
+		for (int ñ = 0; ñ < aBloquesUsados.size(); ñ++) {
+			aBloquesUsados.get(ñ).move(aBloquesUsados.get(ñ).getX() - 20, (aBloquesUsados.get(ñ).getY()));
 		}
 	}
 	
@@ -1507,11 +1359,20 @@ public class Mundo {
 				aMonedas.get(j).move(aMonedas.get(j).getX() + 20, (aMonedas.get(j).getY()));
 			}
 		}
+		for (int l = 0; l < aSetaVida.size(); l++) {
+			if(aSetaVida.get(l) != null){
+				aSetaVida.get(l).move(aSetaVida.get(l).getX() + 20, (aSetaVida.get(l).getY()));
+			}
+		}
 
 		for (int k = 0; k < aCV.size(); k++) {
 			if (!aCV.isEmpty() && aCV.get(k) != null) {
 				aCV.get(k).move(aCV.get(k).getX() + 20, (aCV.get(k).getY()));
 			}
+		}
+		
+		for (int ñ = 0; ñ < aBloquesUsados.size(); ñ++) {
+			aBloquesUsados.get(ñ).move(aBloquesUsados.get(ñ).getX() + 20, (aBloquesUsados.get(ñ).getY()));
 		}
 	}
 
