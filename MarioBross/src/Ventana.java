@@ -22,12 +22,13 @@ public class Ventana extends JFrame {
 	Mario Mario; // Mario del juego
 	JLabelGoomba Goomba; // Atributo que contiene el Jlabel del goomba
 	MiRunnable miHilo = null; // Hilo del bucle principal de juego
-	MiRunnable2 miHilo2 = null; // Hilo para los caparazones verdes 
-	MiRunnable3 miHilo3= null; // Hilo para los caparazones rojos
-	MiRunnable4 miHilo4= null; // Hilo para la vida de Mario
-	MiRunnable5 miHilo5= null; // Hilo para las monedas
-	Boolean[] aPulsada = new Boolean[3]; // Array que almacena estado de la tecla
-	
+	MiRunnable2 miHilo2 = null; // Hilo para los caparazones verdes
+	MiRunnable3 miHilo3 = null; // Hilo para los caparazones rojos
+	MiRunnable4 miHilo4 = null; // Hilo para la vida de Mario
+	MiRunnable5 miHilo5 = null; // Hilo para las monedas
+	Boolean[] aPulsada = new Boolean[3]; // Array que almacena estado de la
+											// tecla
+
 	/**
 	 * Constructor que inicializa el array de teclas
 	 */
@@ -42,7 +43,7 @@ public class Ventana extends JFrame {
 	 * Constructor de la ventana de juego. Crea y devuelve la ventana
 	 * inicializada sin coches dentro
 	 */
-	
+
 	public Ventana() {
 		// Liberación de la ventana por defecto al cerrar
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -127,47 +128,47 @@ public class Ventana extends JFrame {
 	 * 
 	 * @param args
 	 */
-	
+
 	public void Arranque() {
 		// Crea y visibiliza la ventana con el Mario
-		
-			this.Mundo = new Mundo(this.pPrincipal);
-			this.Mundo.creaMario(620, 860);
-			this.Mario = this.Mundo.getMario();
-			this.Mundo.creaBloque();
-			this.Mundo.creaBloqueA();
-			this.Mundo.crearTuberia();
-			this.Mundo.crearTuberiaGrande();
-			this.Mundo.crearCaida();
-			this.Mundo.creaCorazon();
-			this.Mundo.crearGoomba();
-			this.Mundo.creaMoneda();
-			this.Mundo.creaCV();
-			this.Mundo.crearSetaVida();
-			this.Mario.setNombre("Mario Bros");
-			this.miHilo = this.new MiRunnable(); // Sintaxis de new
-			this.miHilo2 = this.new MiRunnable2();
-			this.miHilo3 = this.new MiRunnable3();
-			this.miHilo4 = this.new MiRunnable4();
-			this.miHilo5 = this.new MiRunnable5();// para clase
-			// interna
-			Thread nuevoHilo = new Thread(this.miHilo);
-			Thread nuevoHilo2 = new Thread(this.miHilo2);
-			Thread nuevoHilo3 = new Thread(this.miHilo3);
-			Thread nuevoHilo4 = new Thread(this.miHilo4);
-			Thread nuevoHilo5 = new Thread(this.miHilo5);
-			nuevoHilo.start();
-			nuevoHilo2.start();
-			nuevoHilo3.start();
-			nuevoHilo4.start();
-			nuevoHilo5.start();
+
+		this.Mundo = new Mundo(this.pPrincipal);
+		this.Mundo.creaMario(620, 860);
+		this.Mario = this.Mundo.getMario();
+		this.Mundo.creaBloque();
+		this.Mundo.creaBloqueA();
+		this.Mundo.crearTuberia();
+		this.Mundo.crearTuberiaGrande();
+		this.Mundo.crearCaida();
+		this.Mundo.creaCorazon();
+		this.Mundo.crearGoomba();
+		this.Mundo.creaMoneda();
+		this.Mundo.creaCV();
+		this.Mundo.crearSetaVida();
+		this.Mario.setNombre("Mario Bros");
+		this.miHilo = this.new MiRunnable(); // Sintaxis de new
+		this.miHilo2 = this.new MiRunnable2();
+		this.miHilo3 = this.new MiRunnable3();
+		this.miHilo4 = this.new MiRunnable4();
+		this.miHilo5 = this.new MiRunnable5();// para clase
+		// interna
+		Thread nuevoHilo = new Thread(this.miHilo);
+		Thread nuevoHilo2 = new Thread(this.miHilo2);
+		Thread nuevoHilo3 = new Thread(this.miHilo3);
+		Thread nuevoHilo4 = new Thread(this.miHilo4);
+		Thread nuevoHilo5 = new Thread(this.miHilo5);
+		nuevoHilo.start();
+		nuevoHilo2.start();
+		nuevoHilo3.start();
+		nuevoHilo4.start();
+		nuevoHilo5.start();
 	}
-	
+
 	/**
-	 * Clase que implementa la interfaz Runnable, 
-	 * inicializa el hilo de las monedas
+	 * Clase que implementa la interfaz Runnable, inicializa el hilo de las
+	 * monedas
 	 */
-	
+
 	class MiRunnable5 implements Runnable {
 		boolean sigo = true;
 
@@ -177,19 +178,19 @@ public class Ventana extends JFrame {
 			while (sigo) {
 				Mundo.SaleMoneda();
 				Mundo.elevarMoneda();
-				if(Mundo.crearMiniMonedasBoolean){
-				Mundo.creaMiniMoneda();
-				Mundo.crearMiniMonedasBoolean = false;
+				if (Mundo.crearMiniMonedasBoolean) {
+					Mundo.creaMiniMoneda();
+					Mundo.crearMiniMonedasBoolean = false;
 				}
-				
-//					try {
-//						Thread.sleep(300);
-//						Mundo.SaleMoneda();
-//						Mundo.eliminaMoneda();
-//						pPrincipal.repaint();
-//					} catch (InterruptedException e) {
-//						e.printStackTrace();
-//					}
+
+				// try {
+				// Thread.sleep(300);
+				// Mundo.SaleMoneda();
+				// Mundo.eliminaMoneda();
+				// pPrincipal.repaint();
+				// } catch (InterruptedException e) {
+				// e.printStackTrace();
+				// }
 				// Dormir el hilo 1 milisegundos
 				try {
 					pPrincipal.repaint();
@@ -200,7 +201,7 @@ public class Ventana extends JFrame {
 
 			}
 		}
-		
+
 		/**
 		 * Ordena al hilo detenerse en cuanto sea posible
 		 */
@@ -209,10 +210,10 @@ public class Ventana extends JFrame {
 			sigo = false;
 		}
 	}
-	
+
 	/**
-	 * Clase que implementa la interfaz Runnable, 
-	 * inicializa el hilo de los caparazones rojos
+	 * Clase que implementa la interfaz Runnable, inicializa el hilo de los
+	 * caparazones rojos
 	 */
 
 	class MiRunnable4 implements Runnable {
@@ -255,18 +256,17 @@ public class Ventana extends JFrame {
 		/**
 		 * Ordena al hilo detenerse en cuanto sea posible
 		 */
-		
+
 		public void acaba() {
 			sigo = false;
 		}
 
 	}
-	
+
 	/**
-	 * Clase que implementa la interfaz Runnable, 
-	 * inicializa el hilo de la vida
+	 * Clase que implementa la interfaz Runnable, inicializa el hilo de la vida
 	 */
-	
+
 	class MiRunnable3 implements Runnable {
 		boolean sigo = true;
 
@@ -274,19 +274,18 @@ public class Ventana extends JFrame {
 		public void run() {
 
 			while (sigo) {
-				if (Mundo.choqueCV() || Mundo.choqueCR() || Mundo.perderVidaGoomba|| Mundo.ganarVidaSeta) {
+				if (Mundo.choqueCV() || Mundo.choqueCR() || Mundo.perderVidaGoomba || Mundo.ganarVidaSeta) {
 					try {
 						Thread.sleep(1000);
-						if(Mundo.ganarVidaSeta){
+						if (Mundo.ganarVidaSeta) {
 							Mario.setVida(Mario.getVida() + 1);
 							Mundo.creaCorazon();
 							Mundo.ganarVidaSeta = false;
-						}
-						else{
-						Mario.setVida(Mario.getVida() - 1);
-						Mundo.eliminaCorazon();
-						pPrincipal.repaint();
-						Mundo.perderVidaGoomba = false;
+						} else {
+							Mario.setVida(Mario.getVida() - 1);
+							Mundo.eliminaCorazon();
+							pPrincipal.repaint();
+							Mundo.perderVidaGoomba = false;
 						}
 					} catch (InterruptedException e) {
 						e.printStackTrace();
@@ -297,7 +296,7 @@ public class Ventana extends JFrame {
 					}
 
 				}
-				
+
 				// Dormir el hilo 15 milisegundos
 				try {
 					pPrincipal.repaint();
@@ -312,12 +311,12 @@ public class Ventana extends JFrame {
 		/**
 		 * Ordena al hilo detenerse en cuanto sea posible
 		 */
-		
+
 		public void acaba() {
 			sigo = false;
 		}
 	}
-	
+
 	/**
 	 * Clase que implementa la interfaz Runnable, inicializa el hilo de los
 	 * caparazones verdes
@@ -346,7 +345,7 @@ public class Ventana extends JFrame {
 				}
 			}
 		}
-		
+
 		/**
 		 * Ordena al hilo detenerse en cuanto sea posible
 		 */
@@ -377,25 +376,23 @@ public class Ventana extends JFrame {
 				Mundo.eliminarSetaVida();
 				Mundo.cambioBloqueAmarilloBloqueUsado();
 				Mundo.cambioBloqueNormalBloqueUsado();
-				
-				
-				//Relacionado con los goombas
+
+				// Relacionado con los goombas
 				Mundo.choqueV();
 				Mundo.interaccionGoomba();
-				if(Mundo.caidaGoomba){
+				if (Mundo.caidaGoomba) {
 					Mundo.caidaDeLosGoombas(Mundo.caidaGoombaNumero);
 				}
-				
-				if(!Mundo.movGoomba){
+
+				if (!Mundo.movGoomba) {
 					Mundo.moverGoombaD();
-				}
-				else{
+				} else {
 					Mundo.moverGoombaI();
 				}
-				
+
 				// Mover "Mario"(Realmente lo que movemos es el fondo creando un
 				// efecto óptico de movimiento
-				
+
 				Mario.saltoMario();
 				if (aPulsada[0]) {
 					if (!Mario.salto && !Mundo.choqueV() && !Mario.caida) {
@@ -441,31 +438,31 @@ public class Ventana extends JFrame {
 					}
 
 				}
-				
+
 				Mundo.caida();
 				if (Mario.getPosY() >= 1100) {
 					Mario.setVida(0);
 					Mundo.eliminaCorazon();
-					
+
 				}
-				
-				if(Mario.getVida()==0){
-					sigo=false;
-					}
-				
-				if(((JPanelFondo) pPrincipal).getVar()==-18840){
-					VentanaHasGanado G= new VentanaHasGanado();
+
+				if (Mario.getVida() == 0) {
+					sigo = false;
+				}
+
+				if (((JPanelFondo) pPrincipal).getVar() == -18840) {
+					VentanaHasGanado G = new VentanaHasGanado();
 					G.setVisible(true);
 					dispose();
 					((JPanelFondo) pPrincipal).setVar(0);
-					sigo=false;
+					sigo = false;
 				}
-				
-				if(Mario.caida==true && Mario.getVida()==0){
+
+				if (Mario.caida == true && Mario.getVida() == 0) {
 					VentanaHasPerdido V = new VentanaHasPerdido();
 					V.setVisible(true);
 					dispose();
-					sigo=false;
+					sigo = false;
 				}
 
 				// Dormir el hilo 30 milisegundos
@@ -475,17 +472,18 @@ public class Ventana extends JFrame {
 					pPrincipal.repaint();
 				} catch (Exception e) {
 				}
-				
+
 			}
 		}
 
 		/**
 		 * Ordena al hilo detenerse en cuanto sea posible
 		 */
-		
+
 		public void acaba() {
 			sigo = false;
 		}
 	};
 
 }
+
