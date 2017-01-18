@@ -1473,30 +1473,32 @@ public class Mundo {
 	public boolean interseccionCR() {
 
 		for (int n = 0; n < aCR.size(); n++) {
-			for (int i = 0; i < aTuberias.size(); i++) {
-				if (aCR.get(n).getBounds().intersects(aTuberias.get(i).getBounds())) {
-					return true;
+			if (aCR.get(n) != null) {
+				for (int i = 0; i < aTuberias.size(); i++) {
+					if (aCR.get(n).getBounds().intersects(aTuberias.get(i).getBounds())) {
+						return true;
+					}
 				}
-			}
-			for (int j = 0; j < aBloques.size(); j++) {
-				if (aCR.get(n).getBounds().intersects(aBloques.get(j).getBounds())) {
-					return true;
+				for (int j = 0; j < aBloques.size(); j++) {
+					if (aCR.get(n).getBounds().intersects(aBloques.get(j).getBounds())) {
+						return true;
+					}
 				}
-			}
-			for (int k = 0; k < aTuberiaGrande.size(); k++) {
-				if (aCR.get(n).getBounds().intersects(aTuberiaGrande.get(k).getBounds())) {
-					return true;
+				for (int k = 0; k < aTuberiaGrande.size(); k++) {
+					if (aCR.get(n).getBounds().intersects(aTuberiaGrande.get(k).getBounds())) {
+						return true;
+					}
 				}
-			}
-			for (int l = 0; l < aBloquesA.size(); l++) {
-				if (aCR.get(n).getBounds().intersects(aBloquesA.get(l).getBounds())) {
-					return true;
+				for (int l = 0; l < aBloquesA.size(); l++) {
+					if (aCR.get(n).getBounds().intersects(aBloquesA.get(l).getBounds())) {
+						return true;
+					}
 				}
-			}
 
-			for (int m = 0; m < aCaida.size(); m++) {
-				if (aCR.get(n).getBounds().intersects(aCaida.get(m).getBounds())) {
-					return true;
+				for (int m = 0; m < aCaida.size(); m++) {
+					if (aCR.get(n).getBounds().intersects(aCaida.get(m).getBounds())) {
+						return true;
+					}
 				}
 			}
 		}
