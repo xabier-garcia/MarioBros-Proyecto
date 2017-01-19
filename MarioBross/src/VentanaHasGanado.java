@@ -16,7 +16,7 @@ public class VentanaHasGanado extends JFrame {
 	JButton bJugar;
 	VentanaResultadoFinal ventanaR;
 
-	public VentanaHasGanado() {
+	public VentanaHasGanado(final Mario mario) {
 		// Liberación de la ventana por defecto al cerrar
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		// Creación contenedores y componentes
@@ -39,26 +39,26 @@ public class VentanaHasGanado extends JFrame {
 		bJugar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				VentanaResultadoFinal ventanaR = new VentanaResultadoFinal();
+				VentanaResultadoFinal ventanaR = new VentanaResultadoFinal(mario);
 				ventanaR.setVisible(true);
 				dispose();
 			}
 		});
 	}
 
-	public static void main(String[] args) {
-		// Crea y visibiliza la ventana con el coche
-		try {
-			final VentanaHasGanado Ventana = new VentanaHasGanado();
-			SwingUtilities.invokeAndWait(new Runnable() {
-				@Override
-				public void run() {
-					Ventana.setVisible(true);
-				}
-			});
-		} catch (Exception e) {
-			System.exit(1); // Error anormal
-		}
-	}
+//	public static void main(String[] args) {
+//		// Crea y visibiliza la ventana con el coche
+//		try {
+//			final VentanaHasGanado Ventana = new VentanaHasGanado();
+//			SwingUtilities.invokeAndWait(new Runnable() {
+//				@Override
+//				public void run() {
+//					Ventana.setVisible(true);
+//				}
+//			});
+//		} catch (Exception e) {
+//			System.exit(1); // Error anormal
+//		}
+//	}
 
 }

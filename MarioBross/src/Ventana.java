@@ -28,7 +28,7 @@ public class Ventana extends JFrame {
 	MiRunnable5 miHilo5 = null; // Hilo para las monedas
 	Boolean[] aPulsada = new Boolean[3]; // Array que almacena estado de la
 											// tecla
-
+	
 	/**
 	 * Constructor que inicializa el array de teclas
 	 */
@@ -451,14 +451,14 @@ public class Ventana extends JFrame {
 				}
 
 				if (((JPanelFondo) pPrincipal).getVar() == -18840) {
-					VentanaHasGanado G = new VentanaHasGanado();
+					VentanaHasGanado G = new VentanaHasGanado(Mario);
 					G.setVisible(true);
 					dispose();
 					((JPanelFondo) pPrincipal).setVar(0);
 					sigo = false;
 				}
 
-				if (Mario.caida == true && Mario.getVida() == 0) {
+				if (Mario.getVida() == 0) {
 					VentanaHasPerdido V = new VentanaHasPerdido();
 					V.setVisible(true);
 					dispose();
