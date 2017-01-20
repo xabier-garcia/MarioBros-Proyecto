@@ -147,15 +147,6 @@ public class Mundo {
 	/**
 	 * Método que cambia de bloque normal por el usado
 	 */
-	public void cambioBloqueNormalBloqueUsado(){
-		for(int i = 0; i<aBloquesA.size(); i++){
-			if(Mario.getGrafico().getBounds().intersects(aBloquesA.get(i).getBounds()) 
-					&& Mario.getPosY()>aBloquesA.get(i).getY() && Mario.getPosY() < 860 ){
-				aBloquesA.get(i).setBackground(Color.black);
-				aBloquesA.get(i).setOpaque(true);
-			}
-		}
-	}
 	
 //	/**
 //	 * Método que devuelve el bloque que toca mario
@@ -881,10 +872,6 @@ public class Mundo {
 		aBloques.add(Bloque);
 
 		// Segundo cuadrado de bloques
-		Bloque = new JLabelBloque();
-		Bloque.setLocation(16200, 999);
-		panel.add(Bloque);
-		aBloques.add(Bloque);
 
 		Bloque = new JLabelBloque();
 		Bloque.setLocation(16200, 899);
@@ -923,11 +910,6 @@ public class Mundo {
 
 		Bloque = new JLabelBloque();
 		Bloque.setLocation(16500, 899);
-		panel.add(Bloque);
-		aBloques.add(Bloque);
-
-		Bloque = new JLabelBloque();
-		Bloque.setLocation(16500, 999);
 		panel.add(Bloque);
 		aBloques.add(Bloque);
 
@@ -1276,11 +1258,11 @@ public class Mundo {
 	 * 
 	 */
 
-	public void moverCR2() {
-		for (int i = 0; i < aCR.size(); i++) {
-			aCR.get(i).move(aCR.get(i).getX() + 20, aCR.get(i).getY());
-		}
-	}
+//	public void moverCR2() {
+//		for (int i = 0; i < aCR.size(); i++) {
+//			aCR.get(i).move(aCR.get(i).getX() + 20, aCR.get(i).getY());
+//		}
+//	}
 
 	/**
 	 * Método que mueve los bloques, los bloques amarillos, las tuberias pequeñas y grandes, los goombas y las monedas
@@ -1326,6 +1308,10 @@ public class Mundo {
 		
 		for (int ñ = 0; ñ < aBloquesUsados.size(); ñ++) {
 			aBloquesUsados.get(ñ).move(aBloquesUsados.get(ñ).getX() - 20, (aBloquesUsados.get(ñ).getY()));
+		}
+		
+		for (int i = 0; i < aCR.size(); i++) {
+			aCR.get(i).move(aCR.get(i).getX() - 20, aCR.get(i).getY());
 		}
 	}
 	
@@ -1374,6 +1360,7 @@ public class Mundo {
 		for (int ñ = 0; ñ < aBloquesUsados.size(); ñ++) {
 			aBloquesUsados.get(ñ).move(aBloquesUsados.get(ñ).getX() + 20, (aBloquesUsados.get(ñ).getY()));
 		}
+	
 	}
 
 	/**
@@ -1403,25 +1390,25 @@ public class Mundo {
 
 		for (int i = 0; i < aTuberias.size(); i++) {
 			if (Mario.getGrafico().getBounds().intersects(aTuberias.get(i).getBounds())
-					&& !Mario.getGrafico().EsEspejo()) {
+					&& Mario.getPosX()<aTuberias.get(i).getX()) {
 				return true;
 			}
 		}
 		for (int j = 0; j < aBloques.size(); j++) {
 			if (Mario.getGrafico().getBounds().intersects(aBloques.get(j).getBounds())
-					&& !Mario.getGrafico().EsEspejo()) {
+					&& Mario.getPosX()<aBloques.get(j).getX()) {
 				return true;
 			}
 		}
 		for (int k = 0; k < aTuberiaGrande.size(); k++) {
 			if (Mario.getGrafico().getBounds().intersects(aTuberiaGrande.get(k).getBounds())
-					&& !Mario.getGrafico().EsEspejo()) {
+					&& Mario.getPosX()>aTuberiaGrande.get(k).getX()) {
 				return true;
 			}
 		}
 		for (int l = 0; l < aBloquesA.size(); l++) {
 			if (Mario.getGrafico().getBounds().intersects(aBloquesA.get(l).getBounds())
-					&& !Mario.getGrafico().EsEspejo()) {
+					&& Mario.getPosX()<aBloquesA.get(l).getX()) {
 				return true;
 			}
 		}
@@ -1439,25 +1426,25 @@ public class Mundo {
 
 		for (int i = 0; i < aTuberias.size(); i++) {
 			if (Mario.getGrafico().getBounds().intersects(aTuberias.get(i).getBounds())
-					&& Mario.getGrafico().EsEspejo()) {
+					&& Mario.getPosX()>aTuberias.get(i).getX()) {
 				return true;
 			}
 		}
 		for (int j = 0; j < aBloques.size(); j++) {
 			if (Mario.getGrafico().getBounds().intersects(aBloques.get(j).getBounds())
-					&& Mario.getGrafico().EsEspejo()) {
+					&& Mario.getPosX()>aBloques.get(j).getX()) {
 				return true;
 			}
 		}
 		for (int k = 0; k < aTuberiaGrande.size(); k++) {
 			if (Mario.getGrafico().getBounds().intersects(aTuberiaGrande.get(k).getBounds())
-					&& Mario.getGrafico().EsEspejo()) {
+					&& Mario.getPosX()>aTuberiaGrande.get(k).getX()) {
 				return true;
 			}
 		}
 		for (int l = 0; l < aBloquesA.size(); l++) {
 			if (Mario.getGrafico().getBounds().intersects(aBloquesA.get(l).getBounds())
-					&& Mario.getGrafico().EsEspejo()) {
+					&& Mario.getPosX()>aBloquesA.get(l).getX()) {
 				return true;
 			}
 		}
@@ -1534,7 +1521,7 @@ public class Mundo {
 
 		for (int i = 0; i < aTuberias.size(); i++) {
 			if (Mario.getGrafico().getBounds().intersects(aTuberias.get(i).getBounds())
-					&& Mario.getPosY() <= aTuberias.get(i).getY()) {
+					&& Mario.getPosY() <= aTuberias.get(i).getY()-100) {
 				Mario.gravedad = Mario.gravedad - 20;
 				Mario.setPosY(Mario.gravedad);
 				return true;
@@ -1579,7 +1566,7 @@ public class Mundo {
 	
 	public boolean choqueV() {
 		for (int i = 0; i < aBloques.size(); i++) {
-
+		if(aBloques.get(i).getY()<=660){
 			if (Mario.getGrafico().getBounds().intersects(aBloques.get(i).getBounds())
 					&& Mario.getPosY() > aBloques.get(i).getY() && Mario.getPosY() < 860) {
 				Mario.gravedad = Mario.getGravedad() + 20;
@@ -1588,15 +1575,17 @@ public class Mundo {
 				return true;
 			}
 		}
+		}
 
 		for (int i = 0; i < aBloquesA.size(); i++) {
-
+			if(aBloquesA.get(i).getY()<=660){
 			if (Mario.getGrafico().getBounds().intersects(aBloquesA.get(i).getBounds())
 					&& Mario.getPosY() > aBloquesA.get(i).getY() && Mario.getPosY() < 860) {
 				Mario.gravedad = Mario.getGravedad() + 20;
 				Mario.setSalto(false);
 				Mario.setCaida(true);
 				return true;
+			}
 			}
 		}
 		return false;

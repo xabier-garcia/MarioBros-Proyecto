@@ -230,10 +230,6 @@ public class Ventana extends JFrame {
 							if (Ventana.this.Mundo.interseccionCR()) {
 								Ventana.this.Mundo.eliminarCR();
 							}
-
-							if (aPulsada[2]) {
-								Ventana.this.Mundo.moverCR2();
-							}
 						}
 					}
 				}
@@ -371,21 +367,19 @@ public class Ventana extends JFrame {
 			// Bucle principal forever hasta que se pare el juego...
 			while (sigo) {
 				pPrincipal.repaint();
-
+				
 				// Relacionado con las setas
 				Mundo.SaleSetaVida();
 				Mundo.eliminarSetaVida();
 				Mundo.cambioBloqueAmarilloBloqueUsado();
-				Mundo.cambioBloqueNormalBloqueUsado();
-				
-				
-				//Relacionado con los goombas
+
+				// Relacionado con los Goombas
 				Mundo.choqueV();
 				Mundo.interaccionGoomba();
 				if(Mundo.caidaGoomba){
 					Mundo.caidaDeLosGoombas(Mundo.caidaGoombaNumero);
 				}
-				
+	
 				if(!Mundo.movGoomba){
 					Mundo.moverGoombaD();
 				}
@@ -395,23 +389,27 @@ public class Ventana extends JFrame {
 				
 				// Mover "Mario"(Realmente lo que movemos es el fondo creando un
 				// efecto óptico de movimiento
+				if(Mario.salto == false && Mario.caida== false && !aPulsada[0] && !aPulsada[1] && !aPulsada[2]){
+				Mario.getGrafico().setComponentOrientationMarioQuieto();
+				}
 				
 				Mario.saltoMario();
 				if (aPulsada[0]) {
-					if (!Mario.salto && !Mundo.choqueV() && !Mario.caida) {
+					if (!Mario.salto && !Mundo.choqueV() && !Mario.caida && !Mundo.caida()) {
 						Mario.gravedad = Mario.getPosY();
 						Mario.gravedadFija = Mario.getPosY();
 						Mario.salto = true;
 						Mario.cont = true;
 						if (Mario.getGrafico().EsEspejo()) {
-							Mario.getGrafico().setComponentOrientationSaltoEspejo();
-						} else {
 							Mario.getGrafico().setComponentOrientationSalto();
+						} else {
+							Mario.getGrafico().setComponentOrientationSaltoEspejo();
 							repaint();
 						}
 					}
 				}
-
+				
+			
 				if (!Mundo.interseccion()) {
 					if ((aPulsada[1] && !aPulsada[0]) || (aPulsada[1] && aPulsada[0])) {
 						Mario.getGrafico().setComponentOrientationNormal();
@@ -425,12 +423,12 @@ public class Ventana extends JFrame {
 						}
 					}
 				}
+				
 
 				if (!Mundo.interseccion2()) {
 					if ((aPulsada[2] && !aPulsada[0]) || (aPulsada[2] && aPulsada[0])) {
 						Mario.getGrafico().setComponentOrientationEspejo();
 						((JPanelFondo) pPrincipal).setVar(((JPanelFondo) pPrincipal).getVar() + 20);
-
 						if (((JPanelFondo) pPrincipal).getVar() >= -60) {
 							((JPanelFondo) pPrincipal).setVar(-60);
 						} else {
@@ -439,7 +437,6 @@ public class Ventana extends JFrame {
 							}
 						}
 					}
-
 				}
 				
 				Mundo.caida();
@@ -453,15 +450,15 @@ public class Ventana extends JFrame {
 					sigo=false;
 					}
 				
-				if(((JPanelFondo) pPrincipal).getVar()==-18840){
-					VentanaHasGanado G= new VentanaHasGanado();
+				if (((JPanelFondo) pPrincipal).getVar() == -18840) {
+					VentanaHasGanado G = new VentanaHasGanado(Mario);
 					G.setVisible(true);
 					dispose();
 					((JPanelFondo) pPrincipal).setVar(0);
-					sigo=false;
+					sigo = false;
 				}
 				
-				if(Mario.caida==true && Mario.getVida()==0){
+				if( Mario.getVida()==0){
 					VentanaHasPerdido V = new VentanaHasPerdido();
 					V.setVisible(true);
 					dispose();

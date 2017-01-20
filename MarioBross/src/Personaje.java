@@ -92,7 +92,13 @@ public class Personaje {
 	
 	@Override
 	public String toString() {
-		return "[" + vida + "]";
+		return "Personaje [vida=" + vida + ", monedas=" + monedas + "]";
 	}
+	
+	
+	
+	
+	
+	
 
 }

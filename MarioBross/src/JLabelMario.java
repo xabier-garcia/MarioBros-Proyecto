@@ -1,4 +1,3 @@
-
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -122,7 +121,20 @@ public class JLabelMario extends JLabel {
 		setSize(TAMANYO_MARIO, TAMANYO_MARIO);
 		Espejo = true;
 	}
+	
+	public void setComponentOrientationMarioQuieto() {
+		try {
 
+			setIcon(new ImageIcon(JLabelMario.class.getResource("Imagenes/MarioQuieto.png").toURI().toURL()));
+		} catch (Exception e) {
+			System.err.println("Error en carga de recurso: Mario.png no encontrado");
+			e.printStackTrace();
+		}
+		setSize(TAMANYO_MARIO, TAMANYO_MARIO);
+		Espejo = true;
+	}
+
+	
 	/**
 	 * Método get que sirve para saber si el componente está en espejo
 	 * @return si es o no espejo
