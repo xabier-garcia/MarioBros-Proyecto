@@ -33,7 +33,7 @@ public class VentanaResultadoFinal extends JFrame {
 		setResizable(false);
 		JTextField tResultado = new JTextField();
 		tResultado.setFocusable(false);
-		tResultado.setBounds(870, 120, 750, 142);
+		tResultado.setBounds(870, 100, 750, 142);
 		tResultado.setForeground(Color.BLACK);
 		tResultado.setText(mario.toString());
 		tResultado.setFont(new Font("Tahoma", Font.PLAIN, 50));
