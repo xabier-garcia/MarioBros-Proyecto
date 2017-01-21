@@ -26,7 +26,7 @@ public class VentanaMenuPrincipal extends JFrame {
 		// Añadido de componentes a contenedores
 		add(pPrincipal, BorderLayout.CENTER);
 		// Formato de ventana
-		setSize(1920, 1080);
+		setSize(1600, 900);
 		setResizable(false);
 		JButton bJugar= new JButton();
 		bJugar.setText("Jugar");

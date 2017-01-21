@@ -129,4 +129,3 @@ public class Mario extends Personaje{
 		}
 	}
 }
-

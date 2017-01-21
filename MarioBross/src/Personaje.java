@@ -1,4 +1,3 @@
-
 /**
  * Clase para definir instancias lógicas de un Personaje
  */

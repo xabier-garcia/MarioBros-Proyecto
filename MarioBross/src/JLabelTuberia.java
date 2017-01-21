@@ -12,8 +12,7 @@ public class JLabelTuberia extends JLabel {
 
 	public static final int TAMANYO_TUBERIA = 200; // píxels (igual ancho que
 													// largo)
-	public static final int ARISTA_TUBERIA= 349;
-
+	public static final int ARISTA_TUBERIA = 349;
 
 	private static final boolean DIBUJAR_RECTANGULO_BLOQUE = false; // Dibujado
 																	// (paradepuración)del
@@ -34,7 +33,7 @@ public class JLabelTuberia extends JLabel {
 			System.err.println("Error en carga de recurso: Mario.png no encontrado");
 			e.printStackTrace();
 		}
-		setBounds(0, 0, ARISTA_TUBERIA, ARISTA_TUBERIA);
+		setSize(TAMANYO_TUBERIA + 10, ARISTA_TUBERIA + 1);
 
 	}
 
