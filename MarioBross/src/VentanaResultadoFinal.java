@@ -39,21 +39,4 @@ public class VentanaResultadoFinal extends JFrame {
 		tResultado.setFont(new Font("Tahoma", Font.PLAIN, 50));
 		pPrincipal.add(tResultado);
 	}
-
-//	public static void main(String[] args) {
-//		// Crea y visibiliza la ventana con el coche
-//		try {
-//			final VentanaResultadoFinal Ventana = new VentanaResultadoFinal();
-//			SwingUtilities.invokeAndWait(new Runnable() {
-//				@Override
-//				public void run() {
-//					Ventana.setVisible(true);
-//					
-//				}
-//			});
-//		} catch (Exception e) {
-//			System.exit(1); // Error anormal
-//		}
-//	}
-
 }

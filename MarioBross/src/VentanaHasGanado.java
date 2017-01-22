@@ -45,20 +45,4 @@ public class VentanaHasGanado extends JFrame {
 			}
 		});
 	}
-
-//	public static void main(String[] args) {
-//		// Crea y visibiliza la ventana con el coche
-//		try {
-//			final VentanaHasGanado Ventana = new VentanaHasGanado();
-//			SwingUtilities.invokeAndWait(new Runnable() {
-//				@Override
-//				public void run() {
-//					Ventana.setVisible(true);
-//				}
-//			});
-//		} catch (Exception e) {
-//			System.exit(1); // Error anormal
-//		}
-//	}
-
 }
