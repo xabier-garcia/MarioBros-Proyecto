@@ -1,4 +1,5 @@
 
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.FocusAdapter;
@@ -8,6 +9,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.Connection;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -15,11 +19,16 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.plaf.synth.SynthSpinnerUI;
 
+import BaseDeDatos.BaseDeDatos;
+
 public class Ventana extends JFrame {
 	private static final long serialVersionUID = 1L; // Para serialización
 	JPanel pPrincipal; // Panel del juego (layout nulo)
 	Mundo Mundo; // Mundo del juego
 	Mario Mario; // Mario del juego
+	static VentanaMenuPrincipal vp;
+	static Ventana v;
+	BaseDeDatos bd;
 	JLabelGoomba Goomba; // Atributo que contiene el Jlabel del goomba
 	MiRunnable miHilo = null; // Hilo del bucle principal de juego
 	MiRunnable2 miHilo2 = null; // Hilo para los caparazones verdes 
@@ -121,6 +130,13 @@ public class Ventana extends JFrame {
 			}
 		});
 	}
+	
+	// MAIN
+	
+	public static void main(String[] args) {
+		v.obtenerUsuariosBD();
+		vp.inicializarMenuPrincipal();
+	}
 
 	/**
 	 * Programa principal de la ventana de juego
@@ -129,9 +145,9 @@ public class Ventana extends JFrame {
 	 */
 	
 	public void Arranque() {
-		// Crea y visibiliza la ventana con el Mario
-		
+		// Crea y visibiliza la ventana con el Mario7
 			this.Mundo = new Mundo(this.pPrincipal);
+			this.Mario = new Mario();
 			this.Mundo.creaMario(620, 860);
 			this.Mario = this.Mundo.getMario();
 			this.Mundo.creaBloque();
@@ -144,7 +160,11 @@ public class Ventana extends JFrame {
 			this.Mundo.creaMoneda();
 			this.Mundo.creaCV();
 			this.Mundo.crearSetaVida();
-			this.Mario.setNombre("Mario Bros");
+			if(vp.nombreMario.get(0) != null){
+				Mario.setNombre(vp.nombreMario.get(0));
+				vp.nombreMario.remove(0);
+			}
+			
 			this.miHilo = this.new MiRunnable(); // Sintaxis de new
 			this.miHilo2 = this.new MiRunnable2();
 			this.miHilo3 = this.new MiRunnable3();
@@ -367,7 +387,7 @@ public class Ventana extends JFrame {
 			// Bucle principal forever hasta que se pare el juego...
 			while (sigo) {
 				pPrincipal.repaint();
-				
+			
 				// Relacionado con las setas
 				Mundo.SaleSetaVida();
 				Mundo.eliminarSetaVida();
@@ -409,7 +429,7 @@ public class Ventana extends JFrame {
 					}
 				}
 				
-			
+		
 				if (!Mundo.interseccion()) {
 					if ((aPulsada[1] && !aPulsada[0]) || (aPulsada[1] && aPulsada[0])) {
 						Mario.getGrafico().setComponentOrientationNormal();
@@ -443,10 +463,11 @@ public class Ventana extends JFrame {
 				if (Mario.getPosY() >= 1100) {
 					Mario.setVida(0);
 					Mundo.eliminaCorazon();
-					
 				}
 				
 				if(Mario.getVida()==0){
+					Mario.caida = false;
+					Mario.salto = false;
 					sigo=false;
 					}
 				
@@ -455,6 +476,12 @@ public class Ventana extends JFrame {
 					G.setVisible(true);
 					dispose();
 					((JPanelFondo) pPrincipal).setVar(0);
+					//Borramos todo lo de los arrayList
+					 bd.aMonedas.clear();
+					 bd.aNombre.clear();
+					 bd.aVidas.clear();
+					guardarEnLaBaseDeDatos();
+					obtenerUsuariosBD();
 					sigo = false;
 				}
 				
@@ -462,6 +489,12 @@ public class Ventana extends JFrame {
 					VentanaHasPerdido V = new VentanaHasPerdido();
 					V.setVisible(true);
 					dispose();
+					//Borramos todo lo de los arrayList
+					 bd.aMonedas.clear();
+					 bd.aNombre.clear();
+					 bd.aVidas.clear();
+					guardarEnLaBaseDeDatos();
+					obtenerUsuariosBD();
 					sigo=false;
 				}
 
@@ -484,5 +517,23 @@ public class Ventana extends JFrame {
 			sigo = false;
 		}
 	};
-
+	
+	// -- BASE DE DATOS --
+	
+	// Guardamos los datos en la base de datos
+	public void guardarEnLaBaseDeDatos() {
+		Connection con = BaseDeDatos.initBD( "Usuario.bd" );
+		Statement st = BaseDeDatos.usarCrearTablasBD( con );
+		BaseDeDatos.usuarioInsert(st, this.Mario.getNombre(), this.Mario.getMonedas(), this.Mario.getVida());
+//		BaseDeDatos.reiniciarBD(con);
+		BaseDeDatos.cerrarBaseDeDatos(con, st);
+	}
+	
+	// Obtener los datos
+	public static void obtenerUsuariosBD(){
+		Connection con = BaseDeDatos.initBD( "Usuario.bd" );
+		Statement st = BaseDeDatos.usarCrearTablasBD( con );
+		BaseDeDatos.ObtenerUsuarios(st);
+		BaseDeDatos.cerrarBaseDeDatos(con, st);
+	}
 }

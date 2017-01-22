@@ -19,6 +19,11 @@ public class Mario extends Personaje{
 	 */
 	
 	public Mario() {
+		salto = false;
+		caida = false;
+		cont = true;
+		gravedadFija = 0;
+		gravedad = 859;
 		Grafico = new JLabelMario();
 	}
 	

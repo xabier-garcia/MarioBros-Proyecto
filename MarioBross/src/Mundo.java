@@ -1,4 +1,5 @@
 
+
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Random;
@@ -23,7 +24,6 @@ public class Mundo {
 	public int caidaGoombaNumero; // Atributo que guarda el número para la caida del goomba
 	public static boolean perderVidaGoomba = false; // Atributo para saber si el goomba a muerto
 	public static boolean ganarVidaSeta = false;// Atributo para saber si se suma vida
-//	private int j; //Atributo que guardara una variable que usaremos para la creacion de monedas
 	public boolean crearMiniMonedasBoolean = false;
 	
 	JLabelCaparazonVerde CV = new JLabelCaparazonVerde(); // Atributo Jlabel para caparazón verde
@@ -61,6 +61,30 @@ public class Mundo {
 	 *            Panel visual del juego
 	 */
 	public Mundo(JPanel panel) {
+		contGoomba = 0; 
+		margenError = false; 
+		caidaGoomba = false;
+		perderVidaGoomba = false; 
+		ganarVidaSeta = false;
+		crearMiniMonedasBoolean = false;
+		movGoomba = false;
+		
+		aPosInicialGoomba = new ArrayList<Integer>();
+		aContGoomba = new ArrayList<Integer>(); 
+		aVida = new ArrayList(); 
+		aBloques = new ArrayList(); 
+		aBloquesA = new ArrayList();
+		aTuberias = new ArrayList();
+		aCaida = new ArrayList(); 
+		aTuberiaGrande = new ArrayList(); 
+		aMonedas = new ArrayList();
+		aMonedasReserva = new ArrayList();
+		aMiniMonedas = new ArrayList();
+		aGoomba = new ArrayList();
+		aCR = new ArrayList();
+		aCV = new ArrayList(); 
+		aSetaVida = new ArrayList(); 
+		aBloquesUsados = new ArrayList(); 
 		this.panel = panel;
 	}
 

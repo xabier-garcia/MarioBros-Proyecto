@@ -1,4 +1,5 @@
 
+
 /**
  * Clase para definir instancias lógicas de un Personaje
  */
@@ -92,7 +93,7 @@ public class Personaje {
 	
 	@Override
 	public String toString() {
-		return "Personaje [vida=" + vida + ", monedas=" + monedas + "]";
+		return "Personaje [ Nombre: "+nombre+" Vida:" + vida + " Monedas:" + monedas + "]";
 	}
 	
 	
